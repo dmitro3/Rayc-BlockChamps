@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: LivingRoom
+    uniqueID: 1418577351
+    locked: 0
