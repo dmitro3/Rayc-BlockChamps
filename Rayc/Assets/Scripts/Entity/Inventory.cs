@@ -48,13 +48,27 @@ public class Inventory : MonoBehaviour
         return Instantiate(obj as GameObject, content.transform);
     }
 
-    public void RemoveFromInventory(GameAsset asset)
+    public void RemoveConsumableFromInventory(ConsumableItem item)
     {
         foreach (Transform child in content.transform)
         {
-            if (child.GetComponent<GameAsset>().id == asset.id)
+            ConsumableItem cur = child.GetComponent<ConsumableItem>();
+            if (cur != null && cur.Equals(item))
             {
-                Destroy(child.gameObject);
+                Destroy(cur.gameObject);
+                break;
+            }
+        }
+    }
+
+    public void RemoveTradableFromInventory(TradableAsset asset)
+    {
+        foreach (Transform child in content.transform)
+        {
+            TradableAsset cur = child.GetComponent<TradableAsset>();
+            if (cur != null && cur.Equals(asset))
+            {
+                Destroy(cur.gameObject);
                 break;
             }
         }
