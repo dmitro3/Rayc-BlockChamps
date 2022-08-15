@@ -204,8 +204,8 @@ public class DragController : MonoBehaviour
             return;
         }
 
-        // TODO: what if it was previously involved in interactions
-
+        // TODO: consider what if it was previously involved in interactions
+        _lastDragged._movementDestination = _lastDragged.lastPosition;
 
         UpdateDragStatus(false);
     }
@@ -214,7 +214,7 @@ public class DragController : MonoBehaviour
     {
         bin.gameObject.SetActive(isDragging && _lastDragged.gameObject.GetComponent<Draggable>()._dragSpot != null);
         _isDragActive = _lastDragged.isDragging = isDragging;
-        _lastDragged.gameObject.layer = isDragging ? DRAGGING : PLACEDITEM;
+        _lastDragged.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = isDragging ? "Dragging" : "PlacedItem";
         _lastDragged.gameObject.GetComponent<SpriteRenderer>().sortingOrder = isDragging ? 1 : 0;
     }
 

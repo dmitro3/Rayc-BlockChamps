@@ -47,9 +47,12 @@ TagManager:
   - name: LivingRoom
     uniqueID: 1418577351
     locked: 0
-  - name: PlacedItems
+  - name: PlacedItem
     uniqueID: 1398314263
     locked: 0
   - name: UI
     uniqueID: 4109472693
+    locked: 0
+  - name: Dragging
+    uniqueID: 2313113413
     locked: 0

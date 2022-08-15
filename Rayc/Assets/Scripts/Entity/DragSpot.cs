@@ -41,6 +41,7 @@ public class DragSpot : MonoBehaviour
         isOccupied = true;
         draggedObject = obj;
         obj.GetComponent<Draggable>()._dragSpot = gameObject;
+        obj.transform.position = gameObject.transform.position;
     }
 
     public virtual void clearObj()
