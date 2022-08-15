@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class UIMonitor : MonoBehaviour
 {   
+    [SerializeField] GameObject uiMask;
+
+    [SerializeField] Inventory inventory;
 
     Camera mainCamera;
 
@@ -18,6 +21,11 @@ public class UIMonitor : MonoBehaviour
 
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         originalCameraPosition = mainCamera.transform.position;
+    }
+
+    void Update()
+    {
+        uiMask.SetActive(inventory.inventoryOnDisplay);
     }
 
     public void ShiftCamera(float displacementX, float displacementY)

@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 21742318}
   - component: {fileID: 21742320}
   - component: {fileID: 21742319}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CoinDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 136937844}
   - component: {fileID: 136937843}
   - component: {fileID: 136937842}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Home
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 145431995}
   - component: {fileID: 145431997}
   - component: {fileID: 145431996}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Raycs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 244914411}
   - component: {fileID: 244914413}
   - component: {fileID: 244914412}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: RuneItems
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -561,7 +561,7 @@ GameObject:
   m_Component:
   - component: {fileID: 472161292}
   - component: {fileID: 472161293}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -589,7 +589,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -37.80005, y: -18.900024}
+  m_AnchoredPosition: {x: -37.800293, y: -18.899902}
   m_SizeDelta: {x: 619.746, y: 134.65}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &472161293
@@ -764,7 +764,7 @@ GameObject:
   - component: {fileID: 585877644}
   - component: {fileID: 585877646}
   - component: {fileID: 585877645}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1014,7 +1014,7 @@ GameObject:
   - component: {fileID: 619424998}
   - component: {fileID: 619425002}
   - component: {fileID: 619425003}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1155,6 +1155,122 @@ MonoBehaviour:
   content: {fileID: 963557946}
   player: {fileID: 460561650}
   inventoryOnDisplay: 0
+--- !u!1 &633316293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 633316294}
+  - component: {fileID: 633316298}
+  - component: {fileID: 633316297}
+  - component: {fileID: 633316296}
+  - component: {fileID: 633316295}
+  m_Layer: 5
+  m_Name: UIMask
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &633316294
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633316293}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 932628266}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &633316295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633316293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.70980394}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &633316296
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633316293}
+  m_CullTransparentMesh: 1
+--- !u!114 &633316297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633316293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!223 &633316298
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633316293}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: -185494603
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
 --- !u!1 &648435688
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,7 +1283,7 @@ GameObject:
   - component: {fileID: 648435692}
   - component: {fileID: 648435691}
   - component: {fileID: 648435690}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Expedition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1288,7 +1404,7 @@ GameObject:
   - component: {fileID: 654840826}
   - component: {fileID: 654840825}
   - component: {fileID: 654840824}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Shop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1484,7 +1600,7 @@ GameObject:
   - component: {fileID: 737947477}
   - component: {fileID: 737947479}
   - component: {fileID: 737947478}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: All
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1561,7 +1677,7 @@ GameObject:
   - component: {fileID: 784478320}
   - component: {fileID: 784478319}
   - component: {fileID: 784478318}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ItemArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1711,7 +1827,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 879095132}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UIButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1754,7 +1870,7 @@ GameObject:
   - component: {fileID: 932628263}
   - component: {fileID: 932628262}
   - component: {fileID: 932628267}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1840,6 +1956,7 @@ RectTransform:
   - {fileID: 879095132}
   - {fileID: 21742318}
   - {fileID: 619424997}
+  - {fileID: 633316294}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1876,7 +1993,7 @@ GameObject:
   - component: {fileID: 936708733}
   - component: {fileID: 936708735}
   - component: {fileID: 936708734}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: InteractableItems
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1985,6 +2102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ef6a7c02933a545916cccf48601429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiMask: {fileID: 633316293}
+  inventory: {fileID: 619425003}
 --- !u!1 &963557946
 GameObject:
   m_ObjectHideFlags: 0
@@ -1995,7 +2114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 963557947}
   - component: {fileID: 963557948}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2054,7 +2173,7 @@ GameObject:
   - component: {fileID: 981495476}
   - component: {fileID: 981495479}
   - component: {fileID: 981495477}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2148,7 +2267,7 @@ GameObject:
   - component: {fileID: 1103405543}
   - component: {fileID: 1103405542}
   - component: {fileID: 1103405541}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Bag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2312,7 +2431,7 @@ GameObject:
   - component: {fileID: 1224727022}
   - component: {fileID: 1224727021}
   - component: {fileID: 1224727020}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Setting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2566,7 +2685,7 @@ GameObject:
   - component: {fileID: 1755829518}
   - component: {fileID: 1755829520}
   - component: {fileID: 1755829519}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2645,7 +2764,7 @@ GameObject:
   - component: {fileID: 1843674253}
   - component: {fileID: 1843674252}
   - component: {fileID: 1843674251}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TabArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2752,7 +2871,7 @@ GameObject:
   - component: {fileID: 1850320829}
   - component: {fileID: 1850320831}
   - component: {fileID: 1850320830}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: RecoveryItems
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2829,7 +2948,7 @@ GameObject:
   - component: {fileID: 1876534308}
   - component: {fileID: 1876534307}
   - component: {fileID: 1876534306}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2948,7 +3067,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1887682619}
   - component: {fileID: 1887682620}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SettingsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3009,7 +3128,7 @@ GameObject:
   - component: {fileID: 1929207204}
   - component: {fileID: 1929207206}
   - component: {fileID: 1929207205}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3086,7 +3205,7 @@ GameObject:
   - component: {fileID: 2014044500}
   - component: {fileID: 2014044499}
   - component: {fileID: 2014044498}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Dojo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
