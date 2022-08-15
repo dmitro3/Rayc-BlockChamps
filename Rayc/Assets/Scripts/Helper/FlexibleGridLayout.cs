@@ -29,7 +29,7 @@ public class FlexibleGridLayout : LayoutGroup
 
         // cellSize.x = cellWidth;
         // cellSize.y = cellHeight;
-        cellSize.x = 22.968f;
+        cellSize.x = 144.392f;
         cellSize.y = 144.392f;
 
         int columnCount = 0;
