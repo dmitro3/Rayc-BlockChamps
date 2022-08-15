@@ -76,4 +76,29 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    public void PutToInventory(GameAsset asset, bool rewardFromExpedition)
+    {
+        asset.gameObject.GetComponent<Draggable>()._dragSpot = null;
+        GameObject newObject = FindObjectOfType<Inventory>().InstantiateToInventory(asset.gameObject);
+        newObject.GetComponent<GameAsset>().ChangeToImageSpecs();
+        newObject.name = asset.gameObject.name;
+        newObject.GetComponent<Draggable>().enabled = true;
+        AddAsset(newObject.GetComponent<GameAsset>());
+        if (!rewardFromExpedition)
+        {
+            Destroy(asset.gameObject);
+        }
+    }
+
+    public GameObject TakeOutFromInventory(GameAsset asset, Vector3 worldPosition, string parentName)
+    {
+        RemoveAsset(asset);
+        GameObject newObject = Instantiate(asset.gameObject as GameObject, GameObject.Find(parentName).transform);
+        newObject.GetComponent<GameAsset>().ChangeToSpriteSpecs();
+        newObject.transform.localPosition = worldPosition;
+        newObject.name = asset.gameObject.name;
+        newObject.GetComponent<Draggable>().enabled = true;
+        return newObject;
+    }
 }

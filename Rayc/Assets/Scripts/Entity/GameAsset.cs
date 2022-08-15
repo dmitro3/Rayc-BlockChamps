@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Collider2D))]
 public class GameAsset : MonoBehaviour
@@ -23,9 +24,11 @@ public class GameAsset : MonoBehaviour
     public Vector2 imageBoxColliderOffset;
     public Vector2 spriteBoxColliderOffset;
 
-    public void changeToImageSpecs()
+    public void ChangeToImageSpecs()
     {
-        // need to change layer?
+        GetComponent<Image>().enabled = true;
+        GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.layer = LayerMask.NameToLayer("InventoryItem");
         if (GetComponent<Animator>() != null)
         {
             GetComponent<Animator>().enabled = false;
@@ -36,8 +39,11 @@ public class GameAsset : MonoBehaviour
         GetComponent<BoxCollider2D>().offset = imageBoxColliderOffset;
     }
 
-    public void changeToSpriteSpecs()
+    public void ChangeToSpriteSpecs()
     {
+        GetComponent<Image>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = true;
+        gameObject.layer = LayerMask.NameToLayer("PlacedItem");
         if (GetComponent<Animator>() != null)
         {
             GetComponent<Animator>().enabled = true;
