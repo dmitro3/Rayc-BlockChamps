@@ -20,7 +20,7 @@ public class UIMonitor : MonoBehaviour
         originalCameraPosition = mainCamera.transform.position;
     }
 
-    public void shiftCamera(float displacementX, float displacementY)
+    public void ShiftCamera(float displacementX, float displacementY)
     {
         mainCamera.transform.position = new Vector3(originalCameraPosition.x + displacementX, originalCameraPosition.y + displacementY, originalCameraPosition.z);
     }

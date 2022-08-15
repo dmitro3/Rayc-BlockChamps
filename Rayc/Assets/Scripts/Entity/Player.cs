@@ -24,12 +24,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void addCoins(int addition)
+    public void AddCoins(int addition)
     {
         coins += addition;
     }
 
-    public bool deductCoins(int deduction)
+    public bool DeductCoins(int deduction)
     {
         if (coins - deduction >= 0)
         {
@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void addAsset(GameAsset asset)
+    public void AddAsset(GameAsset asset)
     {
         assets.Add(asset);
 
@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void removeAsset(GameAsset assetToRemove)
+    public void RemoveAsset(GameAsset assetToRemove)
     {
         foreach(GameAsset asset in assets)
         {
