@@ -59,7 +59,41 @@ public class DragController : MonoBehaviour
     {
         if ((Input.GetMouseButtonUp(0)))
         {
-            // TODO: detect if it is just a click that opens the asset stats in the future
+            AssetStats assetStats = FindObjectOfType<UIMonitor>().assetStats;
+            if (pressDuration < requiredPressDuration && !assetStats.gameObject.activeSelf) 
+            {
+                Vector3 mousePos = Input.mousePosition;
+                _screenPosition = new Vector2(mousePos.x, mousePos.y);
+                RaycastHit2D[] rays = Physics2D.RaycastAll(_worldPosition, Vector2.zero, Mathf.Infinity);
+
+                // prioritize rayc over items
+                Rayc raycFound = null;
+                GameAsset itemFound = null;
+                foreach (RaycastHit2D ray in rays)
+                {
+                    if (ray.collider.GetComponent<GameAsset>() != null) 
+                    {
+                        if (ray.collider.CompareTag("Rayc"))
+                        {
+                            raycFound = ray.collider.GetComponent<Rayc>();
+                            break;
+                        }
+                        else
+                        {
+                            itemFound = ray.collider.GetComponent<GameAsset>();
+                        }
+                    }
+                }
+
+                if (raycFound != null)
+                {
+                    assetStats.ShowStats(raycFound);
+                }
+                else if (itemFound != null)
+                {
+                    assetStats.ShowStats(itemFound);
+                }
+            }
 
             isPressed = false;
             pressDuration = 0f;

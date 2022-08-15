@@ -7,6 +7,9 @@ TagManager:
   - Rayc
   - Bin
   - DragSpot
+  - InteractableItem
+  - RuneItem
+  - RecoveryItem
   layers:
   - Default
   - TransparentFX

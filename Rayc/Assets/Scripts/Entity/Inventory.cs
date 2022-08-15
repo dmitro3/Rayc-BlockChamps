@@ -2,15 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ContentMode
-{
-    All,
-    RaycOnly,
-    InteractableItemOnly,
-    RecoveryItemOnly,
-    RuneItemOnly,
-}
-
 public class Inventory : MonoBehaviour
 {
     [SerializeField] GameObject content;
