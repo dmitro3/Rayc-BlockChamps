@@ -840,7 +840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   list: {fileID: 926163734}
   listItemReference: {fileID: 963557946}
-  listPrefab: {fileID: 0}
+  listPrefab: {fileID: 5067379844618400213, guid: 3b65a9e69f8f54f15bc0b69e499ed9f6, type: 3}
   selectedRayc: {fileID: 0}
   listType: 0
 --- !u!1 &321247167
@@ -1078,9 +1078,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a40a3322e464c49bf1fc29828c5551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coins: 0
+  coins: 100
   assets:
   - {fileID: -1454182341747985935, guid: 9859784c8b3b4d24495ef79cf8eb2137, type: 3}
+  - {fileID: -4578434571204562890, guid: d444ba196eec14069b51d3a39ed3b717, type: 3}
+  - {fileID: -4578434571204562890, guid: d444ba196eec14069b51d3a39ed3b717, type: 3}
 --- !u!4 &460561651
 Transform:
   m_ObjectHideFlags: 0
@@ -4048,6 +4050,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiMask: {fileID: 633316293}
   inventory: {fileID: 619425003}
+  gameAssetList: {fileID: 301853451}
   assetStats: {fileID: 1952738977}
 --- !u!1 &963557946
 GameObject:

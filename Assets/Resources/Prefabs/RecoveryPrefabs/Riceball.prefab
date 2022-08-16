@@ -9,17 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6122561777933572275}
-  - component: {fileID: -1454182341747985935}
+  - component: {fileID: -4578434571204562890}
   - component: {fileID: 2264023533671287927}
   - component: {fileID: -8344595843097510363}
   - component: {fileID: 5592323410309667945}
-  - component: {fileID: -1246368126198238866}
   - component: {fileID: -6561767689181128080}
-  - component: {fileID: -6308337135940341459}
-  - component: {fileID: -7019144312640844102}
   m_Layer: 6
-  m_Name: Rayc
-  m_TagString: Rayc
+  m_Name: Riceball
+  m_TagString: RecoveryItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,7 +41,7 @@ RectTransform:
   m_AnchoredPosition: {x: 3, y: 0}
   m_SizeDelta: {x: 92.5305, y: 72.2562}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &-1454182341747985935
+--- !u!114 &-4578434571204562890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -53,26 +50,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 9158458476228965421}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d63b0511e0019e648ade255e48e9f0bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 23f9bd84d66c10741bf3a000fbc65018, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabName: Rayc
-  description: A Rayc who is always drinking bubble tea. Maybe that is the reason
-    why it is slightly obese?
-  imageRotation: {x: 0, y: 0, z: 0, w: 1}
-  spriteRotation: {x: 0, y: 0, z: -0.0784591, w: 0.9969173}
-  imageLocalScale: {x: 1, y: 1, z: 1}
-  spriteLocalScale: {x: 3.46, y: 2.94, z: 0}
-  imageBoxColliderSize: {x: 197.8, y: 145.3}
-  spriteBoxColliderSize: {x: 4.7, y: 5.39}
+  prefabName: Riceball
+  description: A delicious riceball enjoyed by Raycs...
+  imageRotation: {x: 0, y: 0, z: 0, w: 0}
+  spriteRotation: {x: 0, y: 0, z: 0, w: 0}
+  imageLocalScale: {x: 0, y: 0, z: 0}
+  spriteLocalScale: {x: 0, y: 0, z: 0}
+  imageBoxColliderSize: {x: 0, y: 0}
+  spriteBoxColliderSize: {x: 0, y: 0}
   imageBoxColliderOffset: {x: 0, y: 0}
   spriteBoxColliderOffset: {x: 0, y: 0}
-  id: 0
-  idleOnly: 0
-  raycName: Akimatsu
-  fullness: 2
-  strength: 5
-  discovery: 5
+  recoveryAmount: 2
 --- !u!212 &2264023533671287927
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -114,7 +105,7 @@ SpriteRenderer:
   m_SortingLayerID: 1398314263
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1746960114, guid: a06a800e9b4f94ddf9423a8cd5455304, type: 3}
+  m_Sprite: {fileID: 18553751, guid: be5f8036b133346898c013db4122bd7b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -145,7 +136,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1746960114, guid: a06a800e9b4f94ddf9423a8cd5455304, type: 3}
+  m_Sprite: {fileID: 18553751, guid: be5f8036b133346898c013db4122bd7b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -172,7 +163,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.44, y: 5.43}
+    oldSize: {x: 10.9800005, y: 11.25}
     newSize: {x: 6.44, y: 5.43}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -181,26 +172,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 197.8, y: 145.3}
   m_EdgeRadius: 0
---- !u!95 &-1246368126198238866
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9158458476228965421}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2e4fbae6d09dd4f92a166781fe9d7018, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!222 &-6561767689181128080
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -209,39 +180,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9158458476228965421}
   m_CullTransparentMesh: 1
---- !u!114 &-6308337135940341459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9158458476228965421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e98c3b9d65704d3ab571b8effff820b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDragging: 0
-  lastPosition: {x: 0, y: 0, z: 0}
-  _dragSpot: {fileID: 0}
---- !u!50 &-7019144312640844102
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9158458476228965421}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0

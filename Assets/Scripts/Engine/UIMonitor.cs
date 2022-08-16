@@ -9,6 +9,8 @@ public class UIMonitor : MonoBehaviour
 
     [SerializeField] Inventory inventory;
 
+    public GameAssetList gameAssetList;
+
     public AssetStats assetStats;
 
     Camera mainCamera;

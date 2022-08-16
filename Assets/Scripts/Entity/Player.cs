@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -20,8 +21,10 @@ public class Player : MonoBehaviour
     {
         foreach (GameAsset asset in assets)
         {
-            assetDict.Add(asset, 1);
+            AddAsset(asset);
         }
+
+        assets = assets.Distinct().ToList();
     }
 
     public void AddCoins(int addition)
@@ -44,7 +47,7 @@ public class Player : MonoBehaviour
 
     public void AddAsset(GameAsset asset)
     {
-        assets.Add(asset);
+        if (!assets.Contains(asset)) assets.Add(asset);
 
         if (!assetDict.ContainsKey(asset))
         {
@@ -62,11 +65,10 @@ public class Player : MonoBehaviour
         {
             if (asset.gameObject.name == assetToRemove.gameObject.name)
             {
-                assets.Remove(asset);
-
                 if (assetDict[asset] == 1)
                 {
                     assetDict.Remove(asset);
+                    assets.Remove(asset);
                 }
                 else
                 {

@@ -88,9 +88,10 @@ public class AssetStats : MonoBehaviour
 
     public void OnUseButtonClick()
     {
-       // TODO: Add in game asset list interaction later
-
-       gameObject.SetActive(false);       
+       GameAssetList gameAssetList = FindObjectOfType<UIMonitor>().gameAssetList;
+       gameAssetList.listType = ListType.Rayc;
+       gameAssetList.gameObject.SetActive(true);
+       gameObject.SetActive(false);         
     }
 
 }

@@ -165,7 +165,7 @@ public class DragController : MonoBehaviour
                             inventory.ToggleInvetoryOnDisplay();
                             inventory.gameObject.SetActive(false);
                         }
-                        if (hittedObject.layer == PLACEDITEM|| hittedObject.layer == INVENTORYITEM) 
+                        if (hittedObject.layer == PLACEDITEM || hittedObject.layer == INVENTORYITEM) 
                         {
                             Draggable draggable = hittedObject.GetComponent<Draggable>();
                             if (draggable != null) {
