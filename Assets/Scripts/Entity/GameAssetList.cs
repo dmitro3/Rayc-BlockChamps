@@ -18,6 +18,8 @@ public class GameAssetList : MonoBehaviour
 
     [SerializeField] GameObject listPrefab;
 
+    [SerializeField] GameObject mask;
+
     CanvasGroup disableCanvasGroup = null;
 
     public Rayc selectedRayc;
@@ -26,6 +28,7 @@ public class GameAssetList : MonoBehaviour
 
     void OnEnable()
     {
+        mask.SetActive(true);
         switch(listType)
         {
             case ListType.Rayc:
@@ -50,6 +53,7 @@ public class GameAssetList : MonoBehaviour
     void OnDisable()
     {
         ClearListItems();
+        mask.SetActive(false);
     }
 
     public void Show(CanvasGroup _disableCanvasGroup)
@@ -134,9 +138,10 @@ public class GameAssetList : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            int ignoreLayers = 1 << LayerMask.NameToLayer("InventoryItem");
             Vector3 mousePos = Input.mousePosition;
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePos2D), -Vector2.up);
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePos2D), -Vector2.up, ~ignoreLayers);
             if (hit.collider != null)
             {
                 if (gameObject.activeSelf && listType == ListType.Rayc)

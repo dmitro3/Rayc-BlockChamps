@@ -24,6 +24,25 @@ public class GameAsset : MonoBehaviour
     public Vector2 imageBoxColliderOffset;
     public Vector2 spriteBoxColliderOffset;
 
+    protected AssetStats assetStats;
+
+    protected GameAssetList gameAssetList;
+
+    void OnEnable()
+    {
+        assetStats = FindObjectOfType<UIMonitor>().assetStats;
+        gameAssetList = FindObjectOfType<UIMonitor>().gameAssetList;
+    }
+
+    void Update()
+    {
+        Draggable draggable = GetComponent<Draggable>();
+        if (draggable != null && assetStats != null && gameAssetList != null)
+        {
+            draggable.enabled = !assetStats.gameObject.activeSelf && !gameAssetList.gameObject.activeSelf;
+        }
+    }
+
     public void ChangeToImageSpecs()
     {
         GetComponent<Image>().enabled = true;

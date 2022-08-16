@@ -5,7 +5,6 @@ using System;
 
 public class RecoveryItem : ConsumableItem
 {  
-    GameAssetList gameAssetList;
 
     [SerializeField] int recoveryAmount;
 

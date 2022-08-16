@@ -31,6 +31,10 @@ public class DragController : MonoBehaviour
 
     Player player;
 
+    AssetStats assetStats;
+
+    GameAssetList gameAssetList;
+
     int PLACEDITEM;
 
     int INVENTORYITEM;
@@ -43,6 +47,9 @@ public class DragController : MonoBehaviour
         inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
         bin = GameObject.Find("Bin").GetComponent<Bin>();
         bin.gameObject.SetActive(false);
+
+        assetStats = FindObjectOfType<UIMonitor>().assetStats;
+        gameAssetList = FindObjectOfType<UIMonitor>().gameAssetList;
 
         // getting layer integers
         PLACEDITEM = LayerMask.NameToLayer("PlacedItem");
@@ -57,20 +64,24 @@ public class DragController : MonoBehaviour
 
     void Update()
     {
+        HandleDragAndClick();
+    }
+
+    void HandleDragAndClick()
+    {
         if ((Input.GetMouseButtonUp(0)))
         {
-            AssetStats assetStats = FindObjectOfType<UIMonitor>().assetStats;
             if (pressDuration < requiredPressDuration && !assetStats.gameObject.activeSelf) 
             {
                 Vector3 mousePos = Input.mousePosition;
                 _screenPosition = new Vector2(mousePos.x, mousePos.y);
-                RaycastHit2D[] rays = Physics2D.RaycastAll(_worldPosition, Vector2.zero, Mathf.Infinity);
+                RaycastHit2D[] rays = Physics2D.RaycastAll(_worldPosition, Vector2.zero);
 
-                // prioritize rayc over items
                 Rayc raycFound = null;
                 GameAsset itemFound = null;
                 foreach (RaycastHit2D ray in rays)
                 {
+                    // Debug.DrawLine(ray.collider.transform.position, ray.normal, Color.green, 10.0f);
                     if (ray.collider.GetComponent<GameAsset>() != null) 
                     {
                         if (ray.collider.CompareTag("Rayc"))
@@ -85,13 +96,16 @@ public class DragController : MonoBehaviour
                     }
                 }
 
+                // prioritize rayc over items
                 if (raycFound != null)
                 {
-                    assetStats.ShowStats(raycFound);
+                    if (raycFound.GetComponent<Draggable>().enabled) assetStats.ShowStats(raycFound);
                 }
                 else if (itemFound != null)
                 {
-                    assetStats.ShowStats(itemFound);
+                    Draggable draggable = itemFound.GetComponent<Draggable>();
+                    if ((draggable != null && draggable.enabled) || itemFound.gameObject.CompareTag("RecoveryItem")
+                                                                || itemFound.gameObject.CompareTag("RuneItem")) assetStats.ShowStats(itemFound);
                 }
             }
 
@@ -108,10 +122,9 @@ public class DragController : MonoBehaviour
             isPressed = true;
             Vector3 mousePos = Input.mousePosition;
             _screenPosition = new Vector2(mousePos.x, mousePos.y);
-        } else if (Input.touchCount > 0) {
-            isPressed = true;
-            _screenPosition = Input.GetTouch(0).position;
-        } else {
+        } 
+        else 
+        {
             return;
         }
 

@@ -62,7 +62,12 @@ public class AssetStats : MonoBehaviour
 
     void ToggleButtons(GameAsset asset)
     {
-        if (asset.CompareTag("RecoveryItem"))
+        if (asset.CompareTag("Rayc"))
+        {
+            sellButton.interactable = true;
+            useButton.interactable = false;
+        }
+        else if (asset.CompareTag("RecoveryItem"))
         {
             sellButton.interactable = false;
             useButton.interactable = true;
@@ -82,8 +87,7 @@ public class AssetStats : MonoBehaviour
     public void OnSellButtonClick()
     {
         // TODO: Link with NFT transactions later
-
-        gameObject.SetActive(false);
+        Close();
     }
 
     public void OnUseButtonClick()
@@ -91,7 +95,7 @@ public class AssetStats : MonoBehaviour
        GameAssetList gameAssetList = FindObjectOfType<UIMonitor>().gameAssetList;
        gameAssetList.listType = ListType.Rayc;
        gameAssetList.gameObject.SetActive(true);
-       gameObject.SetActive(false);         
+       Close();        
     }
 
 }
