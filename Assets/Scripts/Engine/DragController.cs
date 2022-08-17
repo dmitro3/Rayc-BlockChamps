@@ -231,6 +231,7 @@ public class DragController : MonoBehaviour
 
                 // TODO: adjust pivot of the object relative to selection spot in the future
                 
+                if (_lastDragged.CompareTag("Rayc")) _lastDragged.GetComponent<Rayc>().justEndedInteraction = false;
                 UpdateDragStatus(false);
                 Destroy(unsettledUIDrag);
                 unsettledUIDrag = null;

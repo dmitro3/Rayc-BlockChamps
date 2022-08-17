@@ -52,6 +52,7 @@ public class InteractionEvent : MonoBehaviour
         {
             rayc.GetComponent<RectTransform>().anchoredPosition = interactableItem.GetComponent<RectTransform>().anchoredPosition + raycBodyOffset;
             rayc.transform.localScale = raycBodyScale;
+            rayc.transform.rotation = bodyRotation;
         }
     }
 

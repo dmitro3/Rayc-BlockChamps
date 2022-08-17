@@ -31,7 +31,7 @@ public class InteractionController : MonoBehaviour
             switch (interactionEvent.eventRarity)
             {
                 case EventRarity.Common:
-                    if (Random.Range(0, 100) < 50)
+                    if (Random.Range(0, 100) < 100)
                     {
                         DecideInteraction(interactionEvent);
                     }
