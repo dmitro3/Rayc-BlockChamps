@@ -184,7 +184,12 @@ public class DragController : MonoBehaviour
                             if (draggable != null) {
                                 _lastDragged = draggable;
 
-                                //TODO: ending ongoing interaction when this happens
+                                // ending ongoing interaction event
+                                if (_lastDragged.gameObject.CompareTag("Rayc"))
+                                {
+                                    InteractionEvent interactionEvent = _lastDragged.gameObject.GetComponent<Rayc>().interactionEvent;
+                                    if (interactionEvent != null) interactionEvent.EndInteraction();
+                                }
 
                                 InitDrag();
                                 hittedObject.transform.localScale += scaleChange;
@@ -251,8 +256,16 @@ public class DragController : MonoBehaviour
             return;
         }
 
-        // TODO: consider what if it was previously involved in interactions
-        _lastDragged._movementDestination = _lastDragged.lastPosition;
+        // if previously involved in interactions
+        if (_lastDragged.CompareTag("Rayc") && _lastDragged.GetComponent<Rayc>().justEndedInteraction)
+        {
+            _lastDragged.GetComponent<Rayc>().justEndedInteraction = false;
+            player.PutToInventory(_lastDragged.gameObject.GetComponent<GameAsset>(), false);
+        }
+        else
+        {
+            _lastDragged._movementDestination = _lastDragged.lastPosition;
+        }
 
         UpdateDragStatus(false);
     }

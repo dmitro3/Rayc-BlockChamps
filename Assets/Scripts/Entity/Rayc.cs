@@ -27,6 +27,10 @@ public class Rayc : TradableAsset
 
     public int strength, discovery;
 
+    public InteractionEvent interactionEvent = null;
+
+    public bool justEndedInteraction = false;
+
     // need more variables for interaction events
 
     public virtual void Start()
