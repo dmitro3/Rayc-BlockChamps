@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UIMonitor : MonoBehaviour
-{   
+{
     [SerializeField] GameObject uiMask;
 
     [SerializeField] Inventory inventory;
