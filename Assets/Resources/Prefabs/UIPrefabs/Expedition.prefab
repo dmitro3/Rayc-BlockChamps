@@ -27,7 +27,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6013953649888800479}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.48, y: 0.52, z: 0.43333334}
   m_ConstrainProportionsScale: 0
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6013953649888800479}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
@@ -85,7 +85,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &6165523643450640520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 6165523641902149076}
   - component: {fileID: 6165523641902149083}
   - component: {fileID: 6165523641902149082}
+  - component: {fileID: 1321891102}
   m_Layer: 5
   m_Name: Select
   m_TagString: Untagged
@@ -204,8 +205,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AddButtonScript, Assembly-CSharp
-        m_MethodName: OnButtonPressed
+        m_TargetAssemblyTypeName: ButtonHandler, Assembly-CSharp
+        m_MethodName: OnBagButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -267,6 +268,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1321891102
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6165523641902149087}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.11, y: 1.1899999}
+    newSize: {x: 3.11, y: 1.1899999}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.11, y: 1.1899999}
+  m_EdgeRadius: 0
 --- !u!1 &6165523641936011915
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,11 +405,11 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 952724205
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1 &6165523641959663199
@@ -424,7 +451,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.3899956, y: 8.181295}
+  m_AnchoredPosition: {x: 5.39, y: 8.69}
   m_SizeDelta: {x: 20.919, y: 2.9909}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6165523641959663193
@@ -503,6 +530,7 @@ GameObject:
   - component: {fileID: 6165523642047852940}
   - component: {fileID: 6165523642047852946}
   - component: {fileID: 6165523642047852941}
+  - component: {fileID: 476130732}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -647,6 +675,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &476130732
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6165523642047852951}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.11, y: 1.1899999}
+    newSize: {x: 3.11, y: 1.1899999}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.081534, y: 1.1776137}
+  m_EdgeRadius: 0
 --- !u!1 &6165523642063728214
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,8 +776,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285308903
-  m_fontColor: {r: 0.9056604, g: 0.62515277, b: 0.4229263, a: 1}
+    rgba: 4278453509
+  m_fontColor: {r: 0.01886791, g: 0.01808645, b: 0.017532917, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -952,8 +1006,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285308903
-  m_fontColor: {r: 0.9056604, g: 0.62515277, b: 0.4229263, a: 1}
+    rgba: 4278453509
+  m_fontColor: {r: 0.01886791, g: 0.01808645, b: 0.017532917, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1023,6 +1077,7 @@ GameObject:
   - component: {fileID: 6165523642217949205}
   - component: {fileID: 6165523642217949207}
   - component: {fileID: 6165523642217949206}
+  - component: {fileID: 1786791755}
   m_Layer: 2
   m_Name: EffectSummary
   m_TagString: Untagged
@@ -1087,8 +1142,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4286165759
-  m_fontColor: {r: 1, g: 0.6986562, b: 0.4764151, a: 1}
+    rgba: 4278914060
+  m_fontColor: {r: 0.047169805, g: 0.045251995, b: 0.04383232, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1147,6 +1202,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1786791755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6165523642217949204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f662c6e2e4d544d1b1dae0b6704f809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6165523642253267242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1394,7 +1461,6 @@ GameObject:
   - component: {fileID: 6165523642332064294}
   - component: {fileID: 6165523642332064293}
   - component: {fileID: 6165523642332064292}
-  - component: {fileID: 6165523642332064299}
   m_Layer: 5
   m_Name: Map
   m_TagString: Untagged
@@ -1438,12 +1504,12 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 1931850767
-  m_SortingOrder: 1
+  m_SortingLayerID: 952724205
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &6165523642332064294
 MonoBehaviour:
@@ -1493,36 +1559,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6165523642332064298}
   m_CullTransparentMesh: 1
---- !u!114 &6165523642332064299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6165523642332064298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &6165523642429999468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1561,8 +1597,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.56428, y: -3.7905}
-  m_SizeDelta: {x: 21.26748, y: 10.579}
+  m_AnchoredPosition: {x: 5.5644, y: -3.7112}
+  m_SizeDelta: {x: 21.268, y: 10.737}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6165523642429999464
 CanvasRenderer:
@@ -1680,6 +1716,7 @@ GameObject:
   - component: {fileID: 6165523642557558829}
   - component: {fileID: 6165523642557558828}
   - component: {fileID: 6165523642557558830}
+  - component: {fileID: 429939142}
   m_Layer: 5
   m_Name: Faraway Village
   m_TagString: Untagged
@@ -1817,7 +1854,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 429939142}
         m_TargetAssemblyTypeName: MapArea, Assembly-CSharp
         m_MethodName: OnAreaClick
         m_Mode: 1
@@ -1847,7 +1884,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 458037913
+  m_SortingLayerID: 952724205
   m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!60 &6165523642557558828
@@ -1900,6 +1937,24 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &429939142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6165523642557558837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b43fd712c5921448b9e1b4ed75e41fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Faraway Villahe
+  description: 
+  baseCoins: 300
+  text: {fileID: 6165523643785223747}
+  boss: {fileID: 557855651}
+  treasureItems: []
 --- !u!1 &6165523642593579448
 GameObject:
   m_ObjectHideFlags: 0
@@ -1915,6 +1970,7 @@ GameObject:
   - component: {fileID: 6165523642593579440}
   - component: {fileID: 6165523642593579447}
   - component: {fileID: 6165523642593579441}
+  - component: {fileID: 1193373902}
   m_Layer: 5
   m_Name: Mountaintop Of Legends
   m_TagString: Untagged
@@ -2026,7 +2082,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1193373902}
         m_TargetAssemblyTypeName: MapArea, Assembly-CSharp
         m_MethodName: OnAreaClick
         m_Mode: 1
@@ -2056,7 +2112,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 458037913
+  m_SortingLayerID: 952724205
   m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!60 &6165523642593579447
@@ -2115,6 +2171,24 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1193373902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6165523642593579448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b43fd712c5921448b9e1b4ed75e41fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Mountaintop Of Legends
+  description: 
+  baseCoins: 200
+  text: {fileID: 6165523643985312035}
+  boss: {fileID: 778700755}
+  treasureItems: []
 --- !u!1 &6165523642603905319
 GameObject:
   m_ObjectHideFlags: 0
@@ -2131,6 +2205,7 @@ GameObject:
   - component: {fileID: 6165523642603905503}
   - component: {fileID: 6165523642603905502}
   - component: {fileID: 6165523642603905496}
+  - component: {fileID: 60059265}
   m_Layer: 5
   m_Name: SolarRabbit Desert
   m_TagString: Untagged
@@ -2268,7 +2343,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 60059265}
         m_TargetAssemblyTypeName: MapArea, Assembly-CSharp
         m_MethodName: OnAreaClick
         m_Mode: 1
@@ -2298,7 +2373,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 458037913
+  m_SortingLayerID: 952724205
   m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!60 &6165523642603905502
@@ -2354,6 +2429,24 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &60059265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6165523642603905319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b43fd712c5921448b9e1b4ed75e41fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: SolarRabbit Desert
+  description: 
+  baseCoins: 150
+  text: {fileID: 6165523643793825903}
+  boss: {fileID: 2032275484}
+  treasureItems: []
 --- !u!1 &6165523642625045105
 GameObject:
   m_ObjectHideFlags: 0
@@ -2365,6 +2458,7 @@ GameObject:
   - component: {fileID: 6165523642625045106}
   - component: {fileID: 6165523642625045100}
   - component: {fileID: 6165523642625045102}
+  - component: {fileID: 1770417529}
   m_Layer: 5
   m_Name: Status
   m_TagString: Untagged
@@ -2415,13 +2509,28 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -230370577
+  m_SortingOrder: 4
   m_TargetDisplay: 0
+--- !u!114 &1770417529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6165523642625045105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 870daa10b98754b3190a916f5749879f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  list: {fileID: 6165523642253267242}
+  raycSelection: {fileID: 6165523643586611738}
+  listPrefab: {fileID: 472967550972720550, guid: c93e504105dd0f344a046dd86be5ca26, type: 3}
 --- !u!1 &6165523642645896799
 GameObject:
   m_ObjectHideFlags: 0
@@ -2431,6 +2540,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6165523642645896792}
+  - component: {fileID: 557855651}
   m_Layer: 5
   m_Name: AreaBoss
   m_TagString: Untagged
@@ -2458,6 +2568,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &557855651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6165523642645896799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a36e4d617f7910a44b5edacacaf1bb05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossName: Raejan
+  strength: 18
+  description: 
+  bossItems: []
 --- !u!1 &6165523642650108983
 GameObject:
   m_ObjectHideFlags: 0
@@ -2762,6 +2888,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6165523642844052461}
+  - component: {fileID: 778700755}
   m_Layer: 5
   m_Name: AreaBoss
   m_TagString: Untagged
@@ -2789,6 +2916,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &778700755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6165523642844052460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a36e4d617f7910a44b5edacacaf1bb05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossName: Jiaze
+  strength: 20
+  description: 
+  bossItems: []
 --- !u!1 &6165523643081670192
 GameObject:
   m_ObjectHideFlags: 0
@@ -2881,8 +3024,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 1464977171
-  m_SortingOrder: 1
+  m_SortingLayerID: 952724205
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!1 &6165523643128669857
 GameObject:
@@ -2952,15 +3095,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Back
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f3cdcf2466af11543b5a7733db1b4eff, type: 2}
+  m_sharedMaterial: {fileID: -6378853193650721263, guid: f3cdcf2466af11543b5a7733db1b4eff, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285308903
-  m_fontColor: {r: 0.9056604, g: 0.62515277, b: 0.4229263, a: 1}
+    rgba: 4278782218
+  m_fontColor: {r: 0.03773582, g: 0.036798067, b: 0.03613383, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3028,6 +3171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6165523643164469755}
+  - component: {fileID: 2032275484}
   m_Layer: 5
   m_Name: AreaBoss
   m_TagString: Untagged
@@ -3055,6 +3199,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2032275484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6165523643164469754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a36e4d617f7910a44b5edacacaf1bb05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossName: Zhenghan
+  strength: 17
+  description: 
+  bossItems: []
 --- !u!1 &6165523643168940513
 GameObject:
   m_ObjectHideFlags: 0
@@ -3067,6 +3227,7 @@ GameObject:
   - component: {fileID: 6165523643168940446}
   - component: {fileID: 6165523643168940445}
   - component: {fileID: 6165523643168940444}
+  - component: {fileID: 770408292}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -3211,6 +3372,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &770408292
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6165523643168940513}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.11, y: 1.1899999}
+    newSize: {x: 3.11, y: 1.1899999}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.081534, y: 1.1776137}
+  m_EdgeRadius: 0
 --- !u!1 &6165523643228767171
 GameObject:
   m_ObjectHideFlags: 0
@@ -3301,6 +3488,7 @@ GameObject:
   - component: {fileID: 6165523643245729296}
   - component: {fileID: 6165523643245729298}
   - component: {fileID: 6165523643245729299}
+  - component: {fileID: 620338270}
   m_Layer: 5
   m_Name: Forbidden Land
   m_TagString: Untagged
@@ -3412,7 +3600,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 620338270}
         m_TargetAssemblyTypeName: MapArea, Assembly-CSharp
         m_MethodName: OnAreaClick
         m_Mode: 1
@@ -3498,7 +3686,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 458037913
+  m_SortingLayerID: 952724205
   m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &6165523643245729299
@@ -3518,6 +3706,24 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &620338270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6165523643245729311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b43fd712c5921448b9e1b4ed75e41fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Forbidden Land
+  description: 
+  baseCoins: 100
+  text: {fileID: 6165523643883521491}
+  boss: {fileID: 1515412547}
+  treasureItems: []
 --- !u!1 &6165523643249538018
 GameObject:
   m_ObjectHideFlags: 0
@@ -3527,6 +3733,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6165523643249538019}
+  - component: {fileID: 1515412547}
   m_Layer: 5
   m_Name: AreaBoss
   m_TagString: Untagged
@@ -3554,6 +3761,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1515412547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6165523643249538018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a36e4d617f7910a44b5edacacaf1bb05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossName: Songchi
+  strength: 15
+  description: 
+  bossItems: []
 --- !u!1 &6165523643306257969
 GameObject:
   m_ObjectHideFlags: 0
@@ -3563,6 +3786,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6165523643306257970}
+  - component: {fileID: 1701049837}
   m_Layer: 5
   m_Name: AreaBoss
   m_TagString: Untagged
@@ -3590,6 +3814,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1701049837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6165523643306257969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a36e4d617f7910a44b5edacacaf1bb05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossName: Jiehui
+  strength: 21
+  description: 
+  bossItems: []
 --- !u!1 &6165523643368019942
 GameObject:
   m_ObjectHideFlags: 0
@@ -3685,7 +3925,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ExpeditionManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: ButtonHandler, Assembly-CSharp
         m_MethodName: OnMapBackButtonPressed
         m_Mode: 1
         m_Arguments:
@@ -3744,8 +3984,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 346085407
-  m_SortingOrder: 0
+  m_SortingLayerID: -185494603
+  m_SortingOrder: 6
   m_TargetDisplay: 0
 --- !u!114 &6165523643368019868
 MonoBehaviour:
@@ -3899,8 +4139,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278650631
+  m_fontColor: {r: 0.028301895, g: 0.025765404, b: 0.025765404, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3971,6 +4211,7 @@ GameObject:
   - component: {fileID: 6165523643586611734}
   - component: {fileID: 6165523643586611728}
   - component: {fileID: 2055932139198638901}
+  - component: {fileID: 1828279722}
   m_Layer: 5
   m_Name: RaycSelection
   m_TagString: Untagged
@@ -3998,8 +4239,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 5.389996, y: 4.0923977}
-  m_SizeDelta: {x: -79.081, y: -94.8131}
+  m_AnchoredPosition: {x: 5.5645, y: 4.426}
+  m_SizeDelta: {x: -78.732, y: -94.463}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6165523643586611734
 CanvasRenderer:
@@ -4056,6 +4297,23 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1828279722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6165523643586611738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &6165523643592206244
 GameObject:
   m_ObjectHideFlags: 0
@@ -4131,8 +4389,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285308903
-  m_fontColor: {r: 0.9056604, g: 0.62515277, b: 0.4229263, a: 1}
+    rgba: 4278453509
+  m_fontColor: {r: 0.01886791, g: 0.01808645, b: 0.017532917, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4295,6 +4553,7 @@ GameObject:
   - component: {fileID: 6165523643746714121}
   - component: {fileID: 6165523643746714120}
   - component: {fileID: 6165523643746714122}
+  - component: {fileID: 1159602150}
   m_Layer: 5
   m_Name: Ancient Remains
   m_TagString: Untagged
@@ -4432,7 +4691,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1159602150}
         m_TargetAssemblyTypeName: MapArea, Assembly-CSharp
         m_MethodName: OnAreaClick
         m_Mode: 1
@@ -4462,7 +4721,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 458037913
+  m_SortingLayerID: 952724205
   m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!60 &6165523643746714120
@@ -4513,6 +4772,24 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1159602150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6165523643746714129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b43fd712c5921448b9e1b4ed75e41fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Ancient Remains
+  description: 
+  baseCoins: 400
+  text: {fileID: 6165523643916095020}
+  boss: {fileID: 1701049837}
+  treasureItems: []
 --- !u!1 &6165523643785223745
 GameObject:
   m_ObjectHideFlags: 0
@@ -4590,8 +4867,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4279374355
+  m_fontColor: {r: 0.0754717, g: 0.07084372, b: 0.07084372, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4727,8 +5004,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4279374355
+  m_fontColor: {r: 0.0754717, g: 0.07084372, b: 0.07084372, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4862,8 +5139,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4279374355
+  m_fontColor: {r: 0.0754717, g: 0.07084372, b: 0.07084372, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4999,8 +5276,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4279374355
+  m_fontColor: {r: 0.0754717, g: 0.07084372, b: 0.07084372, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5134,8 +5411,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4279374355
+  m_fontColor: {r: 0.0754717, g: 0.07084372, b: 0.07084372, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5476,7 +5753,7 @@ GameObject:
   - component: {fileID: 8574172880514447506}
   m_Layer: 5
   m_Name: Selection (2)
-  m_TagString: Untagged
+  m_TagString: DragSpot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5600,8 +5877,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 3.7799997, y: 3.8704143}
+  m_DrawMode: 1
+  m_Size: {x: 2.91, y: 3.8704143}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -5625,9 +5902,9 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3.7799997, y: 3.8704143}
-    newSize: {x: 3.7799997, y: 3.8704143}
+    newSize: {x: 2.91, y: 3.8704143}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
@@ -5649,7 +5926,7 @@ GameObject:
   - component: {fileID: 491209247723218706}
   m_Layer: 5
   m_Name: Selection (1)
-  m_TagString: Untagged
+  m_TagString: DragSpot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5773,8 +6050,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 3.7799997, y: 3.8704143}
+  m_DrawMode: 1
+  m_Size: {x: 2.91, y: 3.8704143}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -5798,9 +6075,9 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3.7799997, y: 3.8704143}
-    newSize: {x: 3.7799997, y: 3.8704143}
+    newSize: {x: 2.91, y: 3.8704143}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
@@ -5900,6 +6177,22 @@ PrefabInstance:
     - target: {fileID: 6920752127922982627, guid: 03c8e512346554bd687e501870601861, type: 3}
       propertyPath: m_Name
       value: Selection
+      objectReference: {fileID: 0}
+    - target: {fileID: 6920752127922982629, guid: 03c8e512346554bd687e501870601861, type: 3}
+      propertyPath: m_SpriteTilingProperty.drawMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6920752127922982629, guid: 03c8e512346554bd687e501870601861, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 2.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 6920752127922982630, guid: 03c8e512346554bd687e501870601861, type: 3}
+      propertyPath: m_Size.x
+      value: 2.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 6920752127922982630, guid: 03c8e512346554bd687e501870601861, type: 3}
+      propertyPath: m_DrawMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03c8e512346554bd687e501870601861, type: 3}

@@ -24,7 +24,7 @@ public class ButtonHandler : MonoBehaviour
     public void OnBagButtonPressed()
     {
         Animator anim = inventory.GetComponent<Animator>();
-        inventory.ToggleInvetoryOnDisplay();
+        inventory.ToggleInventoryOnDisplay();
         if (inventory.inventoryOnDisplay)
         {
             anim.Play("Open");
@@ -41,7 +41,7 @@ public class ButtonHandler : MonoBehaviour
         {
             uiMonitor.expeditionPage.SetActive(true);
             inventory.SetContentMode(ContentMode.RaycOnly);
-            uiMonitor.ToggleMainUIButtons(false);
+            uiMonitor.ToggleTopBar(false);
             uiMonitor.ShiftCamera(CameraDisplacement.EXPEDITION, 0);
             if (expeditionManager.hasPendingResult)
             {
@@ -53,9 +53,15 @@ public class ButtonHandler : MonoBehaviour
         {
             uiMonitor.expeditionPage.SetActive(false);
             inventory.SetContentMode(ContentMode.All);
-            uiMonitor.ToggleMainUIButtons(true);
+            uiMonitor.ToggleTopBar(true);
             uiMonitor.ShiftCamera(0, 0);
         }
+    }
+
+    public void OnMapBackButtonPressed()
+    {
+        if (uiMonitor.dialogueBox.gameObject.activeSelf) uiMonitor.dialogueBox.closeButton.onClick?.Invoke();
+        uiMonitor.ShiftCamera(CameraDisplacement.EXPEDITION, 0);
     }
 
     public void OnShopButtonPressed()

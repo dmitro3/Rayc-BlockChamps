@@ -12,15 +12,15 @@ public class MapArea : MonoBehaviour
     [TextArea(3, 3)]
     public string description;
 
-    public int baseCoins;
+    public float baseCoins;
 
     public TMP_Text text;
-
-    DialogueBox dialogueBox;
 
     public Boss boss;
 
     public List<GameAsset> treasureItems;
+
+    DialogueBox dialogueBox;
 
     ExpeditionManager expeditionManager;
 
@@ -31,7 +31,7 @@ public class MapArea : MonoBehaviour
 
     void Start()
     {
-        expeditionManager = GameObject.Find("ExpeditionManager").GetComponent<ExpeditionManager>();
+        expeditionManager = FindObjectOfType<ExpeditionManager>();
         dialogueBox = FindObjectOfType<UIMonitor>().dialogueBox;
     }
 
@@ -62,21 +62,29 @@ public class MapArea : MonoBehaviour
     {
         if (expeditionManager.allowMapEffects)
         {
-            expeditionManager.isMouseHovering = false;
-            expeditionManager.hoveredArea = "";
-            GetComponent<Canvas>().sortingOrder = 1;
-            GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
-            text.alpha = 0f;
+            ClearAreaHover();
         }
+    }
+
+    void ClearAreaHover()
+    {
+        expeditionManager.isMouseHovering = false;
+        expeditionManager.hoveredArea = "";
+        GetComponent<Canvas>().sortingOrder = 1;
+        GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+        text.alpha = 0f;
     }
 
     public void OnAreaClick()
     {
-        expeditionManager.boss = boss;
-        expeditionManager.SetTreasureItems(treasureItems);
-        UnityAction confirmYesAction = null;
-        confirmYesAction += expeditionManager.StartExpedition;
-        dialogueBox.yesButton.onClick.AddListener(confirmYesAction);
+        // set up expedition manager
+        expeditionManager.SetSelectedArea(this);
+
+        // display dialogue box
+        dialogueBox.SetFunctionToYesButton(expeditionManager.StartExpedition);
+        dialogueBox.SetFunctionToCloseButton(expeditionManager.ResetSelectedArea);
+        dialogueBox.SetFunctionToCloseButton(ClearAreaHover);
+        dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
         dialogueBox.ShowDialogue(name, description + "\n Explore this area?", true);
     }
 }

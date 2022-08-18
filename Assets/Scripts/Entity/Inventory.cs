@@ -65,7 +65,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void ToggleInvetoryOnDisplay()
+    public void ToggleInventoryOnDisplay()
     {
         inventoryOnDisplay = !inventoryOnDisplay;
     }

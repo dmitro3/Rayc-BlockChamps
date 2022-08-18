@@ -21,6 +21,7 @@ public class SelectionSpot : DragSpot
         expeditionManager = FindObjectOfType<ExpeditionManager>();
         effectList = expeditionManager.effectList;
         effectDictionary = expeditionManager.effectDictionary;
+        ToggleDeleteIcon(false);
     }
 
     public override void Update()
@@ -35,7 +36,8 @@ public class SelectionSpot : DragSpot
             {
                 ToggleDeleteIcon(false);
             }
-        } else 
+        } 
+        else 
         {
             sr.color = new Color(1, 1, 1, 1);
             ToggleDeleteIcon(false);

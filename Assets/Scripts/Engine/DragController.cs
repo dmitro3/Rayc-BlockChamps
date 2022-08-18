@@ -71,7 +71,7 @@ public class DragController : MonoBehaviour
     {
         if ((Input.GetMouseButtonUp(0)))
         {
-            if (pressDuration < requiredPressDuration && !assetStats.gameObject.activeSelf) 
+            if (pressDuration < requiredPressDuration && !assetStats.gameObject.activeSelf && !gameAssetList.gameObject.activeSelf && !inventory.inventoryOnDisplay) 
             {
                 Vector3 mousePos = Input.mousePosition;
                 _screenPosition = new Vector2(mousePos.x, mousePos.y);
@@ -175,7 +175,7 @@ public class DragController : MonoBehaviour
 
                             unsettledUIDrag.SetActive(false);
 
-                            inventory.ToggleInvetoryOnDisplay();
+                            inventory.ToggleInventoryOnDisplay();
                             inventory.gameObject.SetActive(false);
                         }
                         if (hittedObject.layer == PLACEDITEM || hittedObject.layer == INVENTORYITEM) 
@@ -216,7 +216,7 @@ public class DragController : MonoBehaviour
     void Drop()
     {
         if (!inventory.inventoryOnDisplay && unsettledUIDrag != null) {
-            inventory.ToggleInvetoryOnDisplay();
+            inventory.ToggleInventoryOnDisplay();
             inventory.gameObject.SetActive(true);
         }
         RaycastHit2D[] hits = Physics2D.RaycastAll(_lastDragged.transform.position, Vector2.zero);
@@ -273,7 +273,7 @@ public class DragController : MonoBehaviour
 
     void UpdateDragStatus(bool isDragging)
     {
-        bin.gameObject.SetActive(isDragging && _lastDragged.gameObject.GetComponent<Draggable>()._dragSpot != null);
+        bin.gameObject.SetActive(isDragging && !FindObjectOfType<UIMonitor>().expeditionPage.activeSelf && _lastDragged.gameObject.GetComponent<Draggable>()._dragSpot != null);
         _isDragActive = _lastDragged.isDragging = isDragging;
         _lastDragged.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = isDragging ? "Dragging" : "PlacedItem";
         _lastDragged.gameObject.GetComponent<SpriteRenderer>().sortingOrder = isDragging ? 1 : 0;
