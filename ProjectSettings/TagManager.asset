@@ -53,6 +53,9 @@ TagManager:
   - name: PlacedItem
     uniqueID: 1398314263
     locked: 0
+  - name: Shop
+    uniqueID: 515851699
+    locked: 0
   - name: UI
     uniqueID: 4109472693
     locked: 0
