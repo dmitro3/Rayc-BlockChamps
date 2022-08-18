@@ -10,8 +10,8 @@ public class RaycHouse : MonoBehaviour
 
     void Awake()
     {
-        sprites = Resources.LoadAll<Sprite>("Sprites/UI/Rayc House");
-        RaycShopInside.SetActive(false);
+        sprites = Resources.LoadAll<Sprite>("Sprites/Shop/Rayc House");
+        //RaycShopInside.SetActive(false);
     }
 
     void OnMouseOver()
@@ -26,11 +26,11 @@ public class RaycHouse : MonoBehaviour
 
     public void ShowShop()
     {
-        RaycShopInside.SetActive(true);
+        //RaycShopInside.SetActive(true);
     }
 
     public void CloseRaycShop()
     {
-        RaycShopInside.SetActive(false);
+        //RaycShopInside.SetActive(false);
     }
 }
