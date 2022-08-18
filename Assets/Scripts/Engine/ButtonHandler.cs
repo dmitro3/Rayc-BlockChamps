@@ -8,6 +8,10 @@ public class ButtonHandler : MonoBehaviour
 
     [SerializeField] Inventory inventory;
 
+    [SerializeField] Button backButton;
+    
+    [SerializeField] Button shopButton;
+
     ExpeditionManager expeditionManager;
 
     public UIMonitor uiMonitor;
@@ -41,6 +45,7 @@ public class ButtonHandler : MonoBehaviour
             uiMonitor.ShiftCamera(CameraDisplacement.EXPEDITION, 0);
             if (expeditionManager.hasPendingResult)
             {
+                // TODO: add boss cut scene
                 expeditionManager.GrantPlayerRewards();
             }
         }
@@ -51,5 +56,21 @@ public class ButtonHandler : MonoBehaviour
             uiMonitor.ToggleMainUIButtons(true);
             uiMonitor.ShiftCamera(0, 0);
         }
+    }
+
+    public void OnShopButtonPressed()
+    {
+        if (!uiMonitor.shopPage.activeSelf) uiMonitor.shopPage.SetActive(true);
+        uiMonitor.ShiftCamera(-211.6f, 0);
+        backButton.gameObject.SetActive(true);
+        shopButton.gameObject.SetActive(false);
+    }
+
+    public void OnShopBackButtonPressed()
+    {
+        uiMonitor.ShiftCamera(0,0);
+        shopButton.gameObject.SetActive(true);
+        backButton.gameObject.SetActive(false);
+        if (uiMonitor.shopPage.activeSelf) uiMonitor.shopPage.SetActive(false);
     }
 }

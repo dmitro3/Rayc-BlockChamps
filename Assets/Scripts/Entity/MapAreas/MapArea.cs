@@ -73,7 +73,7 @@ public class MapArea : MonoBehaviour
     public void OnAreaClick()
     {
         expeditionManager.boss = boss;
-        expeditionManager.treasureItems = treasureItems;
+        expeditionManager.SetTreasureItems(treasureItems);
         UnityAction confirmYesAction = null;
         confirmYesAction += expeditionManager.StartExpedition;
         dialogueBox.yesButton.onClick.AddListener(confirmYesAction);

@@ -20,15 +20,15 @@ public class ExpeditionManager : MonoBehaviour
 
     float curTime = 0;
 
-    public bool timerOn = false;
+    bool timerOn { get; set; } = false;
 
-    public bool hasPendingResult = false;
+    public bool hasPendingResult { get; set; } = false;
 
-    public bool hasBossEncounterRune = false;
+    bool hasBossEncounterRune = false;
 
-    public bool hasBossFightRune = false;
+    bool hasBossFightRune = false;
 
-    public bool bossDefeated = false;
+    bool bossDefeated = false;
 
     public bool allowMapEffects = false;
 
@@ -38,16 +38,16 @@ public class ExpeditionManager : MonoBehaviour
 
     public string hoveredArea = "";
 
-    public int pendingCoins;
+    int pendingCoins = 0;
 
     public Boss boss;
-
-    public List<GameAsset> treasureItems;
 
     public HashSet<InteractableItem> pendingInteractable;
     public HashSet<ConsumableItem> pendingConsumable;
 
     public Player player;
+
+    List<GameAsset> treasureItems;
 
     DialogueBox dialogueBox;
 
@@ -85,6 +85,11 @@ public class ExpeditionManager : MonoBehaviour
             LoadingExpeditionResult();
         }
         UpdateMapUIInteractability();
+    }
+
+    public void SetTreasureItems(List<GameAsset> newList)
+    {
+        treasureItems = newList;
     }
 
     void PromptForRuneInput()
@@ -475,6 +480,7 @@ public class ExpeditionManager : MonoBehaviour
 
     public void StartExpedition()
     {
+        UnityEngine.Debug.Log(boss.bossName);
         dialogueBox.HideDialogue();
         timerOn = true;
         uiMonitor.ShiftCamera(0, 0);

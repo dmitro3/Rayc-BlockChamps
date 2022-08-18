@@ -13,6 +13,8 @@ public class UIMonitor : MonoBehaviour
 
     public GameObject expeditionPage;
 
+    public GameObject shopPage;
+
     public DialogueBox dialogueBox;
 
     public GameAssetList gameAssetList;
