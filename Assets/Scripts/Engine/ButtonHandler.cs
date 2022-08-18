@@ -8,7 +8,14 @@ public class ButtonHandler : MonoBehaviour
 
     [SerializeField] Inventory inventory;
 
+    ExpeditionManager expeditionManager;
+
     public UIMonitor uiMonitor;
+
+    void Start()
+    {
+        expeditionManager = FindObjectOfType<ExpeditionManager>();
+    }
 
     public void OnBagButtonPressed()
     {
@@ -26,6 +33,23 @@ public class ButtonHandler : MonoBehaviour
 
     public void OnExpeditionButtonPressed()
     {
-        uiMonitor.ShiftCamera(CameraDisplacement.EXPEDITION, 0);
+         if (!uiMonitor.expeditionPage.activeSelf)
+        {
+            uiMonitor.expeditionPage.SetActive(true);
+            inventory.SetContentMode(ContentMode.RaycOnly);
+            uiMonitor.ToggleMainUIButtons(false);
+            uiMonitor.ShiftCamera(CameraDisplacement.EXPEDITION, 0);
+            if (expeditionManager.hasPendingResult)
+            {
+                expeditionManager.GrantPlayerRewards();
+            }
+        }
+        else
+        {
+            uiMonitor.expeditionPage.SetActive(false);
+            inventory.SetContentMode(ContentMode.All);
+            uiMonitor.ToggleMainUIButtons(true);
+            uiMonitor.ShiftCamera(0, 0);
+        }
     }
 }

@@ -9,6 +9,12 @@ public class UIMonitor : MonoBehaviour
 
     [SerializeField] Inventory inventory;
 
+    [SerializeField] GameObject uiButtons;
+
+    public GameObject expeditionPage;
+
+    public DialogueBox dialogueBox;
+
     public GameAssetList gameAssetList;
 
     public AssetStats assetStats;
@@ -35,5 +41,10 @@ public class UIMonitor : MonoBehaviour
     public void ShiftCamera(float displacementX, float displacementY)
     {
         mainCamera.transform.position = new Vector3(originalCameraPosition.x + displacementX, originalCameraPosition.y + displacementY, originalCameraPosition.z);
+    }
+
+    public void ToggleMainUIButtons(bool value)
+    {
+        uiButtons.SetActive(value);
     }
 }

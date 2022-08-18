@@ -2,19 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using TMPro;
 
 public class MapArea : MonoBehaviour
 {
     public new string name;
 
+    [TextArea(3, 3)]
     public string description;
 
     public int baseCoins;
 
     public TMP_Text text;
 
-    public MapConfirmationDialogue mapConfirmationDialogue;
+    DialogueBox dialogueBox;
 
     public Boss boss;
 
@@ -30,6 +32,7 @@ public class MapArea : MonoBehaviour
     void Start()
     {
         expeditionManager = GameObject.Find("ExpeditionManager").GetComponent<ExpeditionManager>();
+        dialogueBox = FindObjectOfType<UIMonitor>().dialogueBox;
     }
 
     void Update()
@@ -49,7 +52,7 @@ public class MapArea : MonoBehaviour
         {
             expeditionManager.isMouseHovering = true;
             expeditionManager.hoveredArea = this.name;
-            GetComponent<Canvas>().sortingOrder = 1;
+            GetComponent<Canvas>().sortingOrder = 2;
             GetComponent<RectTransform>().localScale = new Vector3(1.15f, 1.15f, 1.15f);
             text.alpha = 1f;
         }
@@ -61,7 +64,7 @@ public class MapArea : MonoBehaviour
         {
             expeditionManager.isMouseHovering = false;
             expeditionManager.hoveredArea = "";
-            GetComponent<Canvas>().sortingOrder = 0;
+            GetComponent<Canvas>().sortingOrder = 1;
             GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
             text.alpha = 0f;
         }
@@ -69,8 +72,11 @@ public class MapArea : MonoBehaviour
 
     public void OnAreaClick()
     {
-        mapConfirmationDialogue.mapArea = this;
-        mapConfirmationDialogue.updateText();
-        mapConfirmationDialogue.toggleConfirmationDialogue(true);
+        expeditionManager.boss = boss;
+        expeditionManager.treasureItems = treasureItems;
+        UnityAction confirmYesAction = null;
+        confirmYesAction += expeditionManager.StartExpedition;
+        dialogueBox.yesButton.onClick.AddListener(confirmYesAction);
+        dialogueBox.ShowDialogue(name, description + "\n Explore this area?", true);
     }
 }

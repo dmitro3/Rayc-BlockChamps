@@ -1,7 +1,9 @@
+using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using System.Linq;
 
 public class ExpeditionManager : MonoBehaviour
@@ -13,8 +15,6 @@ public class ExpeditionManager : MonoBehaviour
     public GameAssetList gameAssetList;
 
     UIMonitor uiMonitor;
-
-    GameObject raycSelection;
 
     public float waitTime;
 
@@ -40,6 +40,10 @@ public class ExpeditionManager : MonoBehaviour
 
     public int pendingCoins;
 
+    public Boss boss;
+
+    public List<GameAsset> treasureItems;
+
     public HashSet<InteractableItem> pendingInteractable;
     public HashSet<ConsumableItem> pendingConsumable;
 
@@ -49,15 +53,11 @@ public class ExpeditionManager : MonoBehaviour
 
     GameObject confirmationDialogue;
 
-    GameObject expeditionButton;
+    [SerializeField] GameObject expeditionButton;
 
-    CanvasGroup mapAreas;
+    [SerializeField] CanvasGroup mapAreas;
 
-    // ExpeditionButtonScript expeditionButtonScript;
-
-    MapConfirmationDialogue mapConfirmationDialogue;
-
-    DialogueBox mapDialogueBox;
+    [SerializeField] GameObject raycSelection;
 
     void Awake()
     {
@@ -70,18 +70,8 @@ public class ExpeditionManager : MonoBehaviour
 
         // getting components
         uiMonitor = GameObject.Find("UIMonitor").GetComponent<UIMonitor>();
-        raycSelection = GameObject.Find("RaycSelection");
-        expeditionButton = GameObject.Find("ExpeditionButton");
+        dialogueBox = uiMonitor.dialogueBox;
         player = GameObject.Find("Player").GetComponent<Player>();
-        dialogueBox = GameObject.Find("DialogueBox").GetComponent<DialogueBox>();
-        confirmationDialogue = GameObject.Find("ConfirmationDialogue");
-        mapConfirmationDialogue = GameObject.Find("MapConfirmationDialogue").GetComponent<MapConfirmationDialogue>();
-        mapDialogueBox = GameObject.Find("MapDialogueBox").GetComponent<DialogueBox>();
-        // expeditionButtonScript = GameObject.Find("ExpeditionButton").GetComponent<ExpeditionButtonScript>();
-        mapAreas = GameObject.Find("MapAreas").GetComponent<CanvasGroup>();
-
-        // component initializations
-        confirmationDialogue.SetActive(false);
     }
 
     void Update()
@@ -136,7 +126,7 @@ public class ExpeditionManager : MonoBehaviour
             switch (listItem.rune.gameObject.name)
             {
                 case "Boss Rune":
-                    Debug.Log("Boss encounter rune was used...");
+                    UnityEngine.Debug.Log("Boss encounter rune was used...");
                     hasBossEncounterRune = true;
                     runeSelected = listItem.rune;
                     break;
@@ -160,7 +150,7 @@ public class ExpeditionManager : MonoBehaviour
 
     void UpdateMapUIInteractability()
     {
-        if (mapDialogueBox.gameObject.activeSelf || mapConfirmationDialogue.gameObject.activeSelf || gameAssetList.gameObject.activeSelf)
+        if (dialogueBox.gameObject.activeSelf || gameAssetList.gameObject.activeSelf)
         {
             allowMapEffects = false;
             mapAreas.interactable = false;
@@ -232,13 +222,12 @@ public class ExpeditionManager : MonoBehaviour
 
         float appearProb = (float)System.Math.Exp(avgDiscovery / 10f * 2f) / 150f * (hasBossEncounterRune ? 2f : 1f);
 
-        Debug.Log("The boss appear probability is: " + appearProb);
+        UnityEngine.Debug.Log("The boss appear probability is: " + appearProb);
 
         if (Random.Range(1, 100) <= appearProb * 100f)
         {
-            Debug.Log("The boss appears!");
+            UnityEngine.Debug.Log("The boss appears!");
 
-            Boss boss = mapConfirmationDialogue.mapArea.boss;
             float avgStrength = 0;
             foreach (Transform child in raycSelection.transform)
             {
@@ -294,7 +283,6 @@ public class ExpeditionManager : MonoBehaviour
             }
         }
 
-        List<GameAsset> treasureItems = mapConfirmationDialogue.mapArea.treasureItems;
         foreach (GameAsset item in treasureItems)
         {
             TryObtainItem(item);
@@ -303,7 +291,7 @@ public class ExpeditionManager : MonoBehaviour
         if (bossDefeated)
         {
             // give additional interactable item rewards from bosses
-            List<GameAsset> bossItems = mapConfirmationDialogue.mapArea.boss.bossItems;
+            List<GameAsset> bossItems = boss.bossItems;
             foreach (GameAsset item in bossItems)
             {
                 TryObtainItem(item);
@@ -411,6 +399,7 @@ public class ExpeditionManager : MonoBehaviour
             player.PutToInventory((GameAsset)item, true);
         }
 
+        // reset expedition data
         ShowExpeditionDialogue(dialogueText);
         player.AddCoins(pendingCoins);
         pendingCoins = 0;
@@ -420,12 +409,14 @@ public class ExpeditionManager : MonoBehaviour
         hasBossEncounterRune = false;
         hasBossFightRune = false;
         bossDefeated = false;
+        boss = null;
+        treasureItems = null;
     }
 
     public void ShowExpeditionDialogue(string text)
     {
         // uiMonitor.ToggleExpeditionUI(false);
-        dialogueBox.ShowDialogue(text);
+        dialogueBox.ShowDialogue("", text, false);
     }
 
     public void HideExpeditionDialogue()
@@ -448,8 +439,6 @@ public class ExpeditionManager : MonoBehaviour
 
     public void OnMapBackButtonPressed()
     {
-        mapConfirmationDialogue.toggleConfirmationDialogue(false);
-        mapDialogueBox.gameObject.SetActive(true);
         uiMonitor.ShiftCamera(CameraDisplacement.EXPEDITION, 0);
     }
 
@@ -458,11 +447,14 @@ public class ExpeditionManager : MonoBehaviour
         if (CheckValidExpedition())
         {
             // uiMonitor.toggleExpeditionUI(false);
-            confirmationDialogue.SetActive(true);
+            UnityAction confirmYesAction = null;
+            confirmYesAction += OnConfirmationYesButtonPressed;
+            dialogueBox.yesButton.onClick.AddListener(confirmYesAction);
+            dialogueBox.ShowDialogue("Back to Room", "You sure you want to go back? You will lose your current Rayc selection", true);
         }
         else
         {
-            // expeditionButtonScript.OnButtonPressed();
+            uiMonitor.ShiftCamera(0, 0);
         }
 
     }
@@ -470,25 +462,25 @@ public class ExpeditionManager : MonoBehaviour
     public void OnConfirmationYesButtonPressed()
     {
         ClearRaycSelection();
-        confirmationDialogue.SetActive(false);
+        dialogueBox.gameObject.SetActive(false);
         // uiMonitor.toggleExpeditionUI(true);
-        // expeditionButtonScript.OnButtonPressed();
+        uiMonitor.ShiftCamera(0, 0);
     }
 
     public void OnConfirmationNoButtonPressed()
     {
         // uiMonitor.toggleExpeditionUI(true);
-        confirmationDialogue.SetActive(false);
+        dialogueBox.gameObject.SetActive(false);
     }
 
     public void StartExpedition()
     {
+        dialogueBox.HideDialogue();
         timerOn = true;
-        mapConfirmationDialogue.toggleConfirmationDialogue(false);
-        mapDialogueBox.gameObject.SetActive(true);
-        // expeditionButtonScript.OnButtonPressed();
+        uiMonitor.ShiftCamera(0, 0);
         EncounterBoss();
         CalculateRewards();
+        FindObjectOfType<ButtonHandler>().OnExpeditionButtonPressed();
     }
 
     public void StartRuneSelection()
