@@ -18,7 +18,7 @@ public class MapArea : MonoBehaviour
 
     public Boss boss;
 
-    public List<Item> treasureItems;
+    public List<GameAsset> treasureItems;
 
     ExpeditionManager expeditionManager;
 

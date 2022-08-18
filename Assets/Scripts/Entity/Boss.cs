@@ -8,5 +8,5 @@ public class Boss : MonoBehaviour
 
     public string description;
 
-    public List<Item> bossItems;
+    public List<GameAsset> bossItems;
 }

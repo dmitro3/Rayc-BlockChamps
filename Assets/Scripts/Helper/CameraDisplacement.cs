@@ -2,11 +2,11 @@ public class CameraDisplacement
 {
     public const float ORIGIN = 0;
 
-    public const float EXPEDITION = 215.79f;
+    public const float EXPEDITION = 208.75f;
 
     public const float STORE = -219.3f;
 
-    public const float MAP = 432.2f;
+    public const float MAP = 424.72f;
 
     public const float DOJO = 137.07f;
 

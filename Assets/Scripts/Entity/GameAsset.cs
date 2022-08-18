@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum Rarity {
+    Common,
+    Rare,
+    Epic,
+    Legendary
+}
+
 [RequireComponent(typeof(Collider2D))]
 public class GameAsset : MonoBehaviour
 {
@@ -10,6 +17,8 @@ public class GameAsset : MonoBehaviour
 
     [TextArea(3, 3)]
     public string description;
+
+    public Rarity rarity;
 
     // attributes for image/sprite transition
     public Quaternion imageRotation;

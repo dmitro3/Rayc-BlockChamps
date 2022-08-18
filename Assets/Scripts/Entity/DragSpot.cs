@@ -36,7 +36,7 @@ public class DragSpot : MonoBehaviour
         }
     }
 
-    public virtual void takenBy(GameObject obj)
+    public virtual void TakenBy(GameObject obj)
     {
         isOccupied = true;
         draggedObject = obj;
@@ -44,7 +44,7 @@ public class DragSpot : MonoBehaviour
         obj.transform.position = gameObject.transform.position;
     }
 
-    public virtual void clearObj()
+    public virtual void ClearObj()
     {
         isOccupied = false;
         draggedObject = null;

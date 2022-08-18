@@ -40,7 +40,8 @@ public class ExpeditionManager : MonoBehaviour
 
     public int pendingCoins;
 
-    public HashSet<GameAsset> pendingItems;
+    public HashSet<InteractableItem> pendingInteractable;
+    public HashSet<ConsumableItem> pendingConsumable;
 
     public Player player;
 
@@ -62,7 +63,8 @@ public class ExpeditionManager : MonoBehaviour
     {
         // attributes initializations
         pendingCoins = 0;
-        pendingItems = new HashSet<GameAsset>(new GameAssetComparator());
+        pendingInteractable = new HashSet<InteractableItem>();
+        pendingConsumable = new HashSet<ConsumableItem>();
         effectList = new List<Effect>();
         effectDictionary = new Dictionary<string, int>();
 
@@ -90,9 +92,9 @@ public class ExpeditionManager : MonoBehaviour
         }
         else
         {
-            loadingExpeditionResult();
+            LoadingExpeditionResult();
         }
-        updateMapUIInteractability();
+        UpdateMapUIInteractability();
     }
 
     void PromptForRuneInput()
@@ -118,11 +120,11 @@ public class ExpeditionManager : MonoBehaviour
             if (gameAssetList.gameObject.activeSelf) gameAssetList.gameObject.SetActive(false);
             if (runeSelected != null)
             {
-                player.removeAsset(runeSelected);
-                FindObjectOfType<Inventory>().RemoveFromInventory(runeSelected);
+                player.RemoveAsset(runeSelected);
+                FindObjectOfType<Inventory>().RemoveConsumableFromInventory(runeSelected);
                 runeSelected = null;
             }
-            startExpedition();
+            StartExpedition();
         }
     }
 
@@ -156,7 +158,7 @@ public class ExpeditionManager : MonoBehaviour
         }
     }
 
-    void updateMapUIInteractability()
+    void UpdateMapUIInteractability()
     {
         if (mapDialogueBox.gameObject.activeSelf || mapConfirmationDialogue.gameObject.activeSelf || gameAssetList.gameObject.activeSelf)
         {
@@ -170,12 +172,12 @@ public class ExpeditionManager : MonoBehaviour
         }
     }
 
-    public bool checkValidExpedition()
+    public bool CheckValidExpedition()
     {
         return effectList.Count > 0;
     }
 
-    void loadingExpeditionResult()
+    void LoadingExpeditionResult()
     {
         if (timerOn)
         {
@@ -194,13 +196,13 @@ public class ExpeditionManager : MonoBehaviour
                 curTime = 0;
                 imageComponent.color = new Color(1f, 1f, 1f, 1f);
                 imageComponent.fillAmount = 1;
-                clearRaycSelection();
+                ClearRaycSelection();
                 expeditionButton.GetComponent<Button>().enabled = true;
             }
         }
     }
 
-    void clearRaycSelection()
+    void ClearRaycSelection()
     {
         foreach (Transform child in raycSelection.transform)
         {
@@ -208,13 +210,13 @@ public class ExpeditionManager : MonoBehaviour
             if (selectionSpot.isOccupied)
             {
                 GameObject item = selectionSpot.draggedObject;
-                selectionSpot.removeSelection();
+                selectionSpot.RemoveSelection();
             }
         }
     }
 
     // determines if boss appears and is defeated or not
-    public void encounterBoss()
+    public void EncounterBoss()
     {
         float avgDiscovery = 0;
         int raycCount = 0;
@@ -266,9 +268,9 @@ public class ExpeditionManager : MonoBehaviour
     }
 
     // generates coins and item rewards
-    public void calculateRewards()
+    public void CalculateRewards()
     {
-        if (!checkValidExpedition())
+        if (!CheckValidExpedition())
         {
             return;
         }
@@ -292,19 +294,19 @@ public class ExpeditionManager : MonoBehaviour
             }
         }
 
-        List<Item> treasureItems = mapConfirmationDialogue.mapArea.treasureItems;
-        foreach (Item item in treasureItems)
+        List<GameAsset> treasureItems = mapConfirmationDialogue.mapArea.treasureItems;
+        foreach (GameAsset item in treasureItems)
         {
-            tryObtainItem(item);
+            TryObtainItem(item);
         }
 
         if (bossDefeated)
         {
             // give additional interactable item rewards from bosses
-            List<Item> bossItems = mapConfirmationDialogue.mapArea.boss.bossItems;
-            foreach (Item item in bossItems)
+            List<GameAsset> bossItems = mapConfirmationDialogue.mapArea.boss.bossItems;
+            foreach (GameAsset item in bossItems)
             {
-                tryObtainItem(item);
+                TryObtainItem(item);
             }
         }
 
@@ -312,23 +314,23 @@ public class ExpeditionManager : MonoBehaviour
         pendingCoins = (int)coins;
     }
 
-    void tryObtainItem(Item _item)
+    void TryObtainItem(GameAsset _item)
     {
-        if (reachMaxPendingItemLength())
+        if (ReachMaxPendingItemLength())
         {
             return;
         }
 
         Rarity rarity = _item.rarity;
-        GameAsset item = (GameAsset)_item;
+
         switch (rarity)
         {
             case Rarity.Common:
                 if (Random.Range(1, 100) <= 50)
                 {
-                    if (!alreadyObtained(item))
+                    if (!AlreadyObtained(_item))
                     {
-                        pendingItems.Add(item);
+                        AddToRewards(_item);
                     }
                 }
                 break;
@@ -336,9 +338,9 @@ public class ExpeditionManager : MonoBehaviour
             case Rarity.Rare:
                 if (Random.Range(1, 100) <= 10)
                 {
-                    if (!alreadyObtained(item))
+                    if (!AlreadyObtained(_item))
                     {
-                        pendingItems.Add(item);
+                        AddToRewards(_item);
                     }
                 }
                 break;
@@ -346,9 +348,9 @@ public class ExpeditionManager : MonoBehaviour
             case Rarity.Epic:
                 if (Random.Range(1, 200) <= 5)
                 {
-                    if (!alreadyObtained(item))
+                    if (!AlreadyObtained(_item))
                     {
-                        pendingItems.Add(item);
+                        AddToRewards(_item);
                     }
                 }
                 break;
@@ -356,9 +358,9 @@ public class ExpeditionManager : MonoBehaviour
             case Rarity.Legendary:
                 if (Random.Range(1, 200) <= 1)
                 {
-                    if (!alreadyObtained(item))
+                    if (!AlreadyObtained(_item))
                     {
-                        pendingItems.Add(item);
+                        AddToRewards(_item);
                     }
                 }
                 break;
@@ -368,59 +370,79 @@ public class ExpeditionManager : MonoBehaviour
         }
     }
 
-    bool alreadyObtained(GameAsset asset)
+    void AddToRewards(GameAsset item)
+    {
+        if (item.gameObject.CompareTag("InteractableItem"))
+        {
+            pendingInteractable.Add((InteractableItem)item);
+        }
+        else
+        {
+            pendingConsumable.Add((ConsumableItem)item);
+        }
+    }
+
+    bool AlreadyObtained(GameAsset asset)
     {
         return player.assets.Any(cur => cur.gameObject.name == asset.gameObject.name);
     }
 
-    bool reachMaxPendingItemLength()
+    bool ReachMaxPendingItemLength()
     {
-        return pendingItems.Count >= 4;
+        return pendingInteractable.Count + pendingConsumable.Count >= 5;
     }
 
-    public void grantPlayerRewards()
+    public void GrantPlayerRewards()
     {
         string dialogueText = "You got " + pendingCoins + " coins from last expedition!\n";
-        if (pendingItems.Count != 0)
+        if (pendingConsumable.Count != 0 || pendingInteractable.Count != 0)
         {
             dialogueText += "Also, the following items are obtained:\n";
         }
-        foreach (Item item in pendingItems)
+
+        foreach (InteractableItem item in pendingInteractable)
         {
             dialogueText += item.name + "\n";
-            player.putToInventory(item, true);
+            player.PutToInventory((GameAsset)item, true);
         }
-        showExpeditionDialogue(dialogueText);
-        player.addCoins(pendingCoins);
+        foreach (ConsumableItem item in pendingConsumable)
+        {
+            dialogueText += item.name + "\n";
+            player.PutToInventory((GameAsset)item, true);
+        }
+
+        ShowExpeditionDialogue(dialogueText);
+        player.AddCoins(pendingCoins);
         pendingCoins = 0;
-        pendingItems.Clear();
+        pendingInteractable.Clear();
+        pendingConsumable.Clear();
         hasPendingResult = false;
         hasBossEncounterRune = false;
         hasBossFightRune = false;
         bossDefeated = false;
     }
 
-    public void showExpeditionDialogue(string text)
+    public void ShowExpeditionDialogue(string text)
     {
-        uiMonitor.toggleExpeditionUI(false);
-        dialogueBox.showDialogue(text);
+        // uiMonitor.ToggleExpeditionUI(false);
+        dialogueBox.ShowDialogue(text);
     }
 
-    public void hideExpeditionDialogue()
+    public void HideExpeditionDialogue()
     {
-        uiMonitor.toggleExpeditionUI(true);
-        dialogueBox.hideDialogue();
+        // uiMonitor.ToggleExpeditionUI(true);
+        dialogueBox.HideDialogue();
     }
 
     public void OnStartButtonPressed()
     {
-        if (checkValidExpedition())
+        if (CheckValidExpedition())
         {
-            uiMonitor.shiftCamera(CameraDisplacement.MAP);
+            uiMonitor.ShiftCamera(CameraDisplacement.MAP, 0);
         }
         else
         {
-            showExpeditionDialogue("You must put at least 1 Rayc to start expedition!");
+            ShowExpeditionDialogue("You must put at least 1 Rayc to start expedition!");
         }
     }
 
@@ -428,14 +450,14 @@ public class ExpeditionManager : MonoBehaviour
     {
         mapConfirmationDialogue.toggleConfirmationDialogue(false);
         mapDialogueBox.gameObject.SetActive(true);
-        uiMonitor.shiftCamera(CameraDisplacement.EXPEDITION);
+        uiMonitor.ShiftCamera(CameraDisplacement.EXPEDITION, 0);
     }
 
     public void OnBackButtonPressed()
     {
-        if (checkValidExpedition())
+        if (CheckValidExpedition())
         {
-            uiMonitor.toggleExpeditionUI(false);
+            // uiMonitor.toggleExpeditionUI(false);
             confirmationDialogue.SetActive(true);
         }
         else
@@ -447,26 +469,26 @@ public class ExpeditionManager : MonoBehaviour
 
     public void OnConfirmationYesButtonPressed()
     {
-        clearRaycSelection();
+        ClearRaycSelection();
         confirmationDialogue.SetActive(false);
-        uiMonitor.toggleExpeditionUI(true);
+        // uiMonitor.toggleExpeditionUI(true);
         // expeditionButtonScript.OnButtonPressed();
     }
 
     public void OnConfirmationNoButtonPressed()
     {
-        uiMonitor.toggleExpeditionUI(true);
+        // uiMonitor.toggleExpeditionUI(true);
         confirmationDialogue.SetActive(false);
     }
 
-    public void startExpedition()
+    public void StartExpedition()
     {
         timerOn = true;
         mapConfirmationDialogue.toggleConfirmationDialogue(false);
         mapDialogueBox.gameObject.SetActive(true);
         // expeditionButtonScript.OnButtonPressed();
-        encounterBoss();
-        calculateRewards();
+        EncounterBoss();
+        CalculateRewards();
     }
 
     public void StartRuneSelection()

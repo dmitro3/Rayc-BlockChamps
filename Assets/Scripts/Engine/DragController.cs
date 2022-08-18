@@ -230,7 +230,7 @@ public class DragController : MonoBehaviour
                 _lastDragged.transform.position = obj.transform.position;
 
                 // TODO: adjust pivot of the object relative to selection spot in the future
-                
+
                 if (_lastDragged.CompareTag("Rayc")) _lastDragged.GetComponent<Rayc>().justEndedInteraction = false;
                 UpdateDragStatus(false);
                 Destroy(unsettledUIDrag);
@@ -284,9 +284,9 @@ public class DragController : MonoBehaviour
         GameObject oldSpot = _lastDragged.gameObject.GetComponent<Draggable>()._dragSpot;
         if (oldSpot != null && oldSpot.GetComponent<DragSpot>().draggedObject != null && oldSpot.GetComponent<DragSpot>().draggedObject.gameObject == _lastDragged.gameObject)
         {
-            oldSpot.GetComponent<DragSpot>().clearObj();
+            oldSpot.GetComponent<DragSpot>().ClearObj();
         }
-        newSpot.GetComponent<DragSpot>().takenBy(_lastDragged.gameObject);
+        newSpot.GetComponent<DragSpot>().TakenBy(_lastDragged.gameObject);
     }
 
     public static void LeaveSpot(Draggable _lastDragged)
@@ -294,7 +294,7 @@ public class DragController : MonoBehaviour
         GameObject oldSpot = _lastDragged.gameObject.GetComponent<Draggable>()._dragSpot;
         if (oldSpot != null && oldSpot.GetComponent<DragSpot>().draggedObject != null)
         {
-            oldSpot.GetComponent<DragSpot>().clearObj();
+            oldSpot.GetComponent<DragSpot>().ClearObj();
         }
     }
 }

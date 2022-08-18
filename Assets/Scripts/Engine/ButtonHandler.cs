@@ -26,6 +26,6 @@ public class ButtonHandler : MonoBehaviour
 
     public void OnExpeditionButtonPressed()
     {
-        uiMonitor.ShiftCamera(200.0f, 0);
+        uiMonitor.ShiftCamera(CameraDisplacement.EXPEDITION, 0);
     }
 }

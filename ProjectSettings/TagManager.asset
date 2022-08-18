@@ -10,6 +10,8 @@ TagManager:
   - InteractableItem
   - RuneItem
   - RecoveryItem
+  - QrConnectMenu
+  - IOSConnectMenu
   layers:
   - Default
   - TransparentFX
@@ -52,6 +54,9 @@ TagManager:
     locked: 0
   - name: PlacedItem
     uniqueID: 1398314263
+    locked: 0
+  - name: Expedition
+    uniqueID: 4064596719
     locked: 0
   - name: UI
     uniqueID: 4109472693
