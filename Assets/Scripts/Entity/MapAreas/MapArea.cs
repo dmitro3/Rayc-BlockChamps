@@ -80,11 +80,15 @@ public class MapArea : MonoBehaviour
         // set up expedition manager
         expeditionManager.SetSelectedArea(this);
 
-        // display dialogue box
-        dialogueBox.SetFunctionToYesButton(expeditionManager.StartExpedition);
+        // display dialogue box and set up buttons
+        dialogueBox.SetFunctionToYesButton(expeditionManager.StartRuneSelection);
+        dialogueBox.SetFunctionToYesButton(ClearAreaHover);
+        dialogueBox.SetFunctionToYesButton(dialogueBox.HideDialogue);
+
         dialogueBox.SetFunctionToCloseButton(expeditionManager.ResetSelectedArea);
         dialogueBox.SetFunctionToCloseButton(ClearAreaHover);
         dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
+
         dialogueBox.ShowDialogue(name, description + "\n Explore this area?", true);
     }
 }

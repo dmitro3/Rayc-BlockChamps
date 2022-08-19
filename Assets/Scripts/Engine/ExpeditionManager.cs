@@ -116,8 +116,8 @@ public class ExpeditionManager : MonoBehaviour
             if (gameAssetList.gameObject.activeSelf) gameAssetList.gameObject.SetActive(false);
             if (runeSelected != null)
             {
+                if (player.assetDict[runeSelected] == 1) FindObjectOfType<Inventory>().RemoveConsumableFromInventory(runeSelected);
                 player.RemoveAsset(runeSelected);
-                FindObjectOfType<Inventory>().RemoveConsumableFromInventory(runeSelected);
                 runeSelected = null;
             }
             StartExpedition();
@@ -131,8 +131,8 @@ public class ExpeditionManager : MonoBehaviour
         {
             switch (listItem.rune.gameObject.name)
             {
-                case "Boss Rune":
-                    UnityEngine.Debug.Log("Boss encounter rune was used...");
+                case "Fate Rune":
+                    UnityEngine.Debug.Log("Fate rune was used...");
                     hasBossEncounterRune = true;
                     runeSelected = listItem.rune;
                     break;
@@ -476,5 +476,10 @@ public class ExpeditionManager : MonoBehaviour
     {
         gameAssetList.listType = ListType.Rune;
         gameAssetList.gameObject.SetActive(true);
+        if (gameAssetList.list.transform.childCount == 0)
+        {
+            gameAssetList.gameObject.SetActive(false);
+            StartExpedition();
+        }
     }
 }

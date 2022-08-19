@@ -12,7 +12,7 @@ public enum ListType
 
 public class GameAssetList : MonoBehaviour
 {
-    [SerializeField] GameObject list;
+    public GameObject list;
 
     [SerializeField] GameObject listItemReference;
 

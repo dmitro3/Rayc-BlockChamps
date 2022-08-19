@@ -2829,6 +2829,8 @@ MonoBehaviour:
   - {fileID: -4578434571204562890, guid: d444ba196eec14069b51d3a39ed3b717, type: 3}
   - {fileID: -4578434571204562890, guid: d444ba196eec14069b51d3a39ed3b717, type: 3}
   - {fileID: -5513056739033444781, guid: 06a62c68fd60f4bca8f5adeae7b2ecc8, type: 3}
+  - {fileID: -6981321476431601126, guid: d932e8fd349ae431ab27b0ade69ba601, type: 3}
+  - {fileID: -6981321476431601126, guid: d932e8fd349ae431ab27b0ade69ba601, type: 3}
   coinAmount: {fileID: 526306469}
 --- !u!4 &460561651
 Transform:
