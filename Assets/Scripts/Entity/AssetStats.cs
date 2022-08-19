@@ -32,10 +32,12 @@ public class AssetStats : MonoBehaviour
 
     public void ShowStats(GameAsset asset)
     {
-        gameObject.SetActive(true);
         current = asset;
         title.text = current.gameObject.name;
         description.text = current.description;
+        ToggleButtons(asset);
+        profileImage.sprite = current.GetComponent<Image>().sprite;
+        gameObject.SetActive(true);
         if (asset.CompareTag("Rayc"))
         {
             title.text = current.GetComponent<Rayc>().raycName;
@@ -56,8 +58,6 @@ public class AssetStats : MonoBehaviour
             numberDisplay.text = FindObjectOfType<Player>().assetDict[current].ToString();
             statsDisplay.text = "";
         }
-        ToggleButtons(asset);
-        profileImage.sprite = current.GetComponent<Image>().sprite;
     }
 
     void ToggleButtons(GameAsset asset)
