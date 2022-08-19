@@ -20,6 +20,8 @@ public class GameAssetList : MonoBehaviour
 
     [SerializeField] GameObject mask;
 
+    [SerializeField] DialogueManager dialogueManager;
+
     CanvasGroup disableCanvasGroup = null;
 
     public Rayc selectedRayc;
@@ -151,7 +153,15 @@ public class GameAssetList : MonoBehaviour
             }
         }
 
-        // TODO: Add in logic to control dialogue system
+        if (done)
+        {
+            if (dialogueManager.duringDialogue)
+            {
+                dialogueManager.dialoguePanel.SetActive(true);
+                dialogueManager.DisplayNextSentence();
+            }
+            if (gameObject.activeSelf) Hide();
+        }
     }
 
     bool WaitForRaycInput(RaycastHit2D hit)
@@ -167,7 +177,11 @@ public class GameAssetList : MonoBehaviour
         {
             selectedRayc = null;
 
-            //TODO: handles further dialogue if need be
+            if (dialogueManager.duringDialogue)
+            {
+                dialogueManager.sentences.Clear();
+                dialogueManager.sentences.Enqueue("So not training? Don't waste my time.");
+            }
 
             return true;
         }

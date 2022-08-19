@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -67,11 +68,24 @@ public class DragController : MonoBehaviour
         HandleDragAndClick();
     }
 
+    // function to shoot a raycast without any constraints
+    RaycastHit2D ShootRay()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        _screenPosition = new Vector2(mousePos.x, mousePos.y);
+        return Physics2D.Raycast(_worldPosition, Vector2.zero);
+    }
+
     void HandleDragAndClick()
     {
         if ((Input.GetMouseButtonUp(0)))
         {
-            if (pressDuration < requiredPressDuration && !assetStats.gameObject.activeSelf && !gameAssetList.gameObject.activeSelf && !inventory.inventoryOnDisplay) 
+            RaycastHit2D testRay = ShootRay();
+            if (testRay.collider != null && testRay.collider.gameObject.layer == LayerMask.NameToLayer("InventoryItem"))
+            {
+                assetStats.ShowStats(testRay.collider.GetComponent<GameAsset>());
+            }
+            else if (pressDuration < requiredPressDuration && !assetStats.gameObject.activeSelf && !gameAssetList.gameObject.activeSelf && !inventory.inventoryOnDisplay) 
             {
                 Vector3 mousePos = Input.mousePosition;
                 _screenPosition = new Vector2(mousePos.x, mousePos.y);
@@ -81,7 +95,6 @@ public class DragController : MonoBehaviour
                 GameAsset itemFound = null;
                 foreach (RaycastHit2D ray in rays)
                 {
-                    // Debug.DrawLine(ray.collider.transform.position, ray.normal, Color.green, 10.0f);
                     if (ray.collider.GetComponent<GameAsset>() != null) 
                     {
                         if (ray.collider.CompareTag("Rayc"))
@@ -136,8 +149,6 @@ public class DragController : MonoBehaviour
             if (isPressed) 
             {
                 int layerMask = 0;
-
-                // TODO: change to detect game asset list later
 
                 layerMask = 1 << INVENTORYITEM;
                 layerMask |= (1 << PLACEDITEM);

@@ -87,14 +87,14 @@ public class ButtonHandler : MonoBehaviour
 
     public void OnDojoButtonClicked()
     {
-        if (mainCamera.transform.position.y > 0)
-        {
-            uiMonitor.ShiftCamera(0, 0);
-        }
-        else
-        {
-            uiMonitor.ShiftCamera(0, CameraDisplacement.DOJO);
-        }
+        uiMonitor.ToggleTopBar(false);
+        uiMonitor.ShiftCamera(0, CameraDisplacement.DOJO);
+    }
+
+    public void OnDojoBackButtonClicked()
+    {
+        uiMonitor.ToggleTopBar(true);
+        uiMonitor.ShiftCamera(0, 0);
     }
 
     public void SwitchToTree(Rayc _rayc)

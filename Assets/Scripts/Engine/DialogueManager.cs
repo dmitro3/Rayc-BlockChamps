@@ -132,7 +132,7 @@ public class DialogueManager : MonoBehaviour
             {
                 dialoguePanel.SetActive(false);
                 master.StartTraining();
-                return true ;
+                return true;
             }
         }
 
