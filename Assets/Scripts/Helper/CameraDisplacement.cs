@@ -8,7 +8,7 @@ public class CameraDisplacement
 
     public const float MAP = 424.72f;
 
-    public const float DOJO = 137.07f;
+    public const float DOJO = 136.2f;
 
-    public const float TREE = 261.89f;
+    public const float TREE = 270.3f;
 }

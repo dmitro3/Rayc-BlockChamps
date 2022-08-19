@@ -39,6 +39,15 @@ public class Rayc : TradableAsset
         effect = new Serendipity();
     }
 
+    public void SetData(Rayc rayc)
+    {
+        id = rayc.id;
+        raycName = rayc.raycName;
+        fullness = rayc.fullness;
+        strength = rayc.strength;
+        discovery = rayc.discovery;
+    }
+
     public void ChangePoise(Poise poise)
     {
         Sprite[] allPoises = Resources.LoadAll<Sprite>("Sprites/Poise/" + prefabName);

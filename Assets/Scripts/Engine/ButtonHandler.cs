@@ -12,13 +12,18 @@ public class ButtonHandler : MonoBehaviour
     
     [SerializeField] Button shopButton;
 
+    [SerializeField] ProfessionTree professionTree;
+
     ExpeditionManager expeditionManager;
 
     public UIMonitor uiMonitor;
 
+    Camera mainCamera;
+
     void Start()
     {
         expeditionManager = FindObjectOfType<ExpeditionManager>();
+        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
     public void OnBagButtonPressed()
@@ -78,5 +83,30 @@ public class ButtonHandler : MonoBehaviour
         shopButton.gameObject.SetActive(true);
         backButton.gameObject.SetActive(false);
         if (uiMonitor.shopPage.activeSelf) uiMonitor.shopPage.SetActive(false);
+    }
+
+    public void OnDojoButtonClicked()
+    {
+        if (mainCamera.transform.position.y > 0)
+        {
+            uiMonitor.ShiftCamera(0, 0);
+        }
+        else
+        {
+            uiMonitor.ShiftCamera(0, CameraDisplacement.DOJO);
+        }
+    }
+
+    public void SwitchToTree(Rayc _rayc)
+    {
+        professionTree.rayc = _rayc;
+        professionTree.gameObject.SetActive(true);
+        uiMonitor.ShiftCamera(0, CameraDisplacement.TREE);
+    }
+
+    public void OnTreeBackButtonClicked()
+    {
+        professionTree.gameObject.SetActive(false);
+        uiMonitor.ShiftCamera(0, CameraDisplacement.DOJO);
     }
 }
