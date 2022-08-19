@@ -11,6 +11,7 @@ public class ButtonHandler : MonoBehaviour
     [SerializeField] Button backButton;
     
     [SerializeField] Button shopButton;
+    [SerializeField] private GameObject RaycHouseInside;
 
     ExpeditionManager expeditionManager;
 
@@ -72,5 +73,10 @@ public class ButtonHandler : MonoBehaviour
         shopButton.gameObject.SetActive(true);
         backButton.gameObject.SetActive(false);
         if (uiMonitor.shopPage.activeSelf) uiMonitor.shopPage.SetActive(false);
+    }
+
+    public void CloseRaycShop()
+    {
+        RaycHouseInside.SetActive(false);
     }
 }
