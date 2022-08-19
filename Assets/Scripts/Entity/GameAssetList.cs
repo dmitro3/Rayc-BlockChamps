@@ -24,6 +24,8 @@ public class GameAssetList : MonoBehaviour
 
     CanvasGroup disableCanvasGroup = null;
 
+    public bool isHealing = false;
+
     public Rayc selectedRayc;
 
     public ListType listType;
@@ -76,6 +78,7 @@ public class GameAssetList : MonoBehaviour
             disableCanvasGroup.interactable = true;
         }
         disableCanvasGroup = null;
+        isHealing = false;
         gameObject.SetActive(false);
     }
 
@@ -90,10 +93,14 @@ public class GameAssetList : MonoBehaviour
         {
             if (child.gameObject.CompareTag("Rayc"))
             {
-                GameObject listObj = Instantiate(listPrefab, list.transform);
-                listObj.name = child.gameObject.name;
-                ListItem listItem = listObj.GetComponent<ListItem>();
-                listItem.SetRaycValues(child.GetComponent<Rayc>());
+                Rayc rayc = child.gameObject.GetComponent<Rayc>();
+                if (rayc.fullness > 0 || isHealing)
+                {
+                    GameObject listObj = Instantiate(listPrefab, list.transform);
+                    listObj.name = child.gameObject.name;
+                    ListItem listItem = listObj.GetComponent<ListItem>();
+                    listItem.SetRaycValues(rayc);
+                }
             }
         }
     }
@@ -170,8 +177,15 @@ public class GameAssetList : MonoBehaviour
         if (listItem != null && listItem.rayc.gameObject.CompareTag("Rayc"))
         {
             Rayc rayc = listItem.rayc;
-            selectedRayc = rayc;
-            return true;
+            if (rayc.fullness > 0 || isHealing)
+            {
+                selectedRayc = rayc;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else if (hit.collider.gameObject.name == "CloseGameAssetList")
         {

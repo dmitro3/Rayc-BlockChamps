@@ -94,6 +94,7 @@ public class AssetStats : MonoBehaviour
     {
        GameAssetList gameAssetList = FindObjectOfType<UIMonitor>().gameAssetList;
        gameAssetList.listType = ListType.Rayc;
+       gameAssetList.isHealing = true;
        gameAssetList.gameObject.SetActive(true);
        Close();        
     }

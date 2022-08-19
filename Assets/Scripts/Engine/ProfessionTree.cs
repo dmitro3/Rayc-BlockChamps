@@ -61,6 +61,7 @@ public class ProfessionTree : MonoBehaviour
         GameObject raycObj = inventory.InstantiateToInventory(node.nodePrefab);
         Rayc raycObjScript = raycObj.GetComponent<Rayc>();
         raycObjScript.SetData(rayc);
+        raycObjScript.fullness--;
         raycObjScript.ChangeToImageSpecs();
         raycObj.name = rayc.raycName;
         raycObj.GetComponent<Draggable>().enabled = true;

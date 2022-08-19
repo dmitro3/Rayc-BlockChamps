@@ -198,6 +198,19 @@ public class ExpeditionManager : MonoBehaviour
         }
     }
 
+    void DecreaseRaycSelectionFullness()
+    {
+        foreach (Transform child in raycSelection.transform)
+        {
+            SelectionSpot selectionSpot = child.gameObject.GetComponent<SelectionSpot>();
+            if (selectionSpot.draggedObject != null)
+            {
+                Rayc rayc = selectionSpot.draggedObject.GetComponent<Rayc>();
+                rayc.fullness -= 1;
+            } 
+        }
+    }
+
     void ClearRaycSelection()
     {
         foreach (Transform child in raycSelection.transform)
@@ -308,6 +321,7 @@ public class ExpeditionManager : MonoBehaviour
 
         hasPendingResult = true;
         pendingCoins = (int)coins;
+        DecreaseRaycSelectionFullness();
     }
 
     void TryObtainItem(GameAsset _item)

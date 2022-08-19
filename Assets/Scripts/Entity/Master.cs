@@ -86,9 +86,11 @@ public class Master : MonoBehaviour
         {
             case "strength":
                 gameAssetList.selectedRayc.strength++;
+                gameAssetList.selectedRayc.fullness--;
                 break;
             case "discovery":
                 gameAssetList.selectedRayc.discovery++;
+                gameAssetList.selectedRayc.fullness--;
                 break;
             default:
                 break;

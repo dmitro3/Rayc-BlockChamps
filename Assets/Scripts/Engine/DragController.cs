@@ -36,6 +36,8 @@ public class DragController : MonoBehaviour
 
     GameAssetList gameAssetList;
 
+    UIMonitor uiMonitor;
+
     int PLACEDITEM;
 
     int INVENTORYITEM;
@@ -45,12 +47,13 @@ public class DragController : MonoBehaviour
 
     void Awake()
     {
-        inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
+        inventory = FindObjectOfType<Inventory>();
         bin = GameObject.Find("Bin").GetComponent<Bin>();
+        uiMonitor = FindObjectOfType<UIMonitor>();
         bin.gameObject.SetActive(false);
 
-        assetStats = FindObjectOfType<UIMonitor>().assetStats;
-        gameAssetList = FindObjectOfType<UIMonitor>().gameAssetList;
+        assetStats = uiMonitor.assetStats;
+        gameAssetList = uiMonitor.gameAssetList;
 
         // getting layer integers
         PLACEDITEM = LayerMask.NameToLayer("PlacedItem");
@@ -85,7 +88,10 @@ public class DragController : MonoBehaviour
             {
                 assetStats.ShowStats(testRay.collider.GetComponent<GameAsset>());
             }
-            else if (pressDuration < requiredPressDuration && !assetStats.gameObject.activeSelf && !gameAssetList.gameObject.activeSelf && !inventory.inventoryOnDisplay) 
+            else if (pressDuration < requiredPressDuration && !assetStats.gameObject.activeSelf 
+                                                            && !gameAssetList.gameObject.activeSelf 
+                                                            && !inventory.inventoryOnDisplay
+                                                            && !uiMonitor.dialogueBox.gameObject.activeSelf)
             {
                 Vector3 mousePos = Input.mousePosition;
                 _screenPosition = new Vector2(mousePos.x, mousePos.y);

@@ -16,6 +16,8 @@ public class DialogueBox : MonoBehaviour
 
     public Button closeButton;
 
+    public GameObject dialogueBoxMask;
+
     public void SetFunctionToYesButton(UnityAction yesFunction)
     {
         UnityAction action = null;
@@ -36,6 +38,7 @@ public class DialogueBox : MonoBehaviour
         dialogueText.text = text;
         yesButton.gameObject.SetActive(showYesButton);
         gameObject.SetActive(true);
+        dialogueBoxMask.SetActive(true);
     }
 
     public void HideDialogue()
@@ -43,5 +46,6 @@ public class DialogueBox : MonoBehaviour
         yesButton.onClick.RemoveAllListeners();
         closeButton.onClick.RemoveAllListeners();
         gameObject.SetActive(false);
+        dialogueBoxMask.SetActive(false);
     }
 }

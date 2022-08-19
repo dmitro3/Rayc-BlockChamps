@@ -28,6 +28,14 @@ public class SelectionSpot : DragSpot
     {
         if (isOccupied)
         {
+            if (draggedObject != null && draggedObject.GetComponent<Rayc>().fullness == 0)
+            {
+                RemoveSelection();
+                DialogueBox dialogueBox = FindObjectOfType<UIMonitor>().dialogueBox;
+                dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
+                dialogueBox.ShowDialogue("", "This Rayc is starving! It would be inhumane to not feed it first...", false);
+                return;
+            }
             sr.color = new Color(1, 1, 1, 0);
             if (!draggedObject.GetComponent<Draggable>().isDragging)
             {
