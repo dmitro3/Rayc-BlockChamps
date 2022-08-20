@@ -77,12 +77,18 @@ public class ProfessionTree : MonoBehaviour
             dialogueBox.ShowDialogue("Insufficient Stats", "Selected Rayc doesn't have enough strength or discovery to change to this profession!", false);
             return;
         }
+        else if (FindObjectOfType<Player>().coins < node.requiredCoins)
+        {
+            dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
+            dialogueBox.ShowDialogue("Insufficient Coins", "You don't have enough coins to change professions!", false);
+            return;
+        }
         else
         {
             dialogueBox.SetFunctionToCloseButton(ClearNodeSelection);
             dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
             dialogueBox.SetFunctionToYesButton(ChangeProfession);
-            dialogueBox.ShowDialogue("Change of Profession", "Are you sure you want to change to this profession?", true);
+            dialogueBox.ShowDialogue("Change of Profession", "Are you sure you want to change to this profession with " + node.requiredCoins + " coins?", true);
         }
     }
 
@@ -99,6 +105,7 @@ public class ProfessionTree : MonoBehaviour
         Player player = FindObjectOfType<Player>();
         player.AddAsset(raycObjScript);
         player.RemoveAsset(rayc);
+        player.DeductCoins(node.requiredCoins);
         inventory.RemoveTradableFromInventory(rayc);
 
         rayc = raycObj.GetComponent<Rayc>();

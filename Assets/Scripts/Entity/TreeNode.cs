@@ -8,6 +8,8 @@ public class TreeNode : MonoBehaviour
 
     public List<TreeNode> children;
 
+    public int requiredCoins;
+
     public GameObject nodePrefab;
 
     public bool mastered = false;
