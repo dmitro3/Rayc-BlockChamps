@@ -31,6 +31,8 @@ public class Rayc : TradableAsset
 
     public bool justEndedInteraction = false;
 
+    public Vector3 anchorOffset;
+
     // need more variables for interaction events
 
     public virtual void Start()
