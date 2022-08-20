@@ -9,7 +9,7 @@ public class ButtonHandler : MonoBehaviour
     [SerializeField] Inventory inventory;
 
     [SerializeField] Button backButton;
-    
+
     [SerializeField] Button shopButton;
 
     [SerializeField] ProfessionTree professionTree;
@@ -42,7 +42,7 @@ public class ButtonHandler : MonoBehaviour
 
     public void OnExpeditionButtonPressed()
     {
-         if (!uiMonitor.expeditionPage.activeSelf)
+        if (!uiMonitor.expeditionPage.activeSelf)
         {
             uiMonitor.expeditionPage.SetActive(true);
             inventory.SetContentMode(ContentMode.RaycOnly);
@@ -50,8 +50,7 @@ public class ButtonHandler : MonoBehaviour
             uiMonitor.ShiftCamera(CameraDisplacement.EXPEDITION, 0);
             if (expeditionManager.hasPendingResult)
             {
-                // TODO: add boss cut scene
-                expeditionManager.GrantPlayerRewards();
+                expeditionManager.PlayBossFight();
             }
         }
         else
@@ -79,7 +78,7 @@ public class ButtonHandler : MonoBehaviour
 
     public void OnShopBackButtonPressed()
     {
-        uiMonitor.ShiftCamera(0,0);
+        uiMonitor.ShiftCamera(0, 0);
         shopButton.gameObject.SetActive(true);
         backButton.gameObject.SetActive(false);
         if (uiMonitor.shopPage.activeSelf) uiMonitor.shopPage.SetActive(false);
