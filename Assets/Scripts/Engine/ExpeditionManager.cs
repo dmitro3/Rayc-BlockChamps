@@ -55,6 +55,8 @@ public class ExpeditionManager : MonoBehaviour
 
     [SerializeField] GameObject raycSelection;
 
+    List<Sprite> prevRaycs = new List<Sprite>();
+
     void Awake()
     {
         // attributes initializations
@@ -207,18 +209,20 @@ public class ExpeditionManager : MonoBehaviour
             {
                 Rayc rayc = selectionSpot.draggedObject.GetComponent<Rayc>();
                 rayc.fullness -= 1;
-            } 
+            }
         }
     }
 
     void ClearRaycSelection()
     {
+        prevRaycs.Clear();
         foreach (Transform child in raycSelection.transform)
         {
             SelectionSpot selectionSpot = child.GetComponent<SelectionSpot>();
             if (selectionSpot.isOccupied)
             {
                 GameObject item = selectionSpot.draggedObject;
+                prevRaycs.Add(item.GetComponent<Rayc>().GetComponent<Image>().sprite);
                 selectionSpot.RemoveSelection();
             }
         }
@@ -239,7 +243,8 @@ public class ExpeditionManager : MonoBehaviour
         }
         avgDiscovery /= (float)raycCount;
 
-        float appearProb = (float)System.Math.Exp(avgDiscovery / 10f * 2f) / 150f * (hasBossEncounterRune ? 2f : 1f);
+        // float appearProb = (float)System.Math.Exp(avgDiscovery / 10f * 2f) / 150f * (hasBossEncounterRune ? 2f : 1f);
+        float appearProb = 1.0f;
 
         UnityEngine.Debug.Log("The boss appear probability is: " + appearProb);
 
@@ -495,5 +500,21 @@ public class ExpeditionManager : MonoBehaviour
             gameAssetList.gameObject.SetActive(false);
             StartExpedition();
         }
+    }
+
+    public void PlayBossFight()
+    {
+        BossFight bossFight = null;
+        switch (selectedArea.name)
+        {
+            case "Ancient Remains":
+                bossFight = GameObject.Find("Rakeleton").GetComponent<BossFight>();
+                break;
+            default:
+                break;
+        }
+        if (bossFight == null) return;
+        bossFight.AssignRaycs(prevRaycs);
+        bossFight.PlayFight();
     }
 }
