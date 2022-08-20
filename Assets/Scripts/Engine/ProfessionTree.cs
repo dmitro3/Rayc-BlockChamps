@@ -6,6 +6,8 @@ public class ProfessionTree : MonoBehaviour
 {
     public Rayc rayc;
 
+    public TreeNode node;
+
     [SerializeField] GameObject tree;
 
     // needs optimization
@@ -17,6 +19,7 @@ public class ProfessionTree : MonoBehaviour
     void OnDisable()
     {
         rayc = null;
+        ClearNodeSelection();
         TurnOffNodes();
     }
 
@@ -55,7 +58,35 @@ public class ProfessionTree : MonoBehaviour
         }
     }
 
-    public void ChangeProfession(TreeNode node)
+    void ClearNodeSelection()
+    {
+        node = null;
+    }
+
+    public void CheckProfessionChange()
+    {
+        Rayc prefabRayc = node.nodePrefab.GetComponent<Rayc>();
+
+        int requiredStrength = prefabRayc.strength;
+        int requiredDiscovery = prefabRayc.discovery;
+
+        DialogueBox dialogueBox = FindObjectOfType<UIMonitor>().dialogueBox;
+        if (rayc.strength < requiredStrength || rayc.discovery < requiredDiscovery)
+        {
+            dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
+            dialogueBox.ShowDialogue("Insufficient Stats", "Selected Rayc doesn't have enough strength or discovery to change to this profession!", false);
+            return;
+        }
+        else
+        {
+            dialogueBox.SetFunctionToCloseButton(ClearNodeSelection);
+            dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
+            dialogueBox.SetFunctionToYesButton(ChangeProfession);
+            dialogueBox.ShowDialogue("Change of Profession", "Are you sure you want to change to this profession?", true);
+        }
+    }
+
+    public void ChangeProfession()
     {
         Inventory inventory = FindObjectOfType<Inventory>();
         GameObject raycObj = inventory.InstantiateToInventory(node.nodePrefab);
@@ -73,5 +104,6 @@ public class ProfessionTree : MonoBehaviour
         rayc = raycObj.GetComponent<Rayc>();
         TurnOffNodes();
         TurnOnNodes(node);
+        ClearNodeSelection();
     }
 }

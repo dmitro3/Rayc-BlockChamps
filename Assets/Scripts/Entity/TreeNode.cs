@@ -14,6 +14,8 @@ public class TreeNode : MonoBehaviour
 
     public bool isActive = false;
 
+    [SerializeField] ProfessionTree professionTree;
+
     Button button;
 
     void Awake()
@@ -28,10 +30,10 @@ public class TreeNode : MonoBehaviour
 
     public void TriggerProfessionChange()
     {
-        Debug.Log("Change of profession triggered!");
         if (nodePrefab != null)
         {
-            FindObjectOfType<ProfessionTree>().ChangeProfession(this);
+            professionTree.node = this;
+            professionTree.CheckProfessionChange();
         }
     }
 }
