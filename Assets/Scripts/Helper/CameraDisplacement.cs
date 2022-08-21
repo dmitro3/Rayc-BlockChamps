@@ -4,7 +4,7 @@ public class CameraDisplacement
 
     public const float EXPEDITION = 208.75f;
 
-    public const float STORE = -219.3f;
+    public const float SHOP = -211.6f;
 
     public const float MAP = 424.72f;
 

@@ -57,7 +57,8 @@ public class GameAsset : MonoBehaviour
         Draggable draggable = GetComponent<Draggable>();
         if (draggable != null && assetStats != null && gameAssetList != null)
         {
-            draggable.enabled = !assetStats.gameObject.activeSelf && !gameAssetList.gameObject.activeSelf;
+            bool isCameraOnShop = FindObjectOfType<Camera>().transform.position.x == CameraDisplacement.SHOP;
+            draggable.enabled = !assetStats.gameObject.activeSelf && !gameAssetList.gameObject.activeSelf && !isCameraOnShop;
         }
     }
 

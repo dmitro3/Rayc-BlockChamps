@@ -72,7 +72,7 @@ public class ButtonHandler : MonoBehaviour
     public void OnShopButtonPressed()
     {
         if (!uiMonitor.shopPage.activeSelf) uiMonitor.shopPage.SetActive(true);
-        uiMonitor.ShiftCamera(-211.6f, 0);
+        uiMonitor.ShiftCamera(CameraDisplacement.SHOP, 0);
         backButton.gameObject.SetActive(true);
         shopButton.gameObject.SetActive(false);
     }
