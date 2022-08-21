@@ -37,10 +37,19 @@ public class GameAsset : MonoBehaviour
 
     protected GameAssetList gameAssetList;
 
+    Button button;
+
+    public bool clickable = true;
+
     void OnEnable()
     {
         assetStats = FindObjectOfType<UIMonitor>().assetStats;
         gameAssetList = FindObjectOfType<UIMonitor>().gameAssetList;
+        if (gameObject.GetComponent<Button>() == null)
+        {
+            button = gameObject.AddComponent<Button>();
+            button.onClick.AddListener(ShowAssetStats);
+        }
     }
 
     void Update()
@@ -50,6 +59,11 @@ public class GameAsset : MonoBehaviour
         {
             draggable.enabled = !assetStats.gameObject.activeSelf && !gameAssetList.gameObject.activeSelf;
         }
+    }
+
+    public void ShowAssetStats()
+    {
+        if (clickable) assetStats.ShowStats(this);
     }
 
     public void ChangeToImageSpecs()

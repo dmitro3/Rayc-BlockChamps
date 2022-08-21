@@ -71,6 +71,7 @@ MonoBehaviour:
   id: 0
   idleOnly: 0
   raycName: Akimatsu
+  raycDescription: 
   fullness: 3
   strength: 5
   discovery: 5

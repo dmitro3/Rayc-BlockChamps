@@ -1,3 +1,5 @@
+using System.Numerics;
+using System.Diagnostics;
 using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,9 +12,9 @@ public class DragController : MonoBehaviour
 
     public bool _isDragActive = false;
 
-    Vector2 _screenPosition;
+    UnityEngine.Vector2 _screenPosition;
 
-    Vector3 _worldPosition;
+    UnityEngine.Vector3 _worldPosition;
 
     Draggable _lastDragged;
 
@@ -26,7 +28,7 @@ public class DragController : MonoBehaviour
 
     float pressDuration = 0f;
 
-    Vector3 scaleChange = new Vector3(1.3f, 1.3f, 1f);
+    UnityEngine.Vector3 scaleChange = new UnityEngine.Vector3(1.3f, 1.3f, 1f);
 
     GameObject unsettledUIDrag = null;
 
@@ -68,65 +70,73 @@ public class DragController : MonoBehaviour
 
     void Update()
     {
-        HandleDragAndClick();
+        HandleDrag();
     }
 
     // function to shoot a raycast without any constraints
     RaycastHit2D ShootRay()
     {
-        Vector3 mousePos = Input.mousePosition;
-        _screenPosition = new Vector2(mousePos.x, mousePos.y);
-        return Physics2D.Raycast(_worldPosition, Vector3.forward);
+        UnityEngine.Vector3 mousePos = Input.mousePosition;
+        _screenPosition = new UnityEngine.Vector2(mousePos.x, mousePos.y);
+        _worldPosition = Camera.main.ScreenToWorldPoint(_screenPosition);
+        UnityEngine.Vector3 forward = transform.TransformDirection(UnityEngine.Vector3.forward) * 100000;
+        UnityEngine.Debug.DrawRay(_worldPosition, forward, Color.yellow, 10f, false);
+        return Physics2D.Raycast(_worldPosition, forward, Mathf.Infinity);
     }
 
-    void HandleDragAndClick()
+    void HandleDrag()
     {
         if ((Input.GetMouseButtonUp(0)))
         {
-            RaycastHit2D testRay = ShootRay();
-            if (testRay.collider != null && testRay.collider.gameObject.layer == LayerMask.NameToLayer("InventoryItem"))
-            {
-                assetStats.ShowStats(testRay.collider.GetComponent<GameAsset>());
-            }
-            else if (pressDuration < requiredPressDuration && !assetStats.gameObject.activeSelf 
-                                                            && !gameAssetList.gameObject.activeSelf 
-                                                            && !inventory.inventoryOnDisplay
-                                                            && !uiMonitor.dialogueBox.gameObject.activeSelf)
-            {
-                Vector3 mousePos = Input.mousePosition;
-                _screenPosition = new Vector2(mousePos.x, mousePos.y);
-                RaycastHit2D[] rays = Physics2D.RaycastAll(_worldPosition, Vector2.zero);
+            // RaycastHit2D testRay = ShootRay();
+            // if (testRay.collider != null && testRay.collider.gameObject.layer == LayerMask.NameToLayer("InventoryItem"))
+            // {
+            //     UnityEngine.Debug.Log("entered here");
+            //     assetStats.ShowStats(testRay.collider.GetComponent<GameAsset>());
+            // }
+            // else if (pressDuration < requiredPressDuration && !assetStats.gameObject.activeSelf 
+            //                                                 && !gameAssetList.gameObject.activeSelf 
+            //                                                 && !inventory.inventoryOnDisplay
+            //                                                 && !uiMonitor.dialogueBox.gameObject.activeSelf)
+            // {
+            //     UnityEngine.Debug.Log("entered here instead...");
+            //     UnityEngine.Vector3 mousePos = Input.mousePosition;
+            //     _screenPosition = new UnityEngine.Vector2(mousePos.x, mousePos.y);
+            //     _worldPosition = Camera.main.ScreenToWorldPoint(_screenPosition);
+            //     UnityEngine.Vector3 forward = transform.TransformDirection(UnityEngine.Vector3.forward) * 100000;
+            //     UnityEngine.Debug.DrawRay(_worldPosition, forward, Color.yellow, 10f, false);
+            //     RaycastHit2D[] rays = Physics2D.RaycastAll(_worldPosition, forward, Mathf.Infinity);
 
-                Rayc raycFound = null;
-                GameAsset itemFound = null;
-                foreach (RaycastHit2D ray in rays)
-                {
-                    if (ray.collider.GetComponent<GameAsset>() != null) 
-                    {
-                        if (ray.collider.CompareTag("Rayc"))
-                        {
-                            raycFound = ray.collider.GetComponent<Rayc>();
-                            break;
-                        }
-                        else
-                        {
-                            itemFound = ray.collider.GetComponent<GameAsset>();
-                        }
-                    }
-                }
+            //     Rayc raycFound = null;
+            //     GameAsset itemFound = null;
+            //     foreach (RaycastHit2D ray in rays)
+            //     {
+            //         if (ray.collider.GetComponent<GameAsset>() != null) 
+            //         {
+            //             if (ray.collider.CompareTag("Rayc"))
+            //             {
+            //                 raycFound = ray.collider.GetComponent<Rayc>();
+            //                 break;
+            //             }
+            //             else
+            //             {
+            //                 itemFound = ray.collider.GetComponent<GameAsset>();
+            //             }
+            //         }
+            //     }
 
-                // prioritize rayc over items
-                if (raycFound != null)
-                {
-                    if (raycFound.GetComponent<Draggable>().enabled) assetStats.ShowStats(raycFound);
-                }
-                else if (itemFound != null)
-                {
-                    Draggable draggable = itemFound.GetComponent<Draggable>();
-                    if ((draggable != null && draggable.enabled) || itemFound.gameObject.CompareTag("RecoveryItem")
-                                                                || itemFound.gameObject.CompareTag("RuneItem")) assetStats.ShowStats(itemFound);
-                }
-            }
+            //     // prioritize rayc over items
+            //     if (raycFound != null)
+            //     {
+            //         if (raycFound.GetComponent<Draggable>().enabled) assetStats.ShowStats(raycFound);
+            //     }
+            //     else if (itemFound != null)
+            //     {
+            //         Draggable draggable = itemFound.GetComponent<Draggable>();
+            //         if ((draggable != null && draggable.enabled) || itemFound.gameObject.CompareTag("RecoveryItem")
+            //                                                     || itemFound.gameObject.CompareTag("RuneItem")) assetStats.ShowStats(itemFound);
+            //     }
+            // }
 
             isPressed = false;
             pressDuration = 0f;
@@ -139,8 +149,8 @@ public class DragController : MonoBehaviour
         }
         if (Input.GetMouseButton(0)) {
             isPressed = true;
-            Vector3 mousePos = Input.mousePosition;
-            _screenPosition = new Vector2(mousePos.x, mousePos.y);
+            UnityEngine.Vector3 mousePos = Input.mousePosition;
+            _screenPosition = new UnityEngine.Vector2(mousePos.x, mousePos.y);
         } 
         else 
         {
@@ -159,7 +169,7 @@ public class DragController : MonoBehaviour
                 layerMask = 1 << INVENTORYITEM;
                 layerMask |= (1 << PLACEDITEM);
 
-                RaycastHit2D ray = Physics2D.Raycast(_worldPosition, Vector2.zero, Mathf.Infinity, layerMask);
+                RaycastHit2D ray = Physics2D.Raycast(_worldPosition, UnityEngine.Vector2.zero, Mathf.Infinity, layerMask);
                 if (ray.collider != null)
                 {
                     Draggable draggable = ray.collider.gameObject.GetComponent<Draggable>();
@@ -174,11 +184,11 @@ public class DragController : MonoBehaviour
                     if (inventory.inventoryOnDisplay)
                     {
                         int layers = 1 << PLACEDITEM;
-                        hits = Physics2D.RaycastAll(_worldPosition, Vector2.zero, Mathf.Infinity, ~layers);
+                        hits = Physics2D.RaycastAll(_worldPosition, UnityEngine.Vector2.zero, Mathf.Infinity, ~layers);
                     } 
                     else 
                     {
-                        hits = Physics2D.RaycastAll(_worldPosition, Vector2.zero);
+                        hits = Physics2D.RaycastAll(_worldPosition, UnityEngine.Vector2.zero);
                     }
 
                     foreach (RaycastHit2D hit in hits)
@@ -227,7 +237,7 @@ public class DragController : MonoBehaviour
 
     void Drag()
     {
-        _lastDragged.transform.position = new Vector2(_worldPosition.x, _worldPosition.y);
+        _lastDragged.transform.position = new UnityEngine.Vector2(_worldPosition.x, _worldPosition.y);
     }
 
     void Drop()
@@ -236,7 +246,7 @@ public class DragController : MonoBehaviour
             inventory.ToggleInventoryOnDisplay();
             inventory.gameObject.SetActive(true);
         }
-        RaycastHit2D[] hits = Physics2D.RaycastAll(_lastDragged.transform.position, Vector2.zero);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(_lastDragged.transform.position, UnityEngine.Vector2.zero);
         foreach (RaycastHit2D hit in hits) 
         {
             GameObject obj = hit.collider.gameObject;
@@ -296,6 +306,7 @@ public class DragController : MonoBehaviour
     {
         bin.gameObject.SetActive(isDragging && !FindObjectOfType<UIMonitor>().expeditionPage.activeSelf && _lastDragged.gameObject.GetComponent<Draggable>()._dragSpot != null);
         _isDragActive = _lastDragged.isDragging = isDragging;
+        _lastDragged.GetComponent<GameAsset>().clickable = !isDragging;
         _lastDragged.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = isDragging ? "Dragging" : "PlacedItem";
         _lastDragged.gameObject.GetComponent<SpriteRenderer>().sortingOrder = isDragging ? 1 : 0;
     }
