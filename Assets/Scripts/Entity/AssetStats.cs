@@ -22,6 +22,8 @@ public class AssetStats : MonoBehaviour
 
     [SerializeField] Button sellButton;
 
+    [SerializeField] Button buyButton;
+
     GameAsset current;
 
     public void Close()
@@ -62,29 +64,36 @@ public class AssetStats : MonoBehaviour
 
     void ToggleButtons(GameAsset asset)
     {
-        if (asset.CompareTag("Rayc"))
+        ToggleBuySellButton(asset);
+        useButton.interactable = asset.CompareTag("RecoveryItem");
+    }
+
+    void ToggleBuySellButton(GameAsset asset)
+    {
+        if (asset.gameObject.layer == LayerMask.NameToLayer("ShopItem"))
         {
-            sellButton.interactable = true;
-            useButton.interactable = false;
+            sellButton.gameObject.SetActive(false);
+            buyButton.gameObject.SetActive(true);
         }
-        else if (asset.CompareTag("RecoveryItem"))
+        else if (asset.CompareTag("RuneItem") || asset.CompareTag("RecoveryItem"))
         {
-            sellButton.interactable = false;
-            useButton.interactable = true;
+            sellButton.gameObject.SetActive(false);
+            buyButton.gameObject.SetActive(false);
         }
-        else if (!asset.CompareTag("RuneItem"))
+        else 
         {
-            sellButton.interactable = true;
-            useButton.interactable = false;
-        }
-        else
-        {
-            sellButton.interactable = false;
-            useButton.interactable = false; 
+            sellButton.gameObject.SetActive(true);
+            buyButton.gameObject.SetActive(false);
         }
     }
 
     public void OnSellButtonClick()
+    {
+        // TODO: Link with NFT transactions later
+        Close();
+    }
+
+    public void OnBuyButtonClick()
     {
         // TODO: Link with NFT transactions later
         Close();

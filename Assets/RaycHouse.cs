@@ -27,7 +27,6 @@ public class RaycHouse : MonoBehaviour
     public void ShowShop()
     {
         RaycHouseInside.SetActive(true);
-        Debug.Log("cli");
     }
 
     public void CloseRaycShop()

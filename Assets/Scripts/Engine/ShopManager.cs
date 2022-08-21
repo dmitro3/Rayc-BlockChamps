@@ -6,9 +6,11 @@ using UnityEngine;
 using MoralisUnity;
 using MoralisUnity.Platform.Queries;
 
-public class ShopInventory : MonoBehaviour
+public class ShopManager : MonoBehaviour
 {
-    [SerializeField] FlexibleGridLayout itemList;
+    [SerializeField] FlexibleGridLayout raycItemList;
+
+    [SerializeField] FlexibleGridLayout interactableItemList;
 
     [SerializeField] Player player;
 
@@ -176,29 +178,30 @@ public class ShopInventory : MonoBehaviour
 
     void PopulateShopRaycItem(RaycData raycData)
     {
-        GameObject raycObj = Instantiate(Resources.Load("Prefabs/RaycPrefabs/" + raycData.prefabName) as GameObject, itemList.transform);
+        GameObject raycObj = Instantiate(Resources.Load("Prefabs/RaycPrefabs/" + raycData.prefabName) as GameObject, raycItemList.transform);
         Rayc rayc = raycObj.GetComponent<Rayc>();
         rayc.SetData(raycData);
         rayc.gameObject.GetComponent<Draggable>().enabled = false;
         rayc.ChangeToImageSpecs();
         rayc.gameObject.name = raycData.raycName;
+        rayc.gameObject.layer = LayerMask.NameToLayer("ShopItem");
     }
 
     void PopulateShopInteractableItem(InteractableData interactableData)
     {
-        GameObject interactableObj = Instantiate(Resources.Load("Prefabs/InteractablePrefabs/" + interactableData.prefabName) as GameObject, itemList.transform);
+        GameObject interactableObj = Instantiate(Resources.Load("Prefabs/InteractablePrefabs/" + interactableData.prefabName) as GameObject, interactableItemList.transform);
         InteractableItem interactable = interactableObj.GetComponent<InteractableItem>();
         interactable.SetData(interactableData);
         interactable.gameObject.GetComponent<Draggable>().enabled = false;
         interactable.ChangeToImageSpecs();
-        //interactable.gameObject.name = interactableData.itemName;
+        interactable.gameObject.layer = LayerMask.NameToLayer("ShopItem");
     }
 
     void UpdateRaycItem(string id, RaycData raycData)
     {
         try 
         {
-            foreach (Transform child in itemList.transform)
+            foreach (Transform child in raycItemList.transform)
             {
                 if (child.gameObject.tag == "Rayc")
                 {
@@ -220,7 +223,7 @@ public class ShopInventory : MonoBehaviour
     {
         try
         {
-            foreach (Transform child in itemList.transform)
+            foreach (Transform child in interactableItemList.transform)
             {
                 if (child.gameObject.tag == "InteractableItem")
                 {
@@ -242,7 +245,7 @@ public class ShopInventory : MonoBehaviour
     {
         try
         {
-            foreach (Transform child in itemList.transform)
+            foreach (Transform child in raycItemList.transform)
             {
                 Rayc rayc = child.GetComponent<Rayc>();
                 if (rayc != null && rayc.id.Equals(id))
@@ -261,7 +264,7 @@ public class ShopInventory : MonoBehaviour
     {
         try
         {
-            foreach (Transform child in itemList.transform)
+            foreach (Transform child in interactableItemList.transform)
             {
                 InteractableItem interactable = child.GetComponent<InteractableItem>();
                 if (interactable != null && interactable.id.Equals(id))

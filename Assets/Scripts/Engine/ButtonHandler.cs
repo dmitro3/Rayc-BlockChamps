@@ -11,6 +11,7 @@ public class ButtonHandler : MonoBehaviour
     [SerializeField] Button backButton;
 
     [SerializeField] Button shopButton;
+
     [SerializeField] private GameObject RaycHouseInside;
 
     [SerializeField] ProfessionTree professionTree;
@@ -43,6 +44,7 @@ public class ButtonHandler : MonoBehaviour
 
     public void OnExpeditionButtonPressed()
     {
+        DisplayButton(shopButton);
         if (!uiMonitor.expeditionPage.activeSelf)
         {
             uiMonitor.expeditionPage.SetActive(true);
@@ -73,16 +75,26 @@ public class ButtonHandler : MonoBehaviour
     {
         if (!uiMonitor.shopPage.activeSelf) uiMonitor.shopPage.SetActive(true);
         uiMonitor.ShiftCamera(CameraDisplacement.SHOP, 0);
-        backButton.gameObject.SetActive(true);
-        shopButton.gameObject.SetActive(false);
+        DisplayBackButton(shopButton);
     }
 
     public void OnShopBackButtonPressed()
     {
         uiMonitor.ShiftCamera(0, 0);
-        shopButton.gameObject.SetActive(true);
-        backButton.gameObject.SetActive(false);
+        DisplayButton(shopButton);
         if (uiMonitor.shopPage.activeSelf) uiMonitor.shopPage.SetActive(false);
+    }
+
+    void DisplayButton(Button button)
+    {
+        button.gameObject.SetActive(true);
+        backButton.gameObject.SetActive(false);
+    }
+
+    void DisplayBackButton(Button button)
+    {
+        button.gameObject.SetActive(false);
+        backButton.gameObject.SetActive(true);
     }
 
     public void CloseRaycShop()
@@ -92,6 +104,7 @@ public class ButtonHandler : MonoBehaviour
     
     public void OnDojoButtonClicked()
     {
+        DisplayButton(shopButton);
         uiMonitor.ToggleTopBar(false);
         uiMonitor.ShiftCamera(0, CameraDisplacement.DOJO);
     }

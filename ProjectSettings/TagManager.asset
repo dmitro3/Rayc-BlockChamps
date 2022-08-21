@@ -12,6 +12,7 @@ TagManager:
   - RecoveryItem
   - QrConnectMenu
   - IOSConnectMenu
+  - GashaponMachine
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - PlacedItem
   - Dragging
   - SelectionSpot
-  - 
+  - ShopItem
   - 
   - 
   - 

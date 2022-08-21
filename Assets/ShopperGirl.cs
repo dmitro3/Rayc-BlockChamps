@@ -28,19 +28,6 @@ public class ShopperGirl : MonoBehaviour
         InventoryUI.SetActive(false);
     }
 
-    void Update()
-    {
-        // if (talkBar.activeSelf)
-        // {
-        //     timer += Time.deltaTime;
-        //     if (timer >= 2f)
-        //     {
-        //         talkBar.SetActive(false);
-        //         timer = 0;
-        //     }
-        // }
-    }
-
     void OnMouseOver()
     {
         gameObject.GetComponent<Image>().sprite = sprites[1];
@@ -60,7 +47,6 @@ public class ShopperGirl : MonoBehaviour
 
     public void OnMouseDown()
     {
-        Debug.Log("Clicked");
         InventoryUI.SetActive(true);
     }
 }
