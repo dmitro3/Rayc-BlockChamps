@@ -10,7 +10,8 @@ public class FlexibleGridLayout : LayoutGroup
     // public int columns;
     // const int rows = 3;
     public int columns = 5;
-    Vector2 cellSize;
+
+    public Vector2 cellSize;
 
     public Vector2 spacing;
 
@@ -29,8 +30,8 @@ public class FlexibleGridLayout : LayoutGroup
 
         // cellSize.x = cellWidth;
         // cellSize.y = cellHeight;
-        cellSize.x = 200.392f;
-        cellSize.y = 144.392f;
+        // cellSize.x = 200.392f;
+        // cellSize.y = 144.392f;
 
         int columnCount = 0;
         int rowCount = 0;

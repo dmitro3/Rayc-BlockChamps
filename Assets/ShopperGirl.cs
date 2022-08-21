@@ -8,10 +8,12 @@ using UnityEngine.EventSystems;
 public class ShopperGirl : MonoBehaviour
 {
     private Sprite[] sprites;
+
+    [SerializeField] GameObject InventoryUI;
+
     GameObject talkBar;
     TMP_Text talkBarText;
     public List<string> sentences;
-    GameObject InventoryUI;
 
     float timer;
 
@@ -20,10 +22,9 @@ public class ShopperGirl : MonoBehaviour
     void Start()
     {
         sprites = Resources.LoadAll<Sprite>("Sprites/Shop/ShopperGirl");
-        talkBar = GameObject.Find("talkBar");
+        talkBar = GameObject.Find("TalkBar");
         talkBarText = GameObject.Find("ShopperGirlSays").GetComponent<TMP_Text>();
         talkBar.SetActive(false);
-        InventoryUI = GameObject.Find("InventoryUI");
         InventoryUI.SetActive(false);
     }
 
