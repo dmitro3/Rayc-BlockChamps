@@ -12,6 +12,8 @@ public class Master : MonoBehaviour
 
     public GameAssetList gameAssetList;
 
+    public int trainingCost;
+
     DialogueManager dialogueManager;
 
     Collider2D treeButtonCollider;
@@ -80,6 +82,19 @@ public class Master : MonoBehaviour
         }
     }
 
+    public bool CheckTrainingCondition()
+    {
+        Player player = FindObjectOfType<Player>();
+        if (player.coins < trainingCost)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     public void TrainRayc()
     {
         switch (trainingType)
@@ -95,5 +110,6 @@ public class Master : MonoBehaviour
             default:
                 break;
         }
+        FindObjectOfType<Player>().DeductCoins(trainingCost);
     }
 }

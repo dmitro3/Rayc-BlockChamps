@@ -246,7 +246,11 @@ public class DragController : MonoBehaviour
                 MoveSpots(_lastDragged, obj);
                 _lastDragged.transform.position = obj.transform.position;
 
-                // TODO: adjust pivot of the object relative to selection spot in the future
+                if (obj.layer == LayerMask.NameToLayer("SelectionSpot"))
+                {
+                    _lastDragged.transform.position += _lastDragged.GetComponent<Rayc>().anchorOffset;
+
+                }
 
                 if (_lastDragged.CompareTag("Rayc")) _lastDragged.GetComponent<Rayc>().justEndedInteraction = false;
                 UpdateDragStatus(false);

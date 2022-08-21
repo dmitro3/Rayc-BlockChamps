@@ -61,7 +61,7 @@ public class DialogueManager : MonoBehaviour
     public void DisplayNextSentence()
     {
 
-        if (sentences.Count == 0)
+        if (sentences.Count == 0 && !isTyping)
         {
             EndDialogue();
             return;
@@ -122,6 +122,16 @@ public class DialogueManager : MonoBehaviour
     {
         if (dialogue.name == "Dojo Master 1")
         {
+            if (sentences.Count == 3)
+            {
+                if (!master.CheckTrainingCondition())
+                {
+                    sentences.Clear();
+                    sentences.Enqueue("Oops, seems like you don't have enough coins to train...You need at least " + master.trainingCost + " coins to train.");
+                    return false;
+                }
+            }
+
             if (sentences.Count == 2 && gameAssetList.selectedRayc == null)
             {
                 dialoguePanel.SetActive(false);

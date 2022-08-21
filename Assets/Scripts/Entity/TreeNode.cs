@@ -8,11 +8,15 @@ public class TreeNode : MonoBehaviour
 
     public List<TreeNode> children;
 
+    public int requiredCoins;
+
     public GameObject nodePrefab;
 
     public bool mastered = false;
 
     public bool isActive = false;
+
+    [SerializeField] ProfessionTree professionTree;
 
     Button button;
 
@@ -28,10 +32,10 @@ public class TreeNode : MonoBehaviour
 
     public void TriggerProfessionChange()
     {
-        Debug.Log("Change of profession triggered!");
         if (nodePrefab != null)
         {
-            FindObjectOfType<ProfessionTree>().ChangeProfession(this);
+            professionTree.node = this;
+            professionTree.CheckProfessionChange();
         }
     }
 }

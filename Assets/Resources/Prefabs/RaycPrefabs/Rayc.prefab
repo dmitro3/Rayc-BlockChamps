@@ -71,11 +71,12 @@ MonoBehaviour:
   id: 0
   idleOnly: 0
   raycName: Akimatsu
-  fullness: 0
+  fullness: 3
   strength: 5
   discovery: 5
   interactionEvent: {fileID: 0}
   justEndedInteraction: 0
+  anchorOffset: {x: 0, y: 0, z: 0}
 --- !u!212 &2264023533671287927
 SpriteRenderer:
   m_ObjectHideFlags: 0
