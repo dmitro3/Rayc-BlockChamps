@@ -20,16 +20,12 @@ public class DialogueBox : MonoBehaviour
 
     public void SetFunctionToYesButton(UnityAction yesFunction)
     {
-        UnityAction action = null;
-        action += yesFunction;
-        yesButton.onClick.AddListener(action);
+        yesButton.onClick.AddListener(yesFunction);
     }
 
     public void SetFunctionToCloseButton(UnityAction closeFunction)
     {
-        UnityAction action = null;
-        action += closeFunction;
-        closeButton.onClick.AddListener(action);
+        closeButton.onClick.AddListener(closeFunction);
     }
 
     public void ShowDialogue(string title, string text, bool showYesButton)

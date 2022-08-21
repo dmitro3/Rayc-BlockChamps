@@ -87,7 +87,9 @@ public class ProfessionTree : MonoBehaviour
         {
             dialogueBox.SetFunctionToCloseButton(ClearNodeSelection);
             dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
+            
             dialogueBox.SetFunctionToYesButton(ChangeProfession);
+            dialogueBox.SetFunctionToYesButton(dialogueBox.HideDialogue);
             dialogueBox.ShowDialogue("Change of Profession", "Are you sure you want to change to this profession with " + node.requiredCoins + " coins?", true);
         }
     }
