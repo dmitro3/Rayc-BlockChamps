@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class RaycHouse : MonoBehaviour
 {
     private Sprite[] sprites;
-    [SerializeField] private GameObject RaycShopInside;
+    [SerializeField] private GameObject RaycHouseInside;
 
     void Awake()
     {
         sprites = Resources.LoadAll<Sprite>("Sprites/Shop/Rayc House");
-        //RaycShopInside.SetActive(false);
+        RaycHouseInside.SetActive(false);
     }
 
     void OnMouseOver()
@@ -26,11 +26,12 @@ public class RaycHouse : MonoBehaviour
 
     public void ShowShop()
     {
-        //RaycShopInside.SetActive(true);
+        RaycHouseInside.SetActive(true);
+        Debug.Log("cli");
     }
 
     public void CloseRaycShop()
     {
-        //RaycShopInside.SetActive(false);
+        RaycHouseInside.SetActive(false);
     }
 }

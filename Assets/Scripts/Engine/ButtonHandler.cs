@@ -11,6 +11,7 @@ public class ButtonHandler : MonoBehaviour
     [SerializeField] Button backButton;
 
     [SerializeField] Button shopButton;
+    [SerializeField] private GameObject RaycHouseInside;
 
     [SerializeField] ProfessionTree professionTree;
 
@@ -84,6 +85,11 @@ public class ButtonHandler : MonoBehaviour
         if (uiMonitor.shopPage.activeSelf) uiMonitor.shopPage.SetActive(false);
     }
 
+    public void CloseRaycShop()
+    {
+        RaycHouseInside.SetActive(false);
+    }
+    
     public void OnDojoButtonClicked()
     {
         uiMonitor.ToggleTopBar(false);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using MoralisUnity;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -23,6 +24,8 @@ public class Rayc : TradableAsset
     public bool idleOnly = false;
 
     public string raycName;
+
+    public string raycDescription;
     public int fullness;
 
     public int strength, discovery;
@@ -40,6 +43,38 @@ public class Rayc : TradableAsset
         anim = GetComponent<Animator>();
         effect = new Serendipity();
     }
+
+    public void SetData(RaycData raycData)
+    {
+        id = raycData.objectId;
+        prefabName = raycData.prefabName;
+        raycName = raycData.raycName;
+        raycDescription = raycData.raycDescription;
+        fullness = raycData.fullness;
+        strength = raycData.strength;
+        discovery = raycData.discovery;
+    }
+
+    public async void SaveRaycToDB()
+    {
+        try 
+        {
+            RaycData raycData = Moralis.Create<RaycData>();
+            raycData.prefabName = prefabName;
+            raycData.raycName = raycName;
+            raycData.raycDescription = raycDescription;
+            raycData.fullness = fullness;
+            raycData.strength = strength;
+            raycData.discovery = discovery;
+            await raycData.SaveAsync();
+            Debug.Log("RaycData uploaded to database.");
+        }
+        catch (Exception e)
+        {
+            Debug.Log("RaycData upload failed: " + e.Message);
+        }
+    }
+
 
     public void SetData(Rayc rayc)
     {
