@@ -76,7 +76,7 @@ public class DragController : MonoBehaviour
     {
         Vector3 mousePos = Input.mousePosition;
         _screenPosition = new Vector2(mousePos.x, mousePos.y);
-        return Physics2D.Raycast(_worldPosition, Vector2.zero);
+        return Physics2D.Raycast(_worldPosition, Vector3.forward);
     }
 
     void HandleDragAndClick()

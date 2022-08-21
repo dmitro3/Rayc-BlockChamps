@@ -1511,6 +1511,8 @@ MonoBehaviour:
   listItemReference: {fileID: 963557946}
   listPrefab: {fileID: 5067379844618400213, guid: 3b65a9e69f8f54f15bc0b69e499ed9f6, type: 3}
   mask: {fileID: 1820134498}
+  dialogueManager: {fileID: 0}
+  isHealing: 0
   selectedRayc: {fileID: 0}
   listType: 0
 --- !u!1 &312434142
@@ -2232,6 +2234,7 @@ MonoBehaviour:
   - {fileID: -4578434571204562890, guid: d444ba196eec14069b51d3a39ed3b717, type: 3}
   - {fileID: -4578434571204562890, guid: d444ba196eec14069b51d3a39ed3b717, type: 3}
   - {fileID: -5513056739033444781, guid: 06a62c68fd60f4bca8f5adeae7b2ecc8, type: 3}
+  coinAmount: {fileID: 0}
 --- !u!4 &460561651
 Transform:
   m_ObjectHideFlags: 0
@@ -4227,7 +4230,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -172.68521, y: 36.09503}
-  m_SizeDelta: {x: 10.1342, y: 12.7641}
+  m_SizeDelta: {x: 1006, y: 1325}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &708694865
 MonoBehaviour:
@@ -4260,11 +4263,11 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 515851699
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &708694867
@@ -4287,7 +4290,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -2096642293, guid: 1ada76478316343a5baf18788a0739d1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5690,6 +5693,7 @@ MonoBehaviour:
   backButton: {fileID: 1025261699}
   shopButton: {fileID: 654840824}
   RaycHouseInside: {fileID: 950026879}
+  professionTree: {fileID: 0}
   uiMonitor: {fileID: 958442373}
 --- !u!4 &878315020
 Transform:
@@ -6213,7 +6217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &950026880
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6357,7 +6361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiMask: {fileID: 633316293}
   inventory: {fileID: 619425003}
-  uiButtons: {fileID: 879095131}
+  topBar: {fileID: 0}
   expeditionPage: {fileID: 1151447185}
   shopPage: {fileID: 1418473959}
   dialogueBox: {fileID: 1516394596}
@@ -8880,6 +8884,8 @@ MonoBehaviour:
   dialogueTitle: {fileID: 312434144}
   dialogueText: {fileID: 1238067827}
   yesButton: {fileID: 1553876521}
+  closeButton: {fileID: 0}
+  dialogueBoxMask: {fileID: 0}
 --- !u!1 &1553876519
 GameObject:
   m_ObjectHideFlags: 0
@@ -11033,7 +11039,6 @@ MonoBehaviour:
   allowMapEffects: 0
   isMouseHovering: 0
   hoveredArea: 
-  boss: {fileID: 0}
   player: {fileID: 460561650}
   expeditionButton: {fileID: 648435688}
   mapAreas: {fileID: 1746042703}

@@ -176,7 +176,7 @@ public class ShopInventory : MonoBehaviour
 
     void PopulateShopRaycItem(RaycData raycData)
     {
-        GameObject raycObj = Instantiate(Resources.Load("Prefabs/GameAssetPrefabs/" + raycData.prefabName) as GameObject, itemList.transform);
+        GameObject raycObj = Instantiate(Resources.Load("Prefabs/RaycPrefabs/" + raycData.prefabName) as GameObject, itemList.transform);
         Rayc rayc = raycObj.GetComponent<Rayc>();
         rayc.SetData(raycData);
         rayc.gameObject.GetComponent<Draggable>().enabled = false;
@@ -186,7 +186,7 @@ public class ShopInventory : MonoBehaviour
 
     void PopulateShopInteractableItem(InteractableData interactableData)
     {
-        GameObject interactableObj = Instantiate(Resources.Load("Prefabs/GameAssetPrefabs/" + interactableData.prefabName) as GameObject, itemList.transform);
+        GameObject interactableObj = Instantiate(Resources.Load("Prefabs/InteractablePrefabs/" + interactableData.prefabName) as GameObject, itemList.transform);
         InteractableItem interactable = interactableObj.GetComponent<InteractableItem>();
         interactable.SetData(interactableData);
         interactable.gameObject.GetComponent<Draggable>().enabled = false;

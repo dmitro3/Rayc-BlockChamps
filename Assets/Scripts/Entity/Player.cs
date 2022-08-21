@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
 
     void UpdateCoinDisplay()
     {
-        coinAmount.text = "Coins: " + coins.ToString();
+        // coinAmount.text = "Coins: " + coins.ToString();
     }
 
     public void AddCoins(int addition)
