@@ -3540,6 +3540,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2defc96dbf6494b33bdca885ccdaf296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InventoryUI: {fileID: 1451290385}
+  sentences: []
 --- !u!114 &401588116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7274,6 +7276,7 @@ MonoBehaviour:
   inventory: {fileID: 619425003}
   backButton: {fileID: 1025261699}
   shopButton: {fileID: 654840824}
+  RaycHouseInside: {fileID: 866590355}
   professionTree: {fileID: 1209834976}
   uiMonitor: {fileID: 958442373}
 --- !u!4 &878315020
@@ -8025,7 +8028,7 @@ MonoBehaviour:
   inventory: {fileID: 619425003}
   topBar: {fileID: 879095131}
   expeditionPage: {fileID: 1151447185}
-  shopPage: {fileID: 0}
+  shopPage: {fileID: 154845415}
   dialogueBox: {fileID: 1516394596}
   gameAssetList: {fileID: 301853451}
   assetStats: {fileID: 1952738977}
@@ -8086,6 +8089,7 @@ MonoBehaviour:
   m_ChildAlignment: 1
   rows: 0
   columns: 5
+  cellSize: {x: 200.392, y: 144.392}
   spacing: {x: 0.83, y: 11.97}
 --- !u!1 &973099487
 GameObject:
@@ -10977,6 +10981,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   rows: 0
   columns: 4
+  cellSize: {x: 4, y: 3}
   spacing: {x: 0, y: 0}
 --- !u!1 &1258553399
 GameObject:
@@ -11602,6 +11607,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d97a88d3d58a74d2f9719aabdc8591f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemList: {fileID: 1249945863}
+  player: {fileID: 460561650}
 --- !u!114 &1451290388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12016,7 +12023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a708130b59b704269a533b184d856bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RaycShopInside: {fileID: 0}
+  RaycHouseInside: {fileID: 866590355}
 --- !u!114 &1507730507
 MonoBehaviour:
   m_ObjectHideFlags: 0
