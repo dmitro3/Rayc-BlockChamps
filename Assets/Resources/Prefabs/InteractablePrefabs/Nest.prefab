@@ -59,6 +59,7 @@ MonoBehaviour:
   prefabName: Nest
   description: A warm nest that is said to be stolen from a tree by a Rayc. Wonder
     if it is still there...
+  rarity: 0
   imageRotation: {x: 0, y: 0, z: 0, w: 0}
   spriteRotation: {x: 0, y: 0, z: 0, w: 0}
   imageLocalScale: {x: 1, y: 1, z: 1}
@@ -107,7 +108,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1398314263
-  m_SortingLayer: 2
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 193018321, guid: 7d358e5fc639d491ea99194261b1bd41, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -186,7 +187,7 @@ Animator:
   m_GameObject: {fileID: 9158458476228965421}
   m_Enabled: 0
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7fd8b806856e34ba98a4bfde00178ff6, type: 2}
+  m_Controller: {fileID: 9100000, guid: cfc19783b794844f08933e32be2ec26c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

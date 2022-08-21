@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        coins = 100;
         assetDict = new Dictionary<GameAsset, int>();
     }
 
