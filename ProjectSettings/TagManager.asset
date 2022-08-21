@@ -61,6 +61,9 @@ TagManager:
   - name: Shop
     uniqueID: 515851699
     locked: 0
+  - name: Dojo
+    uniqueID: 4165374581
+    locked: 0
   - name: PlacedItem
     uniqueID: 1398314263
     locked: 0

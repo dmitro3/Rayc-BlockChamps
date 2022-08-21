@@ -59,6 +59,7 @@ MonoBehaviour:
   prefabName: Rayc
   description: A Rayc who is always drinking bubble tea. Maybe that is the reason
     why it is slightly obese?
+  rarity: 0
   imageRotation: {x: 0, y: 0, z: 0, w: 1}
   spriteRotation: {x: 0, y: 0, z: -0.0784591, w: 0.9969173}
   imageLocalScale: {x: 1, y: 1, z: 1}
@@ -70,9 +71,11 @@ MonoBehaviour:
   id: 0
   idleOnly: 0
   raycName: Akimatsu
-  fullness: 2
+  fullness: 0
   strength: 5
   discovery: 5
+  interactionEvent: {fileID: 0}
+  justEndedInteraction: 0
 --- !u!212 &2264023533671287927
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -112,7 +115,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1398314263
-  m_SortingLayer: 2
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -1746960114, guid: a06a800e9b4f94ddf9423a8cd5455304, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

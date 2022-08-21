@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,6 +36,8 @@ public class DragController : MonoBehaviour
 
     GameAssetList gameAssetList;
 
+    UIMonitor uiMonitor;
+
     int PLACEDITEM;
 
     int INVENTORYITEM;
@@ -44,12 +47,13 @@ public class DragController : MonoBehaviour
 
     void Awake()
     {
-        inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
+        inventory = FindObjectOfType<Inventory>();
         bin = GameObject.Find("Bin").GetComponent<Bin>();
+        uiMonitor = FindObjectOfType<UIMonitor>();
         bin.gameObject.SetActive(false);
 
-        assetStats = FindObjectOfType<UIMonitor>().assetStats;
-        gameAssetList = FindObjectOfType<UIMonitor>().gameAssetList;
+        assetStats = uiMonitor.assetStats;
+        gameAssetList = uiMonitor.gameAssetList;
 
         // getting layer integers
         PLACEDITEM = LayerMask.NameToLayer("PlacedItem");
@@ -67,11 +71,27 @@ public class DragController : MonoBehaviour
         HandleDragAndClick();
     }
 
+    // function to shoot a raycast without any constraints
+    RaycastHit2D ShootRay()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        _screenPosition = new Vector2(mousePos.x, mousePos.y);
+        return Physics2D.Raycast(_worldPosition, Vector2.zero);
+    }
+
     void HandleDragAndClick()
     {
         if ((Input.GetMouseButtonUp(0)))
         {
-            if (pressDuration < requiredPressDuration && !assetStats.gameObject.activeSelf) 
+            RaycastHit2D testRay = ShootRay();
+            if (testRay.collider != null && testRay.collider.gameObject.layer == LayerMask.NameToLayer("InventoryItem"))
+            {
+                assetStats.ShowStats(testRay.collider.GetComponent<GameAsset>());
+            }
+            else if (pressDuration < requiredPressDuration && !assetStats.gameObject.activeSelf 
+                                                            && !gameAssetList.gameObject.activeSelf 
+                                                            && !inventory.inventoryOnDisplay
+                                                            && !uiMonitor.dialogueBox.gameObject.activeSelf)
             {
                 Vector3 mousePos = Input.mousePosition;
                 _screenPosition = new Vector2(mousePos.x, mousePos.y);
@@ -81,7 +101,6 @@ public class DragController : MonoBehaviour
                 GameAsset itemFound = null;
                 foreach (RaycastHit2D ray in rays)
                 {
-                    // Debug.DrawLine(ray.collider.transform.position, ray.normal, Color.green, 10.0f);
                     if (ray.collider.GetComponent<GameAsset>() != null) 
                     {
                         if (ray.collider.CompareTag("Rayc"))
@@ -137,8 +156,6 @@ public class DragController : MonoBehaviour
             {
                 int layerMask = 0;
 
-                // TODO: change to detect game asset list later
-
                 layerMask = 1 << INVENTORYITEM;
                 layerMask |= (1 << PLACEDITEM);
 
@@ -175,7 +192,7 @@ public class DragController : MonoBehaviour
 
                             unsettledUIDrag.SetActive(false);
 
-                            inventory.ToggleInvetoryOnDisplay();
+                            inventory.ToggleInventoryOnDisplay();
                             inventory.gameObject.SetActive(false);
                         }
                         if (hittedObject.layer == PLACEDITEM || hittedObject.layer == INVENTORYITEM) 
@@ -216,7 +233,7 @@ public class DragController : MonoBehaviour
     void Drop()
     {
         if (!inventory.inventoryOnDisplay && unsettledUIDrag != null) {
-            inventory.ToggleInvetoryOnDisplay();
+            inventory.ToggleInventoryOnDisplay();
             inventory.gameObject.SetActive(true);
         }
         RaycastHit2D[] hits = Physics2D.RaycastAll(_lastDragged.transform.position, Vector2.zero);
@@ -273,7 +290,7 @@ public class DragController : MonoBehaviour
 
     void UpdateDragStatus(bool isDragging)
     {
-        bin.gameObject.SetActive(isDragging && _lastDragged.gameObject.GetComponent<Draggable>()._dragSpot != null);
+        bin.gameObject.SetActive(isDragging && !FindObjectOfType<UIMonitor>().expeditionPage.activeSelf && _lastDragged.gameObject.GetComponent<Draggable>()._dragSpot != null);
         _isDragActive = _lastDragged.isDragging = isDragging;
         _lastDragged.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = isDragging ? "Dragging" : "PlacedItem";
         _lastDragged.gameObject.GetComponent<SpriteRenderer>().sortingOrder = isDragging ? 1 : 0;

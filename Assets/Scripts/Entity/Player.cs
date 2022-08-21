@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Player : MonoBehaviour
     public List<GameAsset> assets;
 
     public Dictionary<GameAsset, int> assetDict;
+
+    [SerializeField] TMP_Text coinAmount;
 
     void Awake()
     {
@@ -25,11 +28,19 @@ public class Player : MonoBehaviour
         }
 
         assets = assets.Distinct().ToList();
+
+        UpdateCoinDisplay();
+    }
+
+    void UpdateCoinDisplay()
+    {
+        coinAmount.text = "Coins: " + coins.ToString();
     }
 
     public void AddCoins(int addition)
     {
         coins += addition;
+        UpdateCoinDisplay();
     }
 
     public bool DeductCoins(int deduction)
@@ -37,6 +48,7 @@ public class Player : MonoBehaviour
         if (coins - deduction >= 0)
         {
             coins -= deduction;
+            UpdateCoinDisplay();
             return true;
         }
         else

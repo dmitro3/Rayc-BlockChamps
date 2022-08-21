@@ -21,12 +21,21 @@ public class SelectionSpot : DragSpot
         expeditionManager = FindObjectOfType<ExpeditionManager>();
         effectList = expeditionManager.effectList;
         effectDictionary = expeditionManager.effectDictionary;
+        ToggleDeleteIcon(false);
     }
 
     public override void Update()
     {
         if (isOccupied)
         {
+            if (draggedObject != null && draggedObject.GetComponent<Rayc>().fullness == 0)
+            {
+                RemoveSelection();
+                DialogueBox dialogueBox = FindObjectOfType<UIMonitor>().dialogueBox;
+                dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
+                dialogueBox.ShowDialogue("", "This Rayc is starving! It would be inhumane to not feed it first...", false);
+                return;
+            }
             sr.color = new Color(1, 1, 1, 0);
             if (!draggedObject.GetComponent<Draggable>().isDragging)
             {
@@ -35,7 +44,8 @@ public class SelectionSpot : DragSpot
             {
                 ToggleDeleteIcon(false);
             }
-        } else 
+        } 
+        else 
         {
             sr.color = new Color(1, 1, 1, 1);
             ToggleDeleteIcon(false);

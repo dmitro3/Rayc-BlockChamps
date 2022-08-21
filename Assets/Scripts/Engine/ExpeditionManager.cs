@@ -20,7 +20,7 @@ public class ExpeditionManager : MonoBehaviour
 
     float curTime = 0;
 
-    bool timerOn { get; set; } = false;
+    bool timerOn = false;
 
     public bool hasPendingResult { get; set; } = false;
 
@@ -40,24 +40,22 @@ public class ExpeditionManager : MonoBehaviour
 
     int pendingCoins = 0;
 
-    public Boss boss;
+    MapArea selectedArea = null;
 
     public HashSet<InteractableItem> pendingInteractable;
     public HashSet<ConsumableItem> pendingConsumable;
 
     public Player player;
 
-    List<GameAsset> treasureItems;
-
     DialogueBox dialogueBox;
-
-    GameObject confirmationDialogue;
 
     [SerializeField] GameObject expeditionButton;
 
     [SerializeField] CanvasGroup mapAreas;
 
     [SerializeField] GameObject raycSelection;
+
+    List<Sprite> prevRaycs = new List<Sprite>();
 
     void Awake()
     {
@@ -87,9 +85,14 @@ public class ExpeditionManager : MonoBehaviour
         UpdateMapUIInteractability();
     }
 
-    public void SetTreasureItems(List<GameAsset> newList)
+    public void SetSelectedArea(MapArea area)
     {
-        treasureItems = newList;
+        selectedArea = area;
+    }
+
+    public void ResetSelectedArea()
+    {
+        selectedArea = null;
     }
 
     void PromptForRuneInput()
@@ -115,8 +118,8 @@ public class ExpeditionManager : MonoBehaviour
             if (gameAssetList.gameObject.activeSelf) gameAssetList.gameObject.SetActive(false);
             if (runeSelected != null)
             {
+                if (player.assetDict[runeSelected] == 1) FindObjectOfType<Inventory>().RemoveConsumableFromInventory(runeSelected);
                 player.RemoveAsset(runeSelected);
-                FindObjectOfType<Inventory>().RemoveConsumableFromInventory(runeSelected);
                 runeSelected = null;
             }
             StartExpedition();
@@ -130,8 +133,8 @@ public class ExpeditionManager : MonoBehaviour
         {
             switch (listItem.rune.gameObject.name)
             {
-                case "Boss Rune":
-                    UnityEngine.Debug.Log("Boss encounter rune was used...");
+                case "Fate Rune":
+                    UnityEngine.Debug.Log("Fate rune was used...");
                     hasBossEncounterRune = true;
                     runeSelected = listItem.rune;
                     break;
@@ -197,14 +200,29 @@ public class ExpeditionManager : MonoBehaviour
         }
     }
 
+    void DecreaseRaycSelectionFullness()
+    {
+        foreach (Transform child in raycSelection.transform)
+        {
+            SelectionSpot selectionSpot = child.gameObject.GetComponent<SelectionSpot>();
+            if (selectionSpot.draggedObject != null)
+            {
+                Rayc rayc = selectionSpot.draggedObject.GetComponent<Rayc>();
+                rayc.fullness -= 1;
+            }
+        }
+    }
+
     void ClearRaycSelection()
     {
+        prevRaycs.Clear();
         foreach (Transform child in raycSelection.transform)
         {
             SelectionSpot selectionSpot = child.GetComponent<SelectionSpot>();
             if (selectionSpot.isOccupied)
             {
                 GameObject item = selectionSpot.draggedObject;
+                prevRaycs.Add(item.GetComponent<Rayc>().GetComponent<Image>().sprite);
                 selectionSpot.RemoveSelection();
             }
         }
@@ -225,7 +243,8 @@ public class ExpeditionManager : MonoBehaviour
         }
         avgDiscovery /= (float)raycCount;
 
-        float appearProb = (float)System.Math.Exp(avgDiscovery / 10f * 2f) / 150f * (hasBossEncounterRune ? 2f : 1f);
+        // float appearProb = (float)System.Math.Exp(avgDiscovery / 10f * 2f) / 150f * (hasBossEncounterRune ? 2f : 1f);
+        float appearProb = 1.0f;
 
         UnityEngine.Debug.Log("The boss appear probability is: " + appearProb);
 
@@ -242,6 +261,7 @@ public class ExpeditionManager : MonoBehaviour
                 }
             }
             avgStrength /= (float)raycCount;
+            Boss boss = selectedArea.boss;
             if (avgStrength > boss.strength)
             {
                 // 75% chance to defeat boss without rune, 100% chance to defeat boss with rune
@@ -264,12 +284,12 @@ public class ExpeditionManager : MonoBehaviour
     // generates coins and item rewards
     public void CalculateRewards()
     {
-        if (!CheckValidExpedition())
+        if (!CheckValidExpedition() || selectedArea == null)
         {
             return;
         }
 
-        float coins = bossDefeated ? 1000f : 100f;
+        float coins = bossDefeated ? selectedArea.baseCoins * 10f : selectedArea.baseCoins;
         foreach (Effect effect in effectList)
         {
             switch (effect.name)
@@ -288,6 +308,7 @@ public class ExpeditionManager : MonoBehaviour
             }
         }
 
+        List<GameAsset> treasureItems = selectedArea.treasureItems;
         foreach (GameAsset item in treasureItems)
         {
             TryObtainItem(item);
@@ -296,7 +317,7 @@ public class ExpeditionManager : MonoBehaviour
         if (bossDefeated)
         {
             // give additional interactable item rewards from bosses
-            List<GameAsset> bossItems = boss.bossItems;
+            List<GameAsset> bossItems = selectedArea.boss.bossItems;
             foreach (GameAsset item in bossItems)
             {
                 TryObtainItem(item);
@@ -305,6 +326,7 @@ public class ExpeditionManager : MonoBehaviour
 
         hasPendingResult = true;
         pendingCoins = (int)coins;
+        DecreaseRaycSelectionFullness();
     }
 
     void TryObtainItem(GameAsset _item)
@@ -405,6 +427,7 @@ public class ExpeditionManager : MonoBehaviour
         }
 
         // reset expedition data
+        dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
         ShowExpeditionDialogue(dialogueText);
         player.AddCoins(pendingCoins);
         pendingCoins = 0;
@@ -414,20 +437,12 @@ public class ExpeditionManager : MonoBehaviour
         hasBossEncounterRune = false;
         hasBossFightRune = false;
         bossDefeated = false;
-        boss = null;
-        treasureItems = null;
+        selectedArea = null;
     }
 
     public void ShowExpeditionDialogue(string text)
     {
-        // uiMonitor.ToggleExpeditionUI(false);
         dialogueBox.ShowDialogue("", text, false);
-    }
-
-    public void HideExpeditionDialogue()
-    {
-        // uiMonitor.ToggleExpeditionUI(true);
-        dialogueBox.HideDialogue();
     }
 
     public void OnStartButtonPressed()
@@ -438,28 +453,22 @@ public class ExpeditionManager : MonoBehaviour
         }
         else
         {
+            dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
             ShowExpeditionDialogue("You must put at least 1 Rayc to start expedition!");
         }
-    }
-
-    public void OnMapBackButtonPressed()
-    {
-        uiMonitor.ShiftCamera(CameraDisplacement.EXPEDITION, 0);
     }
 
     public void OnBackButtonPressed()
     {
         if (CheckValidExpedition())
         {
-            // uiMonitor.toggleExpeditionUI(false);
-            UnityAction confirmYesAction = null;
-            confirmYesAction += OnConfirmationYesButtonPressed;
-            dialogueBox.yesButton.onClick.AddListener(confirmYesAction);
+            dialogueBox.SetFunctionToYesButton(OnConfirmationYesButtonPressed);
+            dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
             dialogueBox.ShowDialogue("Back to Room", "You sure you want to go back? You will lose your current Rayc selection", true);
         }
         else
         {
-            uiMonitor.ShiftCamera(0, 0);
+            FindObjectOfType<ButtonHandler>().OnExpeditionButtonPressed();
         }
 
     }
@@ -467,21 +476,14 @@ public class ExpeditionManager : MonoBehaviour
     public void OnConfirmationYesButtonPressed()
     {
         ClearRaycSelection();
-        dialogueBox.gameObject.SetActive(false);
-        // uiMonitor.toggleExpeditionUI(true);
-        uiMonitor.ShiftCamera(0, 0);
-    }
-
-    public void OnConfirmationNoButtonPressed()
-    {
-        // uiMonitor.toggleExpeditionUI(true);
-        dialogueBox.gameObject.SetActive(false);
+        dialogueBox.HideDialogue();
+        FindObjectOfType<ButtonHandler>().OnExpeditionButtonPressed();
     }
 
     public void StartExpedition()
     {
-        UnityEngine.Debug.Log(boss.bossName);
         dialogueBox.HideDialogue();
+        FindObjectOfType<StatusSummary>().ClearStatusList();
         timerOn = true;
         uiMonitor.ShiftCamera(0, 0);
         EncounterBoss();
@@ -493,5 +495,26 @@ public class ExpeditionManager : MonoBehaviour
     {
         gameAssetList.listType = ListType.Rune;
         gameAssetList.gameObject.SetActive(true);
+        if (gameAssetList.list.transform.childCount == 0)
+        {
+            gameAssetList.gameObject.SetActive(false);
+            StartExpedition();
+        }
+    }
+
+    public void PlayBossFight()
+    {
+        BossFight bossFight = null;
+        switch (selectedArea.name)
+        {
+            case "Ancient Remains":
+                bossFight = GameObject.Find("Rakeleton").GetComponent<BossFight>();
+                break;
+            default:
+                break;
+        }
+        if (bossFight == null) return;
+        bossFight.AssignRaycs(prevRaycs);
+        bossFight.PlayFight();
     }
 }

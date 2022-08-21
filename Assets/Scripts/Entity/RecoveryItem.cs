@@ -15,12 +15,7 @@ public class RecoveryItem : ConsumableItem
 
     void Update()
     {
-        if (gameAssetList.selectedRayc != null)
-        {
-            // TODO: check if involved in dialogue in the future
-
-            UseItem();
-        }
+        if (gameAssetList.selectedRayc != null && !FindObjectOfType<DialogueManager>().duringDialogue) UseItem();
     }
 
     void UseItem()

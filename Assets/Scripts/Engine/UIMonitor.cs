@@ -9,7 +9,7 @@ public class UIMonitor : MonoBehaviour
 
     [SerializeField] Inventory inventory;
 
-    [SerializeField] GameObject uiButtons;
+    [SerializeField] GameObject topBar;
 
     public GameObject expeditionPage;
 
@@ -35,6 +35,13 @@ public class UIMonitor : MonoBehaviour
         originalCameraPosition = mainCamera.transform.position;
     }
 
+    void Start()
+    {
+        // setting all pages to inactive
+        expeditionPage.SetActive(false);
+        shopPage.SetActive(false);
+    }
+
     void Update()
     {
         uiMask.SetActive(inventory.inventoryOnDisplay);
@@ -45,8 +52,8 @@ public class UIMonitor : MonoBehaviour
         mainCamera.transform.position = new Vector3(originalCameraPosition.x + displacementX, originalCameraPosition.y + displacementY, originalCameraPosition.z);
     }
 
-    public void ToggleMainUIButtons(bool value)
+    public void ToggleTopBar(bool value)
     {
-        uiButtons.SetActive(value);
+        topBar.SetActive(value);
     }
 }
