@@ -504,15 +504,8 @@ public class ExpeditionManager : MonoBehaviour
 
     public void PlayBossFight()
     {
-        BossFight bossFight = null;
-        switch (selectedArea.name)
-        {
-            case "Ancient Remains":
-                bossFight = GameObject.Find("Rakeleton").GetComponent<BossFight>();
-                break;
-            default:
-                break;
-        }
+        string bossName = selectedArea.GetComponentInChildren<Boss>().bossName;
+        BossFight bossFight = GameObject.Find(bossName).GetComponent<BossFight>();
         if (bossFight == null) return;
         bossFight.AssignRaycs(prevRaycs);
         bossFight.PlayFight();
