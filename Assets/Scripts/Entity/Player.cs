@@ -115,6 +115,7 @@ public class Player : MonoBehaviour
 
     public void PutToInventory(GameAsset asset, bool rewardFromExpedition)
     {
+        asset.gameObject.layer = LayerMask.NameToLayer("InventoryItem");
         asset.gameObject.GetComponent<Draggable>()._dragSpot = null;
         GameObject newObject = FindObjectOfType<Inventory>().InstantiateToInventory(asset.gameObject);
         newObject.GetComponent<GameAsset>().ChangeToImageSpecs();

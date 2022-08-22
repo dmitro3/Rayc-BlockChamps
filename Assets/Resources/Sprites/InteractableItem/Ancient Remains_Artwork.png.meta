@@ -350,10 +350,10 @@ TextureImporter:
       name: Ancient Remains_Artwork_11
       rect:
         serializedVersion: 2
-        x: 5233
-        y: 2718
-        width: 280
-        height: 762
+        x: 5211
+        y: 2717
+        width: 343
+        height: 869
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -413,10 +413,10 @@ TextureImporter:
       name: Ancient Remains_Artwork_14
       rect:
         serializedVersion: 2
-        x: 4687
-        y: 2732
-        width: 291
-        height: 588
+        x: 4669
+        y: 2733
+        width: 342
+        height: 865
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -434,7 +434,7 @@ TextureImporter:
       name: Ancient Remains_Artwork_15
       rect:
         serializedVersion: 2
-        x: 5716
+        x: 5719
         y: 2714
         width: 343
         height: 875

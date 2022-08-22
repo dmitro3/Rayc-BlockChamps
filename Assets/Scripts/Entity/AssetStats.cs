@@ -109,7 +109,7 @@ public class AssetStats : MonoBehaviour
             ShopManager shopManager = FindObjectOfType<ShopManager>();
             shopManager.PurchaseItem((TradableAsset) current);
         });
-        dialogueBox.SetFunctionToYesButton(dialogueBox.HideDialogue);
+        // dialogueBox.SetFunctionToYesButton(dialogueBox.HideDialogue);
         dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
 
         dialogueBox.ShowDialogue("Purchase Item", "Do you want to buy this NFT?", true);

@@ -10,5 +10,5 @@ public class CameraDisplacement
 
     public const float DOJO = 136.2f;
 
-    public const float TREE = 270.3f;
+    public const float TREE = 269.3f;
 }

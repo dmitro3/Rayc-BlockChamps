@@ -301,7 +301,7 @@ class ShopManager : MonoBehaviour
 
     public async void PurchaseItem(TradableAsset tradableAsset)
     {
-
+        dialogueBox.HideDialogue();
         dialogueBox.ShowDialogue("", "Creating and saving metadata to IPFS...", false);
         
         var metadataUrl = await CreateIpfsMetadata(tradableAsset);
@@ -332,6 +332,11 @@ class ShopManager : MonoBehaviour
                 
         dialogueBox.dialogueText.text = "Transaction completed!";
         dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
+
+        // Delete from database
+        // Add to player script (PutToInventory)
+        // Add to inventory (InstantiateToInventory)
+
     }
 
     async UniTask<string> CreateIpfsMetadata(TradableAsset tradableAsset)
