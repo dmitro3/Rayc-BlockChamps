@@ -8,6 +8,8 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] Player player;
 
+    [SerializeField] CanvasGroup tabCanvasGroup;
+
     ContentMode mode = ContentMode.All;
 
     ContentMode prevMode = ContentMode.All;
@@ -113,5 +115,15 @@ public class Inventory : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void EnableTab()
+    {
+        tabCanvasGroup.interactable = true;
+    }
+
+    public void DisableTab()
+    {
+        tabCanvasGroup.interactable = false;
     }
 }

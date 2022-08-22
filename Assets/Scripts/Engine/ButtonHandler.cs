@@ -48,6 +48,7 @@ public class ButtonHandler : MonoBehaviour
         if (!uiMonitor.expeditionPage.activeSelf)
         {
             uiMonitor.expeditionPage.SetActive(true);
+            inventory.DisableTab();
             inventory.SetContentMode(ContentMode.RaycOnly);
             uiMonitor.ToggleTopBar(false);
             uiMonitor.ShiftCamera(CameraDisplacement.EXPEDITION, 0);
@@ -59,6 +60,7 @@ public class ButtonHandler : MonoBehaviour
         else
         {
             uiMonitor.expeditionPage.SetActive(false);
+            inventory.EnableTab();
             inventory.SetContentMode(ContentMode.All);
             uiMonitor.ToggleTopBar(true);
             uiMonitor.ShiftCamera(0, 0);

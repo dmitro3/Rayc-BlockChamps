@@ -67,10 +67,18 @@ public class ProfessionTree : MonoBehaviour
     {
         Rayc prefabRayc = node.nodePrefab.GetComponent<Rayc>();
 
+        DialogueBox dialogueBox = FindObjectOfType<UIMonitor>().dialogueBox;
+
+        if (rayc.prefabName.Equals(prefabRayc.prefabName))
+        {
+            dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
+            dialogueBox.ShowDialogue("Invalid Change", "Selected Rayc is already in this profession!", false);
+            return;
+        }
+
         int requiredStrength = prefabRayc.strength;
         int requiredDiscovery = prefabRayc.discovery;
 
-        DialogueBox dialogueBox = FindObjectOfType<UIMonitor>().dialogueBox;
         if (rayc.strength < requiredStrength || rayc.discovery < requiredDiscovery)
         {
             dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
