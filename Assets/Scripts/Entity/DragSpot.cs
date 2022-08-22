@@ -12,21 +12,15 @@ public class DragSpot : MonoBehaviour
 
     protected DragController dragController;
 
-    protected bool isChildFloor = false;
-
     public virtual void Awake()
     {
         anim = GetComponent<Animator>();
         dragController = GameObject.Find("DragController").GetComponent<DragController>();
-        if (transform.parent.name == "FloorSpots")
-        {
-            isChildFloor = true;
-        }
     }
 
     public virtual void Update()
     {
-        if (dragController._isDragActive && !isOccupied && !isChildFloor)
+        if (dragController._isDragActive && !isOccupied)
         {
             anim.SetBool("IsVisible", true);
         } 

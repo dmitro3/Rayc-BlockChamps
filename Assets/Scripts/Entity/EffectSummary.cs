@@ -28,7 +28,7 @@ public class EffectSummary : MonoBehaviour
             summary = "";
             foreach (Effect effect in summaryList.GroupBy(x => x.name).Select(x => x.First()))
             {
-                summary += "* " + effect.name + EffectChanceDescriptor(effect.name) + "\n";
+                summary += "* " + effect.name + EffectChanceDescriptor(effect.name) + ": " + effect.description + "\n";
             }
         }
         effectSummary.text = summary;
