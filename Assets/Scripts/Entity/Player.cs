@@ -1,8 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using MoralisUnity;
+using MoralisUnity.Platform.Objects;
+using MoralisUnity.Web3Api.Models;
 using TMPro;
+
+[Serializable]
+public class RaycNftMetadata
+{
+    public string raycName;
+    public string prefabName;
+    public int fullness;
+    public int strength;
+    public int discovery;
+    public string image;
+}
+
+[Serializable]
+public class InteractableNftMetadata
+{
+    public string prefabName;
+    public string image;
+}
 
 public class Player : MonoBehaviour
 {
@@ -21,6 +43,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+
         foreach (GameAsset asset in assets)
         {
             AddAsset(asset);

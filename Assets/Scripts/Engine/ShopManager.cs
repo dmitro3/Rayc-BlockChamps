@@ -2,17 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.Text;
+using System.Numerics;
+using System.Threading.Tasks;
 using UnityEngine;
 using MoralisUnity;
 using MoralisUnity.Platform.Queries;
+using Cysharp.Threading.Tasks;
+using UnityEngine.UI;
+using Nethereum.Hex.HexTypes;
+using Newtonsoft.Json;
+using TMPro;
 
-public class ShopManager : MonoBehaviour
+class ShopManager : MonoBehaviour
 {
+    public string ContractAddress = "";
+    public string ContractAbi = "";
+
     [SerializeField] FlexibleGridLayout raycItemList;
 
     [SerializeField] FlexibleGridLayout interactableItemList;
 
     [SerializeField] Player player;
+
+    DialogueBox dialogueBox;
 
     MoralisQuery<RaycData> _getRaycQuery;
 
@@ -32,6 +45,7 @@ public class ShopManager : MonoBehaviour
 
     void Start()
     {
+        dialogueBox = FindObjectOfType<UIMonitor>().dialogueBox;
         SubscrbeToInteractableDatabaseEvents();
         SubscribeToRaycDatabaseEvents();
         GetGameAssetsFromDB();
@@ -277,6 +291,94 @@ public class ShopManager : MonoBehaviour
         {
             Debug.Log(e);
         }
+    }
+
+    #endregion
+
+    #region NFT_METHODS
+
+    public async void PurchaseItem(TradableAsset tradableAsset)
+    {
+
+        dialogueBox.ShowDialogue("", "Creating and saving metadata to IPFS...", false);
+        
+        var metadataUrl = await CreateIpfsMetadata(tradableAsset);
+
+        if (metadataUrl is null)
+        {
+            dialogueBox.dialogueText.text = "Metadata couldn't be saved to IPFS";
+            dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
+            return;
+        }
+
+        dialogueBox.dialogueText.text = "Metadata saved successfully";
+
+        // I'm assuming that this is creating a different tokenId from the already minted tokens in the contract.
+        // I can do that because I know I'm converting a unique id coming from the MoralisDB.
+        long tokenId = MoralisTools.ConvertStringToLong(tradableAsset.id);
+        
+        dialogueBox.dialogueText.text = "Please confirm transaction in your wallet";
+        
+        var result = await PurchaseItemContract(tokenId, metadataUrl);
+
+        if (result is null)
+        {
+            dialogueBox.dialogueText.text = "Transaction failed";
+            dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
+            return;
+        }
+                
+        dialogueBox.dialogueText.text = "Transaction completed!";
+        dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
+    }
+
+    async UniTask<string> CreateIpfsMetadata(TradableAsset tradableAsset)
+    {
+        // 1. Build Metadata
+        object metadata = null;
+        if (tradableAsset.CompareTag("Rayc"))
+        {
+            Rayc rayc = (Rayc) tradableAsset;
+            metadata = MoralisTools.BuildRaycMetadata(rayc.raycName, rayc.prefabName, rayc.fullness, rayc.strength, rayc.discovery, rayc.imageUrl);
+        }
+        else
+        {
+            InteractableItem interactable = (InteractableItem) tradableAsset;
+            metadata = MoralisTools.BuildInteractableMetadata(interactable.prefabName, tradableAsset.imageUrl);
+        }
+
+        string metadataName = $"{tradableAsset.name}_{tradableAsset.id}.json";
+
+        // 2. Encoding JSON
+        string json = JsonConvert.SerializeObject(metadata);
+        string base64Data = Convert.ToBase64String(Encoding.UTF8.GetBytes(json));
+      
+        // 3. Save metadata to IPFS
+        string ipfsMetadataPath = await MoralisTools.SaveToIpfs(metadataName, base64Data);
+
+        return ipfsMetadataPath;
+    }
+
+    async Task<string> PurchaseItemContract(BigInteger tokenId, string metadataUrl)
+    {
+        byte[] data = Array.Empty<byte>();
+        
+        object[] parameters = {
+            tokenId.ToString("x"),
+            metadataUrl,
+            data
+        };
+
+        // Set gas estimate
+        HexBigInteger value = new HexBigInteger("0x0");
+        HexBigInteger gas = new HexBigInteger(0);
+        HexBigInteger gasPrice = new HexBigInteger("0x0");
+
+        ShopManager shopManager = FindObjectOfType<ShopManager>();
+
+        string resp = await Moralis.ExecuteContractFunction(shopManager.ContractAddress, shopManager.ContractAbi, "buyItem", parameters, value, gas, gasPrice);
+        
+        return resp;
     }
 
     #endregion

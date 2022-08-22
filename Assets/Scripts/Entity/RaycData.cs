@@ -7,7 +7,6 @@ public class RaycData : MoralisObject
 {
     public string prefabName { get; set;}
     public string raycName { get; set; }
-    public string raycDescription { get; set; }
     public int fullness { get; set; }
     public int strength { get; set; }
     public int discovery { get; set; }

@@ -7,6 +7,8 @@ public class TradableAsset : GameAsset, IEquatable<TradableAsset>
 {
     public string id;
 
+    public string imageUrl;
+
     public bool Equals(TradableAsset other)
     {
         return id.Equals(other.id);

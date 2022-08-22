@@ -24,7 +24,16 @@ public class AssetStats : MonoBehaviour
 
     [SerializeField] Button buyButton;
 
+    DialogueBox dialogueBox;
+
     GameAsset current;
+
+    TradableAsset tradableAsset;
+
+    void Start()
+    {
+        dialogueBox = FindObjectOfType<UIMonitor>().dialogueBox;
+    }
 
     public void Close()
     {
@@ -95,7 +104,15 @@ public class AssetStats : MonoBehaviour
 
     public void OnBuyButtonClick()
     {
-        // TODO: Link with NFT transactions later
+        dialogueBox.SetFunctionToYesButton(() =>
+        {
+            ShopManager shopManager = FindObjectOfType<ShopManager>();
+            shopManager.PurchaseItem((TradableAsset) current);
+        });
+        dialogueBox.SetFunctionToYesButton(dialogueBox.HideDialogue);
+        dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
+
+        dialogueBox.ShowDialogue("Purchase Item", "Do you want to buy this NFT?", true);
         Close();
     }
 

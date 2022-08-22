@@ -49,7 +49,6 @@ public class Rayc : TradableAsset
         id = raycData.objectId;
         prefabName = raycData.prefabName;
         raycName = raycData.raycName;
-        raycDescription = raycData.raycDescription;
         fullness = raycData.fullness;
         strength = raycData.strength;
         discovery = raycData.discovery;
@@ -62,7 +61,6 @@ public class Rayc : TradableAsset
             RaycData raycData = Moralis.Create<RaycData>();
             raycData.prefabName = prefabName;
             raycData.raycName = raycName;
-            raycData.raycDescription = raycDescription;
             raycData.fullness = fullness;
             raycData.strength = strength;
             raycData.discovery = discovery;
