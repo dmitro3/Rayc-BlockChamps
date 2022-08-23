@@ -10,6 +10,7 @@ public class InteractableItem : TradableAsset
     {
         id = interactableData.objectId;
         prefabName = interactableData.prefabName;
+        imageUrl = interactableData.imageUrl;
     }
 
      public async void SaveInteractableItemToDB()
@@ -18,6 +19,7 @@ public class InteractableItem : TradableAsset
         {
             InteractableData interactableData = Moralis.Create<InteractableData>();
             interactableData.prefabName = prefabName;
+            interactableData.imageUrl = imageUrl;
             await interactableData.SaveAsync();
             Debug.Log("InteractableData uploaded to database.");
         }

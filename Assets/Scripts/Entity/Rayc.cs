@@ -52,6 +52,7 @@ public class Rayc : TradableAsset
         fullness = raycData.fullness;
         strength = raycData.strength;
         discovery = raycData.discovery;
+        imageUrl = raycData.imageUrl;
     }
 
     public async void SaveRaycToDB()
@@ -64,6 +65,7 @@ public class Rayc : TradableAsset
             raycData.fullness = fullness;
             raycData.strength = strength;
             raycData.discovery = discovery;
+            raycData.imageUrl = imageUrl;
             await raycData.SaveAsync();
             Debug.Log("RaycData uploaded to database.");
         }
@@ -81,6 +83,7 @@ public class Rayc : TradableAsset
         fullness = rayc.fullness;
         strength = rayc.strength;
         discovery = rayc.discovery;
+        imageUrl = rayc.imageUrl;
     }
 
     public void ChangePoise(Poise poise)

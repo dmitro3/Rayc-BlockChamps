@@ -11,5 +11,7 @@ public class RaycData : MoralisObject
     public int strength { get; set; }
     public int discovery { get; set; }
 
+    public string imageUrl { get; set; }
+
     public RaycData() : base("RaycData") {}
 }

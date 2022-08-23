@@ -56,6 +56,13 @@ public class MoralisTools
         return new { prefabName = prefabName, image = imageUrl };
     }
 
+    public static object BuildMetadata(string name, string desc, string imageUrl)
+    {
+        object o = new { name = name, description = desc, image = imageUrl };
+
+        return o; 
+    }
+
     public static object BuildRaycMetadata(string raycName, string prefabName, int fullness, int strength, int discovery, string imageUrl)
     {
         return new { 

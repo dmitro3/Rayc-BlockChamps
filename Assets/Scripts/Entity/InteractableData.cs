@@ -7,5 +7,7 @@ public class InteractableData : MoralisObject
 {
     public string prefabName { get; set; }
 
+    public string imageUrl { get; set; }
+
     public InteractableData() : base("InteractableData") {}
 }

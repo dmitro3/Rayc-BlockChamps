@@ -1,3 +1,5 @@
+using System.IO.Enumeration;
+using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +50,7 @@ class ShopManager : MonoBehaviour
 
     void Start()
     {
-        ContractAddress = "0x6602bfc306E3b2A59663325ECCcc257eEfDd8290";
+        ContractAddress = "0x9C0387c5180bbe2E0e5aab25EA1C646608aB2580";
         ContractAbi = "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"approved\",\"type\":\"bool\"}],\"name\":\"ApprovalForAll\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256[]\",\"name\":\"ids\",\"type\":\"uint256[]\"},{\"indexed\":false,\"internalType\":\"uint256[]\",\"name\":\"values\",\"type\":\"uint256[]\"}],\"name\":\"TransferBatch\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"TransferSingle\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"URI\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"accounts\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"ids\",\"type\":\"uint256[]\"}],\"name\":\"balanceOfBatch\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_tokenId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_tokenUrl\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"buyItem\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"isApprovedForAll\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256[]\",\"name\":\"ids\",\"type\":\"uint256[]\"},{\"internalType\":\"uint256[]\",\"name\":\"amounts\",\"type\":\"uint256[]\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"safeBatchTransferFrom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"safeTransferFrom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"approved\",\"type\":\"bool\"}],\"name\":\"setApprovalForAll\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"uri\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]";
         dialogueBox = FindObjectOfType<UIMonitor>().dialogueBox;
         SubscrbeToInteractableDatabaseEvents();
@@ -121,22 +123,22 @@ class ShopManager : MonoBehaviour
         _getRaycQuery = await Moralis.GetClient().Query<RaycData>();
 
         _callbacksRayc = new MoralisLiveQueryCallbacks<RaycData>();
-        _callbacksRayc.OnConnectedEvent += (() => { Debug.Log("Connection To RaycData Established."); });
-        _callbacksRayc.OnSubscribedEvent += ((requestId) => { Debug.Log($"Subscription {requestId} created to RaycData."); });
-        _callbacksRayc.OnUnsubscribedEvent += ((requestId) => { Debug.Log($"Unsubscribed from {requestId}. (RaycData)"); });
+        _callbacksRayc.OnConnectedEvent += (() => { UnityEngine.Debug.Log("Connection To RaycData Established."); });
+        _callbacksRayc.OnSubscribedEvent += ((requestId) => { UnityEngine.Debug.Log($"Subscription {requestId} created to RaycData."); });
+        _callbacksRayc.OnUnsubscribedEvent += ((requestId) => { UnityEngine.Debug.Log($"Unsubscribed from {requestId}. (RaycData)"); });
         _callbacksRayc.OnCreateEvent += ((item, requestId) =>
         {
-            Debug.Log("New data created on RaycData");
+            UnityEngine.Debug.Log("New data created on RaycData");
             newRaycList.Add(item);
         });
         _callbacksRayc.OnUpdateEvent += ((item, requestId) =>
         {
-            Debug.Log("RaycData updated");
+            UnityEngine.Debug.Log("RaycData updated");
             updatedRaycList.Add(item);
         });
         _callbacksRayc.OnDeleteEvent += ((item, requestId) =>
         {
-            Debug.Log("RaycData deleted");
+            UnityEngine.Debug.Log("RaycData deleted");
             deleteRaycList.Add(item.objectId);
         });
         
@@ -148,22 +150,22 @@ class ShopManager : MonoBehaviour
         _getInteractableQuery = await Moralis.GetClient().Query<InteractableData>();
 
         _callbacksInteractable = new MoralisLiveQueryCallbacks<InteractableData>();
-        _callbacksInteractable.OnConnectedEvent += (() => { Debug.Log("Connection To InteractableData Established."); });
-        _callbacksInteractable.OnSubscribedEvent += ((requestId) => { Debug.Log($"Subscription {requestId} created to InteractableData."); });
-        _callbacksInteractable.OnUnsubscribedEvent += ((requestId) => { Debug.Log($"Unsubscribed from {requestId}. (InteractableData)"); });
+        _callbacksInteractable.OnConnectedEvent += (() => { UnityEngine.Debug.Log("Connection To InteractableData Established."); });
+        _callbacksInteractable.OnSubscribedEvent += ((requestId) => { UnityEngine.Debug.Log($"Subscription {requestId} created to InteractableData."); });
+        _callbacksInteractable.OnUnsubscribedEvent += ((requestId) => { UnityEngine.Debug.Log($"Unsubscribed from {requestId}. (InteractableData)"); });
         _callbacksInteractable.OnCreateEvent += ((item, requestId) =>
         {
-            Debug.Log("New data created on InteractableData");
+            UnityEngine.Debug.Log("New data created on InteractableData");
             newInteractableList.Add(item);
         });
         _callbacksInteractable.OnUpdateEvent += ((item, requestId) =>
         {
-            Debug.Log("InteractableData updated");
+            UnityEngine.Debug.Log("InteractableData updated");
             updateInteractableList.Add(item);
         });
         _callbacksInteractable.OnDeleteEvent += ((item, requestId) =>
         {
-            Debug.Log("InteractableData deleted");
+            UnityEngine.Debug.Log("InteractableData deleted");
             deleteInteractableList.Add(item.objectId);
         });
 
@@ -234,7 +236,7 @@ class ShopManager : MonoBehaviour
         }
         catch (System.Exception e)
         {
-            Debug.Log(e);
+            UnityEngine.Debug.Log(e);
         }
     }
 
@@ -256,7 +258,7 @@ class ShopManager : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.Log(e);
+            UnityEngine.Debug.Log(e);
         }
     }
 
@@ -275,7 +277,7 @@ class ShopManager : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.Log(e);
+            UnityEngine.Debug.Log(e);
         }
     }
 
@@ -294,7 +296,7 @@ class ShopManager : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.Log(e);
+            UnityEngine.Debug.Log(e);
         }
     }
 
@@ -304,6 +306,7 @@ class ShopManager : MonoBehaviour
 
     public async void PurchaseItem(TradableAsset tradableAsset)
     {
+        UnityEngine.Debug.Log("tradable asset image url is: " + tradableAsset.imageUrl);
         dialogueBox.HideDialogue();
         dialogueBox.ShowDialogue("", "Creating and saving metadata to IPFS...", false);
         
@@ -326,6 +329,8 @@ class ShopManager : MonoBehaviour
         
         var result = await PurchaseItemContract(tokenId, metadataUrl);
 
+        UnityEngine.Debug.Log(result);
+
         if (result is null)
         {
             dialogueBox.dialogueText.text = "Transaction failed";
@@ -337,12 +342,15 @@ class ShopManager : MonoBehaviour
 
 
         dialogueBox.SetFunctionToCloseButton(() => {
-            OfferOpenSeaView(tradableAsset.id);
+            OfferOpenSeaView(tokenId.ToString());
         });
 
         // Delete from database
-        // Add to player script (PutToInventory)
-        // Add to inventory (InstantiateToInventory)
+
+
+        // Add to player inventory
+        Player player = FindObjectOfType<Player>();
+        player.PutToInventory(tradableAsset, false);
 
     }
 
@@ -363,21 +371,24 @@ class ShopManager : MonoBehaviour
     {
         // 1. Build Metadata
         object metadata = null;
-        if (tradableAsset.CompareTag("Rayc"))
-        {
-            Rayc rayc = (Rayc) tradableAsset;
-            metadata = MoralisTools.BuildRaycMetadata(rayc.raycName, rayc.prefabName, rayc.fullness, rayc.strength, rayc.discovery, rayc.imageUrl);
-        }
-        else
-        {
-            InteractableItem interactable = (InteractableItem) tradableAsset;
-            metadata = MoralisTools.BuildInteractableMetadata(interactable.prefabName, tradableAsset.imageUrl);
-        }
+        // if (tradableAsset.CompareTag("Rayc"))
+        // {
+        //     Rayc rayc = (Rayc) tradableAsset;
+        //     metadata = MoralisTools.BuildRaycMetadata(rayc.raycName, rayc.prefabName, rayc.fullness, rayc.strength, rayc.discovery, rayc.imageUrl);
+        // }
+        // else
+        // {
+        //     InteractableItem interactable = (InteractableItem) tradableAsset;
+        //     metadata = MoralisTools.BuildInteractableMetadata(interactable.prefabName, tradableAsset.imageUrl);
+        // }
+
+        metadata = MoralisTools.BuildMetadata(tradableAsset.prefabName, tradableAsset.prefabName, tradableAsset.imageUrl);
 
         string metadataName = $"{tradableAsset.name}_{tradableAsset.id}.json";
 
         // 2. Encoding JSON
         string json = JsonConvert.SerializeObject(metadata);
+        UnityEngine.Debug.Log(json);
         string base64Data = Convert.ToBase64String(Encoding.UTF8.GetBytes(json));
       
         // 3. Save metadata to IPFS

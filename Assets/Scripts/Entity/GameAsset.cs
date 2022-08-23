@@ -37,19 +37,19 @@ public class GameAsset : MonoBehaviour
 
     protected GameAssetList gameAssetList;
 
-    Button button;
+    // Button button;
 
     public bool clickable = true;
 
-    void OnEnable()
+    void Awake()
     {
         assetStats = FindObjectOfType<UIMonitor>().assetStats;
         gameAssetList = FindObjectOfType<UIMonitor>().gameAssetList;
-        if (gameObject.GetComponent<Button>() == null)
-        {
-            button = gameObject.AddComponent<Button>();
-            button.onClick.AddListener(ShowAssetStats);
-        }
+    }
+
+    void OnMouseUp()
+    {
+        if (clickable) ShowAssetStats();
     }
 
     void Update()
