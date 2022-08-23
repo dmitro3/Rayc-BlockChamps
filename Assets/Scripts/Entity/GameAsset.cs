@@ -37,19 +37,21 @@ public class GameAsset : MonoBehaviour
 
     protected GameAssetList gameAssetList;
 
-    // Button button;
+    protected DialogueBox dialogueBox;
 
     public bool clickable = true;
 
     void Awake()
     {
-        assetStats = FindObjectOfType<UIMonitor>().assetStats;
-        gameAssetList = FindObjectOfType<UIMonitor>().gameAssetList;
+        UIMonitor uiMonitor = FindObjectOfType<UIMonitor>();
+        assetStats = uiMonitor.assetStats;
+        gameAssetList = uiMonitor.gameAssetList;
+        dialogueBox = uiMonitor.dialogueBox;
     }
 
-    void OnMouseUp()
+    void OnMouseUpAsButton()
     {
-        if (clickable) ShowAssetStats();
+        if (clickable && !assetStats.gameObject.activeSelf && !gameAssetList.gameObject.activeSelf && !dialogueBox.gameObject.activeSelf) assetStats.ShowStats(this);
     }
 
     void Update()
@@ -58,13 +60,8 @@ public class GameAsset : MonoBehaviour
         if (draggable != null && assetStats != null && gameAssetList != null)
         {
             bool isCameraOnShop = FindObjectOfType<Camera>().transform.position.x == CameraDisplacement.SHOP;
-            draggable.enabled = !assetStats.gameObject.activeSelf && !gameAssetList.gameObject.activeSelf && !isCameraOnShop;
+            draggable.enabled = !assetStats.gameObject.activeSelf && !gameAssetList.gameObject.activeSelf && !isCameraOnShop && !dialogueBox.gameObject.activeSelf;
         }
-    }
-
-    public void ShowAssetStats()
-    {
-        if (clickable) assetStats.ShowStats(this);
     }
 
     public void ChangeToImageSpecs()

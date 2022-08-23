@@ -197,6 +197,32 @@ class ShopManager : MonoBehaviour
         }
     }
 
+    public async void DeleteRaycFromDB(string id)
+    {
+        IEnumerable<RaycData> result = await _getRaycQuery.FindAsync();
+        foreach (RaycData raycData in result)
+        {
+            if (raycData.objectId.Equals(id))
+            {
+                await raycData.DeleteAsync();
+                break;
+            }
+        }
+    }
+
+    public async void DeleteInteractableFromDB(string id)
+    {
+        IEnumerable<InteractableData> result = await _getInteractableQuery.FindAsync();
+        foreach (InteractableData interactableData in result)
+        {
+            if (interactableData.objectId.Equals(id))
+            {
+                await interactableData.DeleteAsync();
+                break;
+            }
+        }
+    }
+
     void PopulateShopRaycItem(RaycData raycData)
     {
         GameObject raycObj = Instantiate(Resources.Load("Prefabs/RaycPrefabs/" + raycData.prefabName) as GameObject, raycItemList.transform);
@@ -206,6 +232,7 @@ class ShopManager : MonoBehaviour
         rayc.ChangeToImageSpecs();
         rayc.gameObject.name = raycData.raycName;
         rayc.gameObject.layer = LayerMask.NameToLayer("ShopItem");
+        rayc.GetComponent<BoxCollider2D>().size = raycItemList.cellSize;
     }
 
     void PopulateShopInteractableItem(InteractableData interactableData)
@@ -216,6 +243,7 @@ class ShopManager : MonoBehaviour
         interactable.gameObject.GetComponent<Draggable>().enabled = false;
         interactable.ChangeToImageSpecs();
         interactable.gameObject.layer = LayerMask.NameToLayer("ShopItem");
+        interactable.GetComponent<BoxCollider2D>().size = interactableItemList.cellSize;
     }
 
     void UpdateRaycItem(string id, RaycData raycData)
@@ -346,7 +374,14 @@ class ShopManager : MonoBehaviour
         });
 
         // Delete from database
-
+        if (tradableAsset.CompareTag("Rayc"))
+        {
+            DeleteRaycFromDB(tradableAsset.id);
+        }
+        else
+        {
+            DeleteInteractableFromDB(tradableAsset.id);
+        }
 
         // Add to player inventory
         Player player = FindObjectOfType<Player>();
