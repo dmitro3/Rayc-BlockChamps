@@ -52,7 +52,7 @@ public class BossFight : MonoBehaviour
         }
     }
 
-    public void AssignRaycs(List<Sprite> raycs)
+    public void AssignRaycs(List<Rayc> raycs)
     {
         raycSpots.AssignRaycs(raycs);
     }

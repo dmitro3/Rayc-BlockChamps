@@ -55,7 +55,7 @@ public class ExpeditionManager : MonoBehaviour
 
     [SerializeField] GameObject raycSelection;
 
-    List<Sprite> prevRaycs = new List<Sprite>();
+    List<Rayc> prevRaycs = new List<Rayc>();
 
     void Awake()
     {
@@ -222,7 +222,9 @@ public class ExpeditionManager : MonoBehaviour
             if (selectionSpot.isOccupied)
             {
                 GameObject item = selectionSpot.draggedObject;
-                prevRaycs.Add(item.GetComponent<Rayc>().GetComponent<Image>().sprite);
+                Rayc rayc = item.GetComponent<Rayc>();
+                GameObject raycObj = Resources.Load("Prefabs/RaycPrefabs/" + rayc.prefabName) as GameObject;
+                prevRaycs.Add(raycObj.GetComponent<Rayc>());
                 selectionSpot.RemoveSelection();
             }
         }
