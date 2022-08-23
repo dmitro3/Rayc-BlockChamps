@@ -12,11 +12,23 @@ public class RaycSpots : MonoBehaviour
     public void AssignRaycs(List<Sprite> raycs)
     {
         int size = raycs.Count;
-        spotOne.sprite = null;
-        spotTwo.sprite = null;
-        spotThree.sprite = null;
-        if (0 < size) spotOne.sprite = raycs[0];
-        if (1 < size) spotTwo.sprite = raycs[1];
-        if (2 < size) spotThree.sprite = raycs[2];
+        spotOne.enabled = false;
+        spotTwo.enabled = false;
+        spotThree.enabled = false;
+        if (0 < size)
+        {
+            spotOne.enabled = true;
+            spotOne.sprite = raycs[0];
+        }
+        if (1 < size)
+        {
+            spotTwo.enabled = true;
+            spotTwo.sprite = raycs[1];
+        }
+        if (2 < size)
+        {
+            spotThree.enabled = true;
+            spotThree.sprite = raycs[2];
+        }
     }
 }
