@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -6308337135940341459}
   - component: {fileID: -7019144312640844102}
   m_Layer: 6
-  m_Name: Ninja Rayc
+  m_Name: Princess Rayc
   m_TagString: Rayc
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,9 +56,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63b0511e0019e648ade255e48e9f0bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabName: Ninja Rayc
-  description: A Rayc who is always lurking in the shadows
-  rarity: 2
+  prefabName: Princess Rayc
+  description: A Rayc who is always dancing like a princess. Maybe it is indeed a
+    princess.
+  rarity: 0
   imageRotation: {x: 0, y: 0, z: 0, w: 1}
   spriteRotation: {x: 0, y: 0, z: -0.0784591, w: 0.9969173}
   imageLocalScale: {x: 1, y: 1, z: 1}
@@ -68,17 +69,17 @@ MonoBehaviour:
   imageBoxColliderOffset: {x: 0, y: 0}
   spriteBoxColliderOffset: {x: 0, y: 0}
   clickable: 1
-  id: 10
+  id: 90
   imageUrl: 
   idleOnly: 0
-  raycName: Jiazee
+  raycName: JZeee
   raycDescription: 
-  fullness: 5
-  strength: 21
-  discovery: 8
+  fullness: 3
+  strength: 8
+  discovery: 20
   interactionEvent: {fileID: 0}
   justEndedInteraction: 0
-  anchorOffset: {x: -4.5624, y: -4.78, z: 0}
+  anchorOffset: {x: 0, y: 0, z: 0}
 --- !u!212 &2264023533671287927
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -120,7 +121,7 @@ SpriteRenderer:
   m_SortingLayerID: 1398314263
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1030424229, guid: a7e89bd055c594c9e8beba8f5da684ca, type: 3}
+  m_Sprite: {fileID: 600993717, guid: cf89cc882368e4664a225a04ff8539e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -151,7 +152,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1030424229, guid: a7e89bd055c594c9e8beba8f5da684ca, type: 3}
+  m_Sprite: {fileID: 600993717, guid: cf89cc882368e4664a225a04ff8539e7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -177,8 +178,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.41, y: 0.17}
-    oldSize: {x: 8.34, y: 6.44}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 7.12, y: 5.74}
     newSize: {x: 6.44, y: 5.43}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -197,7 +198,7 @@ Animator:
   m_GameObject: {fileID: 9158458476228965421}
   m_Enabled: 0
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 10484da5446dc4bb2a1e4bab824342cb, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7dd71e5c7326e4b8dae30b44fbac023e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
