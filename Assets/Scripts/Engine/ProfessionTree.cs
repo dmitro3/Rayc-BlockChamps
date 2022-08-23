@@ -72,7 +72,7 @@ public class ProfessionTree : MonoBehaviour
         if (rayc.prefabName.Equals(prefabRayc.prefabName))
         {
             dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
-            dialogueBox.ShowDialogue("Invalid Change", "Selected Rayc is already in this profession!", false);
+            dialogueBox.ShowDialogue("Invalid Evolution", "Selected Rayc is already at this stage!", false);
             return;
         }
 
@@ -82,13 +82,13 @@ public class ProfessionTree : MonoBehaviour
         if (rayc.strength < requiredStrength || rayc.discovery < requiredDiscovery)
         {
             dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
-            dialogueBox.ShowDialogue("Insufficient Stats", "Selected Rayc doesn't have enough strength or discovery to change to this profession!", false);
+            dialogueBox.ShowDialogue("Insufficient Stats", "Selected Rayc doesn't have enough strength or discovery to evolve!", false);
             return;
         }
         else if (FindObjectOfType<Player>().coins < node.requiredCoins)
         {
             dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
-            dialogueBox.ShowDialogue("Insufficient Coins", "You don't have enough coins to change professions!", false);
+            dialogueBox.ShowDialogue("Insufficient Coins", "You don't have enough coins to evolve!", false);
             return;
         }
         else
@@ -98,7 +98,7 @@ public class ProfessionTree : MonoBehaviour
             
             dialogueBox.SetFunctionToYesButton(ChangeProfession);
             dialogueBox.SetFunctionToYesButton(dialogueBox.HideDialogue);
-            dialogueBox.ShowDialogue("Change of Profession", "Are you sure you want to change to this profession with " + node.requiredCoins + " coins?", true);
+            dialogueBox.ShowDialogue("Start Evolution", "Are you sure you want to change evolve by spending " + node.requiredCoins + " coins?", true);
         }
     }
 

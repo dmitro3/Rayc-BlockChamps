@@ -10268,8 +10268,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiMask: {fileID: 633316293}
-  inventory: {fileID: 619425003}
   topBar: {fileID: 879095131}
+  inventory: {fileID: 619425003}
   expeditionPage: {fileID: 1151447185}
   shopPage: {fileID: 154845415}
   dialogueBox: {fileID: 1516394596}
@@ -15794,8 +15794,8 @@ MonoBehaviour:
     - Alright, let's start some hard training...
   - name: Dojo Master 2
     sentences:
-    - Oh...You wanna change profession of your Rayc?
-    - Which Rayc do you wanna change profession?
+    - Oh...You wanna evolve your Rayc?
+    - Which Rayc is it?
     - Alright, sit below the waterfall and enter Zen mode...
     - It's time for your Rayc to awaken new power...
   dialogueIndex: 0
