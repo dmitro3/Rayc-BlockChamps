@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using MoralisUnity;
 using MoralisUnity.Platform.Queries;
+using MoralisUnity.Web3Api.Models;
 using Cysharp.Threading.Tasks;
 using UnityEngine.UI;
 using Nethereum.Hex.HexTypes;
@@ -18,6 +19,8 @@ class ShopManager : MonoBehaviour
 {
     public string ContractAddress;
     public string ContractAbi;
+
+    public ChainList chainList = ChainList.mumbai;
 
     [SerializeField] FlexibleGridLayout raycItemList;
 
@@ -331,12 +334,29 @@ class ShopManager : MonoBehaviour
         }
                 
         dialogueBox.dialogueText.text = "Transaction completed!";
-        dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
+
+
+        dialogueBox.SetFunctionToCloseButton(() => {
+            OfferOpenSeaView(tradableAsset.id);
+        });
 
         // Delete from database
         // Add to player script (PutToInventory)
         // Add to inventory (InstantiateToInventory)
 
+    }
+
+    public void OfferOpenSeaView(string tokenId)
+    {
+        dialogueBox.HideDialogue();
+        ShopManager shopManager = FindObjectOfType<ShopManager>();
+        dialogueBox.SetFunctionToYesButton(() => {
+            MoralisTools.CheckNftOnOpenSea(shopManager.ContractAddress, shopManager.chainList.ToString(), tokenId);
+        });
+        dialogueBox.SetFunctionToYesButton(dialogueBox.HideDialogue);
+
+        dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
+        dialogueBox.ShowDialogue("View On OpenSea", "Do you want to view this NFT on OpenSea?", true);
     }
 
     async UniTask<string> CreateIpfsMetadata(TradableAsset tradableAsset)
