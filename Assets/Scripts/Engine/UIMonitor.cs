@@ -7,9 +7,9 @@ public class UIMonitor : MonoBehaviour
 {
     [SerializeField] GameObject uiMask;
 
-    [SerializeField] Inventory inventory;
-
     [SerializeField] GameObject topBar;
+
+    public Inventory inventory;
 
     public GameObject expeditionPage;
 

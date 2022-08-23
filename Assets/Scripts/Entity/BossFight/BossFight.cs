@@ -46,6 +46,7 @@ public class BossFight : MonoBehaviour
                 playingScene = false;
                 GameObject.Find("UIMonitor").GetComponent<UIMonitor>().ShiftCamera(CameraDisplacement.EXPEDITION, 0);
                 GameObject.Find("ExpeditionManager").GetComponent<ExpeditionManager>().GrantPlayerRewards();
+                raycSpots.DestroyPrevRaycs();
                 break;
             default:
                 break;

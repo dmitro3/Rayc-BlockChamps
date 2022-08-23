@@ -68,7 +68,9 @@ MonoBehaviour:
   spriteBoxColliderSize: {x: 4.7, y: 5.39}
   imageBoxColliderOffset: {x: 0, y: 0}
   spriteBoxColliderOffset: {x: 0, y: 0}
+  clickable: 1
   id: 1
+  imageUrl: 
 --- !u!212 &2264023533671287927
 SpriteRenderer:
   m_ObjectHideFlags: 0

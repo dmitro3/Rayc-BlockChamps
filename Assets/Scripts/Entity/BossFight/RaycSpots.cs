@@ -19,7 +19,6 @@ public class RaycSpots : MonoBehaviour
 
     public void AssignRaycs(List<Rayc> raycs)
     {
-        DestroyPrevRaycs();
         int size = raycs.Count;
         if (0 < size)
             InstantiateRaycAtPos(raycs[0], spotOne.transform);
@@ -29,13 +28,23 @@ public class RaycSpots : MonoBehaviour
             InstantiateRaycAtPos(raycs[2], spotThree.transform);
     }
 
-    private void DestroyPrevRaycs()
+    public void DestroyPrevRaycs()
     {
-        raycs.ForEach(rayc => Object.Destroy(rayc.gameObject));
+        ClearRaycAtSpot(spotOne.transform);
+        ClearRaycAtSpot(spotTwo.transform);
+        ClearRaycAtSpot(spotThree.transform);
         raycs.Clear();
     }
 
-    private void InstantiateRaycAtPos(Rayc raycPrefab, Transform transform)
+    void ClearRaycAtSpot(Transform spot)
+    {
+        foreach (Transform child in spot)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+    void InstantiateRaycAtPos(Rayc raycPrefab, Transform transform)
     {
         Rayc rayc = Instantiate(raycPrefab, transform).GetComponent<Rayc>();
         rayc.GetComponent<Image>().enabled = false;

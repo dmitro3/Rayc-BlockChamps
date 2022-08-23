@@ -1,3 +1,4 @@
+using System.Xml.Schema;
 using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
@@ -427,6 +428,10 @@ public class ExpeditionManager : MonoBehaviour
             dialogueText += item.name + "\n";
             player.PutToInventory((GameAsset)item, true);
         }
+
+        Inventory inventory = FindObjectOfType<UIMonitor>().inventory;
+
+        inventory.UpdateContentMode(ContentMode.RaycOnly);
 
         // reset expedition data
         dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);

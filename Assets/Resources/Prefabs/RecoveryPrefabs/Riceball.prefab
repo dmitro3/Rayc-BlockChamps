@@ -55,6 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabName: Riceball
   description: A delicious riceball enjoyed by Raycs...
+  rarity: 0
   imageRotation: {x: 0, y: 0, z: 0, w: 0}
   spriteRotation: {x: 0, y: 0, z: 0, w: 0}
   imageLocalScale: {x: 0, y: 0, z: 0}
@@ -63,6 +64,7 @@ MonoBehaviour:
   spriteBoxColliderSize: {x: 0, y: 0}
   imageBoxColliderOffset: {x: 0, y: 0}
   spriteBoxColliderOffset: {x: 0, y: 0}
+  clickable: 1
   recoveryAmount: 2
 --- !u!212 &2264023533671287927
 SpriteRenderer:
@@ -103,9 +105,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1398314263
-  m_SortingLayer: 2
+  m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 18553751, guid: be5f8036b133346898c013db4122bd7b, type: 3}
+  m_Sprite: {fileID: 678887269, guid: 63c2e1533a4a14692a1c51125b04d5ff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -136,7 +138,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 18553751, guid: be5f8036b133346898c013db4122bd7b, type: 3}
+  m_Sprite: {fileID: 678887269, guid: 63c2e1533a4a14692a1c51125b04d5ff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -163,7 +165,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10.9800005, y: 11.25}
+    oldSize: {x: 3.54, y: 3.5812197}
     newSize: {x: 6.44, y: 5.43}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

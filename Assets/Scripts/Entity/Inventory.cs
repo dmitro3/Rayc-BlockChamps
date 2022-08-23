@@ -88,7 +88,7 @@ public class Inventory : MonoBehaviour
             objectToToggle.SetActive(false);
         }
     }
-    void UpdateContentMode(ContentMode mode)
+    public void UpdateContentMode(ContentMode mode)
     {
         foreach (Transform child in content.transform)
         {
