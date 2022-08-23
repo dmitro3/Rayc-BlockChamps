@@ -39,7 +39,9 @@ public class RaycSpots : MonoBehaviour
     {
         Rayc rayc = Instantiate(raycPrefab, transform).GetComponent<Rayc>();
         rayc.GetComponent<Image>().enabled = false;
-        rayc.GetComponent<SpriteRenderer>().enabled = true;
+        SpriteRenderer spriteRenderer = rayc.GetComponent<SpriteRenderer>();
+        spriteRenderer.enabled = true;
+        spriteRenderer.sortingLayerName = "Expedition";
         rayc.GetComponent<RectTransform>().localScale = new Vector3(10.0f, 10.0f, 1.0f);
         rayc.clickable = false;
         rayc.ChangePoise(Poise.Back);
