@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class BossFight : MonoBehaviour
 {
+    private const int ANIMATION_TICKS = 300;
     public SpriteRenderer sprite;
     public RaycSpots raycSpots;
+    public FadeEffect shade;
 
     int cutSceneTicks = 0;
 
@@ -14,9 +16,11 @@ public class BossFight : MonoBehaviour
     void Update()
     {
         if (!playingScene) return;
-        cutSceneTicks--;
-        switch (cutSceneTicks)
+        switch (cutSceneTicks--)
         {
+            case ANIMATION_TICKS:
+                shade.FadeOut();
+                break;
             case 250:
                 sprite.color = Color.red;
                 break;
@@ -35,6 +39,9 @@ public class BossFight : MonoBehaviour
             case 75:
                 sprite.color = Color.white;
                 break;
+            case 50:
+                shade.FadeIn();
+                break;
             case 0:
                 playingScene = false;
                 GameObject.Find("UIMonitor").GetComponent<UIMonitor>().ShiftCamera(CameraDisplacement.EXPEDITION, 0);
@@ -52,7 +59,7 @@ public class BossFight : MonoBehaviour
 
     public void PlayFight()
     {
-        cutSceneTicks = 300;
+        cutSceneTicks = ANIMATION_TICKS;
         playingScene = true;
         GameObject.Find("UIMonitor").GetComponent<UIMonitor>().ShiftCamera(CameraDisplacement.MAP, this.transform.position.y);
     }
