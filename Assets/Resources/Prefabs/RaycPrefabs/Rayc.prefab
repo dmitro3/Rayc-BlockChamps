@@ -68,7 +68,9 @@ MonoBehaviour:
   spriteBoxColliderSize: {x: 4.7, y: 5.39}
   imageBoxColliderOffset: {x: 0, y: 0}
   spriteBoxColliderOffset: {x: 0, y: 0}
+  clickable: 1
   id: 0
+  imageUrl: 
   idleOnly: 0
   raycName: Akimatsu
   raycDescription: 
@@ -119,7 +121,7 @@ SpriteRenderer:
   m_SortingLayerID: 1398314263
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1746960114, guid: a06a800e9b4f94ddf9423a8cd5455304, type: 3}
+  m_Sprite: {fileID: 1683481220, guid: cbb12e2e3035b4bf5927f9bc7576fcbf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -177,7 +179,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.44, y: 5.43}
+    oldSize: {x: 6.04, y: 4.85}
     newSize: {x: 6.44, y: 5.43}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

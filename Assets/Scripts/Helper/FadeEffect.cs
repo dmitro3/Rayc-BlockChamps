@@ -11,6 +11,7 @@ public class FadeEffect : MonoBehaviour
 
     public void FadeIn()
     {
+        Debug.Log("FadeIn called");
         ui.alpha = 0;
         isFadingIn = true;
         isFadingOut = false;
@@ -18,7 +19,6 @@ public class FadeEffect : MonoBehaviour
 
     public void FadeOut()
     {
-        Debug.Log("FadeOut called");
         ui.alpha = 1;
         isFadingIn = false;
         isFadingOut = true;
