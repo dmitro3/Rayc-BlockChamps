@@ -246,7 +246,9 @@ public class ExpeditionManager : MonoBehaviour
         }
         avgDiscovery /= (float)raycCount;
 
-        float appearProb = (float)System.Math.Exp(avgDiscovery / 10f * 2f) / 150f * (hasBossEncounterRune ? 2f : 1f);
+        // float appearProb = (float)System.Math.Exp(avgDiscovery / 10f * 2f) / 150f * (hasBossEncounterRune ? 2f : 1f);
+
+        float appearProb = 1;
 
         UnityEngine.Debug.Log("The boss appear probability is: " + appearProb);
 

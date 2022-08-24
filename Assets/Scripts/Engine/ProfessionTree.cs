@@ -76,6 +76,13 @@ public class ProfessionTree : MonoBehaviour
             return;
         }
 
+        if (prefabRayc.prefabName.Equals("Rayc"))
+        {
+            dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
+            dialogueBox.ShowDialogue("Reversion Not Allowed", "You cannot revert a Rayc to its previous state!", false);
+            return;
+        }
+
         int requiredStrength = prefabRayc.strength;
         int requiredDiscovery = prefabRayc.discovery;
 

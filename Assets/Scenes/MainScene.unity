@@ -775,9 +775,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 1513901431}
-  children:
-  - {fileID: 0}
-  requiredCoins: 1500
+  children: []
+  requiredCoins: 50
   nodePrefab: {fileID: 9158458476228965421, guid: 623d6bec82d14471d94bab6ac6f97726, type: 3}
   mastered: 0
   isActive: 0
@@ -5193,7 +5192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a40a3322e464c49bf1fc29828c5551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coins: 500
+  coins: 50000
   assets:
   - {fileID: -1454182341747985935, guid: 9859784c8b3b4d24495ef79cf8eb2137, type: 3}
   - {fileID: -4578434571204562890, guid: d444ba196eec14069b51d3a39ed3b717, type: 3}
@@ -5204,6 +5203,7 @@ MonoBehaviour:
   - {fileID: -1454182341747985935, guid: c9fd556eb345542b58d2df3a7c1bb969, type: 3}
   - {fileID: -1454182341747985935, guid: 85b8d4eb7ea8a47f797f2c941151e4c6, type: 3}
   - {fileID: -1454182341747985935, guid: a946e551601344a91bc9d420900f3ed7, type: 3}
+  - {fileID: -5513056739033444781, guid: 06a62c68fd60f4bca8f5adeae7b2ecc8, type: 3}
   coinAmount: {fileID: 526306469}
 --- !u!4 &460561651
 Transform:

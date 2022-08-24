@@ -23,7 +23,7 @@ public class ListItem : MonoBehaviour
     public void SetRaycValues(Rayc _rayc)
     {
         rayc = _rayc;
-        itemName.text = rayc.name;
+        itemName.text = rayc.raycName;
         itemDescription.text = "Strength: " + rayc.strength + ", Discovery: " + rayc.discovery;
         itemImage.sprite = rayc.GetComponent<Image>().sprite;
         fullnessDisplay.gameObject.SetActive(true);
