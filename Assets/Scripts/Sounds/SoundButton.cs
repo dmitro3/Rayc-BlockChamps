@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class SoundButton : MonoBehaviour
 {
-    public Slider slider;
+    public Component slider;
 
     public void OnClick()
     {
-        slider.gameObject.SetActive(!slider.IsActive());
+        slider.gameObject.SetActive(!slider.gameObject.activeSelf);
     }
 
     public void OnExitSettings()
