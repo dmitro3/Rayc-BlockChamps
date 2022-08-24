@@ -369,9 +369,11 @@ class ShopManager : MonoBehaviour
         dialogueBox.dialogueText.text = "Transaction completed!";
 
 
-        dialogueBox.SetFunctionToCloseButton(() => {
-            OfferOpenSeaView(tokenId.ToString());
-        });
+        // dialogueBox.SetFunctionToCloseButton(() => {
+        //     OfferOpenSeaView(tokenId.ToString());
+        // });
+
+        dialogueBox.SetFunctionToCloseButton(dialogueBox.HideDialogue);
 
         // Delete from database
         if (tradableAsset.CompareTag("Rayc"))
