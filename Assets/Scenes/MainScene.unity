@@ -12341,7 +12341,7 @@ MonoBehaviour:
   - {fileID: 1002378821}
   - {fileID: 1246316898}
   - {fileID: 1863026459}
-  eventTimerInterval: 1
+  eventTimerInterval: 30
 --- !u!1 &1084828103
 GameObject:
   m_ObjectHideFlags: 0
@@ -21940,7 +21940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameAssetList: {fileID: 301853451}
-  waitTime: 2
+  waitTime: 15
   allowMapEffects: 0
   isMouseHovering: 0
   hoveredArea: 
